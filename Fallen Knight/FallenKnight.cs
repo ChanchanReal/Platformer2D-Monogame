@@ -75,10 +75,10 @@ namespace Fallen_Knight
 
             List<Rectangle> target = new List<Rectangle>
             {
-                player.hitbox[0],
-                player.hitbox[1],
-                player.hitbox[2],
-                player.hitbox[3],
+                player.Hitbox[0],
+                player.Hitbox[1],
+                player.Hitbox[2],
+                player.Hitbox[3],
                 enemy.EnemyBound
             };
 

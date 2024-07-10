@@ -43,9 +43,9 @@ namespace Fallen_Knight.GameAssets.Tile.Tile
 
             if (!fall)
             {
-                if (player.hitbox[1].Intersects(BoundingRec) 
-                    || player.hitbox[2].Intersects(BoundingRec) 
-                    || player.hitbox[3].Intersects(BoundingRec))
+                if (player.Hitbox[1].Intersects(BoundingRec) 
+                    || player.Hitbox[2].Intersects(BoundingRec) 
+                    || player.Hitbox[3].Intersects(BoundingRec))
                 {
                     fall = true;
                     timer = touchDelay;

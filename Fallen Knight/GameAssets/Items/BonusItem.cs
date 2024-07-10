@@ -42,7 +42,7 @@ namespace Fallen_Knight.GameAssets.Items
 
         public void Update(GameTime gameTime, Player player)
         {
-            foreach (var hitbox in player.hitbox)
+            foreach (var hitbox in player.Hitbox)
             {
                 if (itemBound.Intersecting(hitbox))
                 {

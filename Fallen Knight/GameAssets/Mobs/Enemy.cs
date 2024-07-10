@@ -101,15 +101,15 @@ namespace Fallen_Knight.GameAssets.Mobs
 
             Player player = (Player)level.Player;
 
-            if (player.hitbox[1].Intersects(boundingBox))
+            if (player.Hitbox[1].Intersects(boundingBox))
             {
                 goingLeft = true;
-                position.X = player.hitbox[1].X - (player.hitbox[1].Width - 1);
+                position.X = player.Hitbox[1].X - (player.Hitbox[1].Width - 1);
             }
-            else if (player.hitbox[2].Intersects(boundingBox))
+            else if (player.Hitbox[2].Intersects(boundingBox))
             {
                 goingLeft = false;
-                position.X = player.hitbox[2].X + (boundingBox.Width + 1);
+                position.X = player.Hitbox[2].X + (boundingBox.Width + 1);
             }
 
             foreach (var tile in Level.tileMap.Keys)
