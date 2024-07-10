@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile>Reach</Profile>
+  <Platform>DesktopGL</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/diamond.png</File>
+    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Font/File.spritefont</File>
+    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Font/text.spritefont</File>
+    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/hitbox_circle64.png</File>
+    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/hitbox_square64.png</File>
+    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Item/goldbag.png</File>
+    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Monster/slimemonster.png</File>
+    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Player/Attack 1.png</File>
+    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Player/Dead.png</File>
+    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Player/fall-only.png</File>
+    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Player/Idle.png</File>
+    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Player/Jump-only.png</File>
+    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Player/Jump.png</File>
+    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Player/Run.png</File>
+    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Player/Walk.png</File>
+    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Scene/back.png</File>
+    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Scene/parallax-demon-woods-bg.png</File>
+    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Scene/parallax-demon-woods-close-trees.png</File>
+    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Scene/parallax-demon-woods-far-trees.png</File>
+    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Scene/parallax-demon-woods-mid-trees.png</File>
+    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Tiles/hitbox_square64.png</File>
+    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Tiles/t.png</File>
+    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Tiles/t0.png</File>
+    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Tiles/t1.png</File>
+    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Tiles/t2.png</File>
+    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Tiles/t3.png</File>
+    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Tiles/t4.png</File>
+    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Tiles/t5.png</File>
+    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Tiles/t6.png</File>
+    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Tiles/t7.png</File>
+    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Tiles/t8.png</File>
+    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Tiles/t9.png</File>
+    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Tiles/tile.png</File>
+  </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>
