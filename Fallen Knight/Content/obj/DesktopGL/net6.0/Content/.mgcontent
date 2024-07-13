@@ -24,6 +24,7 @@
     <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Scene/parallax-demon-woods-close-trees.png</File>
     <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Scene/parallax-demon-woods-far-trees.png</File>
     <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Scene/parallax-demon-woods-mid-trees.png</File>
+    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Sounds/Background/FarBeyond Studio - Freebies Vol. 1 - 04 - Tiefsee (CC-BY 4.0).wav</File>
     <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Tiles/hitbox_square64.png</File>
     <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Tiles/t.png</File>
     <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Tiles/t0.png</File>
@@ -59,6 +60,7 @@
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
+    <File>Sounds/Background/bg.wav</File>
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

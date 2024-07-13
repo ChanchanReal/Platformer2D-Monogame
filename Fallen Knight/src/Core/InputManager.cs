@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 
 namespace Fallen_Knight.src.Core
 {
@@ -6,6 +7,8 @@ namespace Fallen_Knight.src.Core
     {
         private static KeyboardState _currentKeyboardState;
         private static KeyboardState _previousKeyboardState;
+        private static MouseState _mouseState;
+        private static Vector2 _mousePosition;
 
         public static bool Input(Keys key)
         {
@@ -21,6 +24,21 @@ namespace Fallen_Knight.src.Core
         {
             _previousKeyboardState = _currentKeyboardState;
             _currentKeyboardState = Keyboard.GetState();
+            _mouseState = Mouse.GetState();
+        }
+
+        public static void SetMousePosition(Vector2 newPosition)
+        {
+            _mousePosition = newPosition;
+        }
+        public static Vector2 GetMousePositionFromCamera()
+        {
+            return new Vector2(_mouseState.X, _mouseState.Y);
+        }
+
+        public static Vector2 GetMousePosition()
+        {
+            return _mousePosition;
         }
     }
 }

@@ -49,6 +49,7 @@ namespace Fallen_Knight.GameAssets.Character
         public PlayerStatus CurrentAction;
         private float attackTimer = 0f;
         private float wantsToJumpDuration = 0f;
+        private float cayoteTime = 0f;
         private float movement = 0;
         private bool spriteDirection = false;
         private bool isJumping = false;
@@ -389,7 +390,10 @@ namespace Fallen_Knight.GameAssets.Character
         private void GetCollision(Rectangle newBoundRectangle, Vector2 velocity)
         {
             Rectangle bounds = newBoundRectangle;
+
+            if (cayoteTime <= 0)
             isGround = false;
+
             collisionDirection = 0;
 
             foreach (var tile in Level.tileMap.Keys)
@@ -408,6 +412,7 @@ namespace Fallen_Knight.GameAssets.Character
             if (CurrentAction == PlayerStatus.Falling || CurrentAction != PlayerStatus.Jump)
             CollisionForFallingTile(bounds);
 
+            cayoteTime -= DeltaTime;
         }
 
         private void CollisionForFallingTile(Rectangle bounds)
@@ -443,6 +448,7 @@ namespace Fallen_Knight.GameAssets.Character
 
             if (Hitbox[Feet].Intersects(tileBounds))
             {
+                cayoteTime = 0.1f;
                 isGround = true;
                 isJumping = false;
                 Position = new Vector2(Position.X, tileBounds.Y - bounds.Height + 1);

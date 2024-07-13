@@ -20,7 +20,7 @@ namespace Fallen_Knight.GameAssets.Camera
 
         float zoom = 1.3f;
 
-        public Camera(Viewport newView, float smoothness = 0.1f)
+        public Camera(Viewport newView, float smoothness = 0.04f)
         {
             view = newView;
             this.smoothness = smoothness;
@@ -60,7 +60,6 @@ namespace Fallen_Knight.GameAssets.Camera
                         Matrix.CreateTranslation(new Vector3(view.Width / 2, view.Height / 2, 0));
         }
 
-        // Method to clamp the camera within the bounds of the game world
         private void Clamp(ref Vector2 position, Rectangle bounds)
         {
             position.X = MathHelper.Clamp(position.X, bounds.Left + view.Width / 2 / zoom, bounds.Right - view.Width / 2 / zoom);
@@ -77,6 +76,15 @@ namespace Fallen_Knight.GameAssets.Camera
         {
             shakeIntensity = intensity;
             shakeDuration = duration;
+        }
+
+        public Vector2 ScreenToWorld(Vector2 screenPosition)
+        {
+            // Invert the camera transform matrix
+            Matrix inverseTransform = Matrix.Invert(transform);
+
+            // Transform the screen position to world coordinates
+            return Vector2.Transform(screenPosition, inverseTransform);
         }
 
         public void Update()

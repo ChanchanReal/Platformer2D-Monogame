@@ -1,4 +1,5 @@
 ﻿using Fallen_Knight.GameAssets.Collisions;
+using Fallen_Knight.src.Core;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -9,6 +10,7 @@ using static Fallen_Knight.GameAssets.Character.Player;
 
 namespace Fallen_Knight
 {
+#if DEBUG
     public class DebugHelper
     {
         private Texture2D squareTexture;
@@ -22,11 +24,9 @@ namespace Fallen_Knight
         bool showHitbox = false;
         bool showGameTime = false;
         PlayerStatus status = PlayerStatus.Idle;
+        private Vector2 playerPosition;
 
         int spacing = 0;
-
-        KeyboardState oldKeystate;
-
         public void Load(ContentManager content)
         {
             spriteFont = content.Load<SpriteFont>("Font/text");
@@ -34,32 +34,35 @@ namespace Fallen_Knight
             circleTexture = content.Load<Texture2D>("hitbox_circle64");
         }
 
-        public void Update(GameTime gameTime, KeyboardState keyState, List<Rectangle> target, List<Circle> circles)
+        public void Update(GameTime gameTime, List<Rectangle> target, List<Circle> circles)
         {
             float delta = (float)gameTime.TotalGameTime.TotalSeconds;
             debugRectangles = target;
             itemBound = circles;
 
-            if (keyState.IsKeyDown(Keys.F1) && !oldKeystate.IsKeyDown(Keys.F1))
+            if (InputManager.Input(Keys.F1))
             {
                 isDebug = !isDebug;
                 Console.WriteLine(isDebug);
             }
 
-            if (isDebug && keyState.IsKeyDown(Keys.F2) && !oldKeystate.IsKeyDown(Keys.F2))
+            if (isDebug && InputManager.Input(Keys.F2))
             {
                 showHitbox = !showHitbox;
             }
 
-            if (isDebug && keyState.IsKeyDown(Keys.F3) && !oldKeystate.IsKeyDown(Keys.F3))
+            if (isDebug && InputManager.Input(Keys.F3))
             {
                 showGameTime = !showGameTime;
             }
 
             this.gameTime = delta;
-            oldKeystate = keyState;
         }
 
+        public void GetPlayerPosition(Vector2 playerPosition)
+        {
+            this.playerPosition = playerPosition;
+        }
         public void DrawDebugRectangle(SpriteBatch spriteBatch)
         {
             int i = 0;
@@ -101,6 +104,8 @@ namespace Fallen_Knight
                 DrawText(spriteBatch, $"Debug is on {isDebug}", 1);
                 DrawText(spriteBatch, $"Show Hitbox F1 - {showHitbox}", 2);
                 DrawText(spriteBatch, $"Player action - {status}", 3);
+                DrawText(spriteBatch, $"Player position - {playerPosition}", 3);
+                DrawText(spriteBatch, $"Mouse Position - {InputManager.GetMousePosition()}", 3);
             }
 
             spriteBatch.End();
@@ -112,4 +117,5 @@ namespace Fallen_Knight
             spacing += 20;
         }
     }
+#endif
 }

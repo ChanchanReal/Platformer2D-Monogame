@@ -243,6 +243,12 @@
 /processorParam:TextureFormat=Color
 /build:Scene/parallax-demon-woods-mid-trees.png
 
+#begin Sounds/Background/FarBeyond Studio - Freebies Vol. 1 - 04 - Tiefsee (CC-BY 4.0).wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Background/FarBeyond Studio - Freebies Vol. 1 - 04 - Tiefsee (CC-BY 4.0).wav;Sounds/Background/bg.wav
+
 #begin Tiles/hitbox_square64.png
 /importer:TextureImporter
 /processor:TextureProcessor
