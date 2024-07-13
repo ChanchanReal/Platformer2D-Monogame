@@ -427,8 +427,7 @@ namespace Fallen_Knight.GameAssets.Character
                         // check Height is less than width depth
                         if (Math.Abs(depth.Y) < Math.Abs(depth.X))
                         {
-                            // if we cross the top of the tile as well as double checking our hitbox to intersecs the tile before proceed
-                            // if confirm reset the vertical velocity set the player as on the ground and make player stay on top of tile.
+                            // if we our on top of tile.
                             if (previousBottom <= tileBound.Top && playerSpeed.Y >= 0 && Hitbox[Feet].Intersects(tileBound))
                             {
                                 isGround = true;
