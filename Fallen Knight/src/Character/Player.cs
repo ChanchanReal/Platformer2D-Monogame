@@ -271,6 +271,11 @@ namespace Fallen_Knight.GameAssets.Character
                 wantsToJump = true;
             }
 
+            if (InputManager.Input(Keys.K))
+            {
+                Position = SpawnPoint;
+            }
+
             if (wantsToJump && wantsToJumpDuration <= 0)
             {
                 wantsToJump = false;
@@ -387,32 +392,91 @@ namespace Fallen_Knight.GameAssets.Character
 
             particleSystem.Draw(sprite);
         }
+        private float previousBottom;
+        private float previousLeft;
+        private float previousPos;
         private void GetCollision(Rectangle newBoundRectangle, Vector2 velocity)
         {
             Rectangle bounds = newBoundRectangle;
 
             if (cayoteTime <= 0)
-            isGround = false;
+                isGround = false;
 
             collisionDirection = 0;
 
-            foreach (var tile in Level.tileMap.Keys)
-            {
-                if (Level.tileMap[tile].Item1 == TileType.Platform)
-                {
-                    Vector2 collisionDepth = tile.GetIntersectionDepth(bounds);
+            // gets the player bounds in game world
+            int leftTile = (int)Math.Floor((float)Hitbox[LeftBody].Left / 64);
+            int rightTile = (int)Math.Ceiling(((float)Hitbox[RightBody].Right / 64)) - 1;
+            int topTile = (int)Math.Floor((float)Hitbox[Head].Top / 65);
+            int bottomTile = (int)Math.Ceiling(((float)Hitbox[Feet].Bottom / 65)) - 1;
 
-                    if (collisionDepth != Vector2.Zero)
+            // checks for the closest tile between the player
+            for (int y = topTile; y <= bottomTile; ++y)
+            {
+                for (int x = leftTile; x <= rightTile; ++x)
+                {
+                    if (level.GetCollision(x, y) == TileType.Platform)
                     {
-                        HandleCollision(bounds, tile);
+                        // gets the tile bound and depth of how player and tile intersects
+                        Rectangle tileBound = Level.GetBounds(x, y);
+                        Vector2 depth = RectangleExtensions.GetIntersectionDepth(bounds, tileBound);
+
+                        if (depth == Vector2.Zero)
+                            return;
+
+                        // check Height is less than width depth
+                        if (Math.Abs(depth.Y) < Math.Abs(depth.X))
+                        {
+                            // if we cross the top of the tile as well as double checking our hitbox to intersecs the tile before proceed
+                            // if confirm reset the vertical velocity set the player as on the ground and make player stay on top of tile.
+                            if (previousBottom <= tileBound.Top && playerSpeed.Y >= 0 && Hitbox[Feet].Intersects(tileBound))
+                            {
+                                isGround = true;
+                                playerSpeed.Y = 0;
+                                Position = new Vector2(Position.X, tileBound.Top - bounds.Height + 1);
+                            }
+                            else if (playerSpeed.Y < 0 && Hitbox[Head].Intersects(tileBound)) // if we hit the top of the tile as well as our velocity is jumping
+                            {
+                                // Hitting head on the ceiling
+                                Position = new Vector2(Position.X, tileBound.Y + tileBound.Height * 0.8f);
+                                playerSpeed.Y = 0; // Stop upward movement
+                            }
+                            // update the bound of the player to re-check the neighboring tile
+                            bounds = BoundingRectangle;
+                        }
+                        // Resolve horizontal collision
+                        else
+                        {
+                            // making sure we collided a wall collision tile.
+                            if (depth.X != 0)
+                            {
+                                // if left wall as well as double checking to makesure we did intersect with our custom hitbox
+                                if (depth.X > 0)
+                                {
+                                    if (Hitbox[LeftBody].Intersects(tileBound))
+                                    Position = new Vector2(tileBound.X + (bounds.Width - Hitbox[LeftBody].Width), Position.Y);
+                                }
+                                else if (depth.X < 0) // right wall collision
+                                {
+                                    if (Hitbox[RightBody].Intersects(tileBound))
+                                        Position = new Vector2(tileBound.X - (bounds.Width - Hitbox[RightBody].Width) + 2, Position.Y);
+                                }
+                                // update the bound of the player to re-check the neighboring tile
+                                bounds = BoundingRectangle;
+                            }
+                        }
                     }
                 }
             }
-            // this a quick fix because this fucking thing stop player from jumping when on falling tile
+            
+            // checks if player on collision tile or not yet jump to avoid checking when player jumps
             if (CurrentAction == PlayerStatus.Falling || CurrentAction != PlayerStatus.Jump)
-            CollisionForFallingTile(bounds);
+                CollisionForFallingTile(bounds);
 
             cayoteTime -= DeltaTime;
+            previousPos = Position.Y;
+            previousLeft = leftTile;
+            previousBottom = bottomTile;
         }
 
         private void CollisionForFallingTile(Rectangle bounds)
@@ -470,6 +534,7 @@ namespace Fallen_Knight.GameAssets.Character
         {
             float delta = (float)(gameTime.ElapsedGameTime.TotalSeconds / (1.0 / 60));
             headIsColliding = false;
+            if (!isGround)
             playerSpeed.Y += forces.Y;
 
             Position = new Vector2(Position.X + playerSpeed.X * delta, Position.Y + playerSpeed.Y * delta);

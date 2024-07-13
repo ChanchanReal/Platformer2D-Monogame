@@ -80,40 +80,54 @@ namespace Fallen_Knight.GameAssets.Levels
         {
             LoadGameEntities();
 
-            width = 0;
+            int width = 0;
+
             List<string> lines = new List<string>();
             StringBuilder sb = new StringBuilder();
+
             using (StreamReader reader = new StreamReader(fileStream))
             {
                 string line = reader.ReadLine();
                 width = line.Length;
+
                 while (line != null)
                 {
                     string[] tokens = line.Split(',');
+
                     foreach (var token in tokens)
                     {
+
                         if (token == "-1")
+                        {
                             sb.Append('!');
+                        }
                         else
+                        {
                             sb.Append(token);
+                        }
+
                     }
+
                     lines.Add(sb.ToString());
                     width = sb.Length;
+
                     if (sb.Length != width)
+                    {
                         throw new Exception("Map is not initialized properly");
+                    }
+
                     sb = new StringBuilder();
                     line = reader.ReadLine();
                 }
             }
-            height = lines.Count;
 
+            int height = lines.Count;
             tileMap = new Dictionary<Rectangle, (TileType, char)>();
+            tiles = new Tiles.Tile[width, height];
 
-            tiles = new Tiles.Tile[Width, Height];
-
-            for (int i = 0; i < Height; i++)
+            for (int i = 0; i < Height; ++i)
             {
-                for (int j = 0; j < Width; j++)
+                for (int j = 0; j < Width; ++j)
                 {
                     char tiletypes = lines[i][j];
 
@@ -127,6 +141,7 @@ namespace Fallen_Knight.GameAssets.Levels
                     }
 
                     LoadEntities(tileType, i, j);
+
                     SetTile(tileType, i, j, tiletypes);
                 }
             }
@@ -169,6 +184,26 @@ namespace Fallen_Knight.GameAssets.Levels
                     return TileType.Item;
                 case 'f':
                     return TileType.FallingPlatform;
+                case '1':
+                    return TileType.Platform;
+                case '2':
+                    return TileType.Platform;
+                case '3':
+                    return TileType.Platform;
+                case '4':
+                    return TileType.Platform;
+                case '5':
+                    return TileType.Platform;
+                case '6':
+                    return TileType.Platform;
+                case '7':
+                    return TileType.Platform;
+                case '8':
+                    return TileType.Platform;
+                case '=':
+                    return TileType.Platform;
+                case '-':
+                    return TileType.Platform;
 
                 default:
                     return TileType.Platform;
@@ -191,16 +226,14 @@ namespace Fallen_Knight.GameAssets.Levels
             if (y < 0 || y >= ScreenSize.X)
                 return TileType.Passable;
 
-            x = Math.Clamp(x, 0, tiles.GetLength(0) - 1);
-            y = Math.Clamp(y, 0, tiles.GetLength(1) - 1);
-
             return tiles[x, y].Tile_Type;
         }
         // get the Tile bounding in the level
         public Rectangle GetBounds(int x, int y)
         {
             // get the size of the tile
-            return new Rectangle(x * (int)Tiles.Tile.Size.X, y * (int)Tiles.Tile.Size.Y, (int)Tiles.Tile.Size.X, (int)Tiles.Tile.Size.X);
+            return new Rectangle(x * (int)Tiles.Tile.Size.X, y * (int)Tiles.Tile.Size.Y,
+                (int)Tiles.Tile.Size.X, (int)Tiles.Tile.Size.X);
         }
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
@@ -235,38 +268,34 @@ namespace Fallen_Knight.GameAssets.Levels
 
         public int Width
         {
-            get { return width; }
+            get { return tiles.GetLength(0); }
         }
-        private int width;
 
         public int Height
         {
-            get { return height; }
+            get { return tiles.GetLength(1); }
         }
-        private int height;
 
-        private void DrawTile(SpriteBatch sprite)
+        private void DrawTile(SpriteBatch spriteBatch)
         {
-
-            foreach (var Tile in tileMap.Keys)
+            for (int x = 0; x < Width; ++x)
             {
-                if (tileMap[Tile].Item1 == TileType.Platform)
+                for (int y = 0; y < Height; ++y)
                 {
-                    int newX = Tile.X / 64;
-                    int newY = Tile.Y / 65;
-
-                    sprite.Draw(LoadTileVarietyTexture(tileMap[Tile].Item2), new Rectangle(Tile.X, Tile.Y, 64, 65),
-                        new Rectangle(0, 0, 64, 64), Color.AliceBlue);
+                    if (tiles[x, y].Tile_Type == TileType.Platform)
+                    {
+                        spriteBatch.Draw(tiles[x, y].Texture, new Rectangle(x * 64, y * 65, 64, 65),
+                            new Rectangle(0, 0, 64, 64), Color.White);
+                    }
                 }
             }
         }
         private void SetTile(TileType tileType, int x, int y, char token)
         {
-            x = Math.Clamp(x, 0, Width);
-            y = Math.Clamp(y, 0, Height - 1);
+            if (token == '%' || token == '!')
+                return;
 
-            if (token != '%' && token != '!')
-                tiles[x, y] = new Tiles.Tile(LoadTileVarietyTexture(token), tileType);
+            tiles[y, x] = new Tiles.Tile(LoadTileVarietyTexture(token), tileType);
         }
 
         public Texture2D LoadTileVarietyTexture(char token)
@@ -287,6 +316,7 @@ namespace Fallen_Knight.GameAssets.Levels
                 '9' => "Item/goldbag",
                 'f' => "Tiles/hitbox_square64",
                 _ => throw new InvalidOperationException()
+
             };
 
             return Content.Load<Texture2D>(texture);

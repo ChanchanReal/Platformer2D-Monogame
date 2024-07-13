@@ -18,7 +18,6 @@ namespace Fallen_Knight.src.Core
 
         public void PlayWalkingSound()
         {
-
         }
         public void PlayBackgroundMusic()
         {

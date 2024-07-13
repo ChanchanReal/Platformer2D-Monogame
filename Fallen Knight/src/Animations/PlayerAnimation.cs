@@ -16,7 +16,6 @@ namespace Fallen_Knight.GameAssets.Animations
         }
         public void DrawScreenFade()
         {
-
         }
         public void Update(GameTime gameTime)
         {
