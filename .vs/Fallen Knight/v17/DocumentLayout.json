@@ -7,20 +7,32 @@
       "RelativeMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|solutionrelative:fallen knight\\src\\character\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|c:\\users\\cedie\\source\\repos\\fallen knight\\fallen knight\\src\\collisions\\rectangleextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|solutionrelative:fallen knight\\src\\collisions\\rectangleextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|c:\\users\\cedie\\source\\repos\\fallen knight\\fallen knight\\src\\animations\\playeranimation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|solutionrelative:fallen knight\\src\\animations\\playeranimation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|c:\\users\\cedie\\source\\repos\\fallen knight\\fallen knight\\src\\camera\\camera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|solutionrelative:fallen knight\\src\\camera\\camera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|c:\\users\\cedie\\source\\repos\\fallen knight\\fallen knight\\src\\animations\\animation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|solutionrelative:fallen knight\\src\\animations\\animation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|c:\\users\\cedie\\source\\repos\\fallen knight\\fallen knight\\src\\tiles\\fallingtile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|solutionrelative:fallen knight\\src\\tiles\\fallingtile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|c:\\users\\cedie\\source\\repos\\fallen knight\\fallen knight\\src\\levels\\level.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|solutionrelative:fallen knight\\src\\levels\\level.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|c:\\users\\cedie\\source\\repos\\fallen knight\\fallen knight\\content\\levels\\tile.csv||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|solutionrelative:fallen knight\\content\\levels\\tile.csv||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|c:\\users\\cedie\\source\\repos\\fallen knight\\fallen knight\\src\\interface\\igameentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|solutionrelative:fallen knight\\src\\interface\\igameentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|c:\\users\\cedie\\source\\repos\\fallen knight\\fallen knight\\src\\core\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|solutionrelative:fallen knight\\src\\core\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|c:\\users\\cedie\\source\\repos\\fallen knight\\fallen knight\\src\\interface\\icommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|solutionrelative:fallen knight\\src\\interface\\icommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,8 +42,36 @@
       "DocumentGroups": [
         {
           "DockedHeight": 247,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 10,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PlayerAnimation.cs",
+              "DocumentMoniker": "C:\\Users\\cedie\\source\\repos\\Fallen Knight\\Fallen Knight\\src\\Animations\\PlayerAnimation.cs",
+              "RelativeDocumentMoniker": "Fallen Knight\\src\\Animations\\PlayerAnimation.cs",
+              "ToolTip": "C:\\Users\\cedie\\source\\repos\\Fallen Knight\\Fallen Knight\\src\\Animations\\PlayerAnimation.cs",
+              "RelativeToolTip": "Fallen Knight\\src\\Animations\\PlayerAnimation.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAEAAAAA0AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-14T02:44:46.745Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Animation.cs",
+              "DocumentMoniker": "C:\\Users\\cedie\\source\\repos\\Fallen Knight\\Fallen Knight\\src\\Animations\\Animation.cs",
+              "RelativeDocumentMoniker": "Fallen Knight\\src\\Animations\\Animation.cs",
+              "ToolTip": "C:\\Users\\cedie\\source\\repos\\Fallen Knight\\Fallen Knight\\src\\Animations\\Animation.cs",
+              "RelativeToolTip": "Fallen Knight\\src\\Animations\\Animation.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-14T02:48:17.073Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
@@ -46,51 +86,68 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "RectangleExtensions.cs",
-              "DocumentMoniker": "C:\\Users\\cedie\\source\\repos\\Fallen Knight\\Fallen Knight\\src\\Collisions\\RectangleExtensions.cs",
-              "RelativeDocumentMoniker": "Fallen Knight\\src\\Collisions\\RectangleExtensions.cs",
-              "ToolTip": "C:\\Users\\cedie\\source\\repos\\Fallen Knight\\Fallen Knight\\src\\Collisions\\RectangleExtensions.cs",
-              "RelativeToolTip": "Fallen Knight\\src\\Collisions\\RectangleExtensions.cs",
-              "ViewState": "AQIAABsAAAAAAAAAAAAIwB0AAABKAAAA",
+              "DocumentIndex": 3,
+              "Title": "FallingTile.cs",
+              "DocumentMoniker": "C:\\Users\\cedie\\source\\repos\\Fallen Knight\\Fallen Knight\\src\\Tiles\\FallingTile.cs",
+              "RelativeDocumentMoniker": "Fallen Knight\\src\\Tiles\\FallingTile.cs",
+              "ToolTip": "C:\\Users\\cedie\\source\\repos\\Fallen Knight\\Fallen Knight\\src\\Tiles\\FallingTile.cs",
+              "RelativeToolTip": "Fallen Knight\\src\\Tiles\\FallingTile.cs",
+              "ViewState": "AQIAABkAAAAAAAAAAAA0wBwAAAAfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-13T11:25:02.18Z"
+              "WhenOpened": "2024-07-14T06:09:39.698Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IGameEntity.cs",
+              "DocumentMoniker": "C:\\Users\\cedie\\source\\repos\\Fallen Knight\\Fallen Knight\\src\\Interface\\IGameEntity.cs",
+              "RelativeDocumentMoniker": "Fallen Knight\\src\\Interface\\IGameEntity.cs",
+              "ToolTip": "C:\\Users\\cedie\\source\\repos\\Fallen Knight\\Fallen Knight\\src\\Interface\\IGameEntity.cs",
+              "RelativeToolTip": "Fallen Knight\\src\\Interface\\IGameEntity.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAABDAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-14T06:04:20.71Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "tile.csv",
-              "DocumentMoniker": "C:\\Users\\cedie\\source\\repos\\Fallen Knight\\Fallen Knight\\Content\\Levels\\tile.csv",
-              "RelativeDocumentMoniker": "Fallen Knight\\Content\\Levels\\tile.csv",
-              "ToolTip": "C:\\Users\\cedie\\source\\repos\\Fallen Knight\\Fallen Knight\\Content\\Levels\\tile.csv",
-              "RelativeToolTip": "Fallen Knight\\Content\\Levels\\tile.csv",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAGAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002120|",
-              "WhenOpened": "2024-07-13T07:04:44.395Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "Level.cs",
               "DocumentMoniker": "C:\\Users\\cedie\\source\\repos\\Fallen Knight\\Fallen Knight\\src\\Levels\\Level.cs",
               "RelativeDocumentMoniker": "Fallen Knight\\src\\Levels\\Level.cs",
               "ToolTip": "C:\\Users\\cedie\\source\\repos\\Fallen Knight\\Fallen Knight\\src\\Levels\\Level.cs",
               "RelativeToolTip": "Fallen Knight\\src\\Levels\\Level.cs",
-              "ViewState": "AQIAAGwAAAAAAAAAAIAwwJIAAAANAAAA",
+              "ViewState": "AQIAANUAAAAAAAAAAIAywPYAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-13T02:32:05.3Z"
+              "WhenOpened": "2024-07-14T06:03:09.557Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Camera.cs",
-              "DocumentMoniker": "C:\\Users\\cedie\\source\\repos\\Fallen Knight\\Fallen Knight\\src\\Camera\\Camera.cs",
-              "RelativeDocumentMoniker": "Fallen Knight\\src\\Camera\\Camera.cs",
-              "ToolTip": "C:\\Users\\cedie\\source\\repos\\Fallen Knight\\Fallen Knight\\src\\Camera\\Camera.cs",
-              "RelativeToolTip": "Fallen Knight\\src\\Camera\\Camera.cs",
-              "ViewState": "AQIAAE8AAAAAAAAAAADwv08AAAAAAAAA",
+              "DocumentIndex": 7,
+              "Title": "ICommand.cs",
+              "DocumentMoniker": "C:\\Users\\cedie\\source\\repos\\Fallen Knight\\Fallen Knight\\src\\Interface\\ICommand.cs",
+              "RelativeDocumentMoniker": "Fallen Knight\\src\\Interface\\ICommand.cs",
+              "ToolTip": "C:\\Users\\cedie\\source\\repos\\Fallen Knight\\Fallen Knight\\src\\Interface\\ICommand.cs",
+              "RelativeToolTip": "Fallen Knight\\src\\Interface\\ICommand.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAowCEAAAAjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-11T15:54:00.969Z"
+              "WhenOpened": "2024-07-14T06:00:33.903Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "GameManager.cs",
+              "DocumentMoniker": "C:\\Users\\cedie\\source\\repos\\Fallen Knight\\Fallen Knight\\src\\Core\\GameManager.cs",
+              "RelativeDocumentMoniker": "Fallen Knight\\src\\Core\\GameManager.cs",
+              "ToolTip": "C:\\Users\\cedie\\source\\repos\\Fallen Knight\\Fallen Knight\\src\\Core\\GameManager.cs",
+              "RelativeToolTip": "Fallen Knight\\src\\Core\\GameManager.cs",
+              "ViewState": "AQIAAB4AAAAAAAAAAAAqwDsAAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-13T16:16:30.25Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -100,7 +157,7 @@
               "RelativeDocumentMoniker": "Fallen Knight\\src\\Character\\Player.cs",
               "ToolTip": "C:\\Users\\cedie\\source\\repos\\Fallen Knight\\Fallen Knight\\src\\Character\\Player.cs",
               "RelativeToolTip": "Fallen Knight\\src\\Character\\Player.cs",
-              "ViewState": "AQIAAIsBAAAAAAAAAAAUwKkBAAAAAAAA",
+              "ViewState": "AQIAAEoBAAAAAAAAAAAgwLwAAAAZAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-11T15:31:21.735Z",
               "EditorCaption": ""

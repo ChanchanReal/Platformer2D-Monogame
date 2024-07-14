@@ -22,7 +22,6 @@ namespace Fallen_Knight.GameAssets.Levels
         public List<BonusItem> ItemBonus;
         public List<FallingTile> FallingTiles;
         public Dictionary<Rectangle, (TileType, char)> tileMap;
-
         private Vector2 playerSpawn;
         private Texture2D goldBag;
 
@@ -31,19 +30,21 @@ namespace Fallen_Knight.GameAssets.Levels
             get => contentManager;
         }
         ContentManager contentManager;
-        public Point ScreenSize
+        public Point WorldSize
         {
-            get => screenSize;
+            get => worldSize;
         }
-        Point screenSize;
+        Point worldSize;
         public Level(Point screenSize)
         {
-            this.screenSize = screenSize;
+            this.worldSize = screenSize;
         }
 
+        private GraphicsDevice graphicsDevice;
         public void Load(IServiceProvider content, GraphicsDevice graphicsDevice)
         {
             contentManager = new ContentManager(content, "Content");
+            this.graphicsDevice = graphicsDevice;
         }
 
         public void Update(GameTime gameTime)
@@ -212,7 +213,7 @@ namespace Fallen_Knight.GameAssets.Levels
 
         public void LoadGameEntities()
         {
-            Player = new Player(this, Content);
+            Player = new Player(this, Content , graphicsDevice);
             Enemy = new Enemy(Content.Load<Texture2D>("Monster/slimemonster"), new Vector2(100, 600), this);
             goldBag = Content.Load<Texture2D>("Item/goldbag");
         }
@@ -220,10 +221,11 @@ namespace Fallen_Knight.GameAssets.Levels
         public TileType GetCollision(int x, int y)
         {
             // limit it to the sky cant jump further
-            if (x < 0 || x >= ScreenSize.Y)
+            if (x < 0 || x >= Width)
                 return TileType.Impassable;
+
             // limit to side
-            if (y < 0 || y >= ScreenSize.X)
+            if (y < 0 || y >= Height)
                 return TileType.Passable;
 
             return tiles[x, y].Tile_Type;
@@ -238,23 +240,23 @@ namespace Fallen_Knight.GameAssets.Levels
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             DrawTile(spriteBatch);
-            Player.Draw(spriteBatch);
-            Enemy.Draw(spriteBatch);
+            Player.Draw(spriteBatch, gameTime);
+            Enemy.Draw(spriteBatch, gameTime);
 
             foreach (var items in ItemBonus)
             {
                 items.Draw(spriteBatch);
             }
 
-            DrawFallingTile(spriteBatch);
+            DrawFallingTile(spriteBatch, gameTime);
 
         }
 
-        private void DrawFallingTile(SpriteBatch sb)
+        private void DrawFallingTile(SpriteBatch sb, GameTime gameTime)
         {
             foreach (var item in FallingTiles)
             {
-                item.Draw(sb);
+                item.Draw(sb, gameTime);
             }
         }
 

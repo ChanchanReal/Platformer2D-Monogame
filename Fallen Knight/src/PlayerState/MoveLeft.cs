@@ -4,7 +4,7 @@ using System;
 
 public class MoveLeft : InputCommand
 {
-    public MoveLeft(float maxWalkingspeed, float accel, float jumpSpeed, Vector2 playerSpeed, Animation animation) :
+    public MoveLeft(float maxWalkingspeed, float accel, float jumpSpeed, Vector2 playerSpeed, PlayerAnimation animation) :
         base(maxWalkingspeed, accel, jumpSpeed, playerSpeed, animation)
     {
     }
@@ -18,8 +18,6 @@ public class MoveLeft : InputCommand
         }
         PlayerSpeed.X = PlayerSpeed.X - Accel;
         PlayerSpeed.X = Math.Clamp(PlayerSpeed.X, -MaxWalkingSpeed, MaxWalkingSpeed);
-        animationToPlay.UpdateFrame(gameTime);
-        animationToPlay.FlipH = true;
         return PlayerSpeed;
     }
 }

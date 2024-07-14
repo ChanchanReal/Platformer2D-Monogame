@@ -18,7 +18,6 @@ namespace Fallen_Knight.src.Core
     public class GameManager
     {
         private readonly GameSoundManager gameSound;
-        private readonly IAnimate playerAnimation;
         private readonly Level level;
         private readonly Layer layer;
         private readonly Game _game;
@@ -47,10 +46,9 @@ namespace Fallen_Knight.src.Core
             _graphics = deviceManager;
             _graphics.PreferredBackBufferWidth = screenSize.X;
             _graphics.PreferredBackBufferHeight = screenSize.Y;
-            level = new Level(screenSize);
+            level = new Level(new Point(GAME_WORLD_WIDTH, GAME_WORLD_HEIGHT));
             layer = new Layer();
             gameSound = new GameSoundManager();
-            playerAnimation = new PlayerAnimation();
         }
 
         public void LoadContent(ContentManager content)
@@ -62,7 +60,6 @@ namespace Fallen_Knight.src.Core
             debugHelper = new DebugHelper();
             debugHelper.Load(content);
 #endif
-            playerAnimation.Initialize(_graphics.GraphicsDevice);
             background = content.Load<Texture2D>("Scene/back");
             _canvas = new(_graphics.GraphicsDevice, 1280, 720);
             level.Load(content.ServiceProvider, _graphics.GraphicsDevice);
@@ -113,7 +110,6 @@ namespace Fallen_Knight.src.Core
             debugHelper.GetCurrentAction(player.CurrentAction);
 
 #endif
-            playerAnimation.Update(gameTime);
             level.Update(gameTime);
             camera.Update(gameTime, player, new Rectangle(0, 0, GAME_WORLD_WIDTH, GAME_WORLD_HEIGHT));
 
@@ -131,7 +127,6 @@ namespace Fallen_Knight.src.Core
             debugHelper.DrawDebugRectangle(spriteBatch);
 #endif
             spriteBatch.End();
-            playerAnimation.Draw(spriteBatch, gameTime);
 
 #if DEBUG
             debugHelper.Draw(spriteBatch);

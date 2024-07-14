@@ -40,6 +40,20 @@ namespace Fallen_Knight.GameAssets
 
             return new Particle(texture, position, velocity, color, angle, angularVelocity, size, ttl);
         }
+        public void GenerateDashParticles()
+        {
+            Texture2D texture = Textures[1];
+            Vector2 position = EmitterPosition + new Vector2(0, -50);
+            Color color = Color.White;
+            float angularVelocity = 0.1f * (float)(random.NextDouble() * 2 - 1);
+            float size = 10f;
+            int ttl = 5 + 60;
+
+            for (int i = 0; i < random.Next(5, 10); i++)
+                Particles.Add(new Particle(texture, position, 
+                    new Vector2((float)random.NextDouble() * 2, (float)random.NextDouble() * 2)
+                    , color, 0, angularVelocity, size, ttl));
+        }
 
         public void Update(Player player)
         {
@@ -64,11 +78,8 @@ namespace Fallen_Knight.GameAssets
 
         private void UpdateEmitterLocation(Player player)
         {
-
             EmitterPosition = new Vector2(player.Position.X + (player.BoundingRectangle.Width / 2),
                 player.Position.Y + (player.BoundingRectangle.Height / 2) + 40);
-
-
         }
 
         public bool StopGenerating()

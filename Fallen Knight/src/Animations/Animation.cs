@@ -14,6 +14,7 @@ namespace Fallen_Knight.GameAssets.Animations
         private float timer = 0;
         private bool isLooping = false;
 
+        public Rectangle Position;
         public bool FlipH = false;
 
         public Animation(Texture2D texture, int sizeX, int sizeY)
@@ -49,12 +50,12 @@ namespace Fallen_Knight.GameAssets.Animations
             }
         }
 
-        public void Draw(SpriteBatch sprite, Rectangle position)
+        public void Draw(SpriteBatch sprite)
         {
             if (!FlipH)
             {
                 sprite.Draw(texture,
-                    position,
+                    Position,
                     GetCurrentFrame(),
                     Color.AliceBlue
                     );
@@ -63,7 +64,7 @@ namespace Fallen_Knight.GameAssets.Animations
             {
                 sprite.Draw(
                     texture,
-                    position,
+                    Position,
                     GetCurrentFrame(),
                     Color.AliceBlue,
                     0f,

@@ -164,7 +164,7 @@ namespace Fallen_Knight.GameAssets.Mobs
             return EnemyBound.Intersects(rectangle);
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             spriteBatch.Draw(
                 texture,

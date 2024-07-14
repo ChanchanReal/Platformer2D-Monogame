@@ -1,39 +1,200 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
+using static Fallen_Knight.GameAssets.Character.Player;
 
 namespace Fallen_Knight.GameAssets.Animations
 {
-    public class PlayerAnimation : IAnimate
+    public class PlayerAnimation
     {
-        public GraphicsDevice graphics;
+        GraphicsDevice graphics;
         Texture2D fadeScreen;
         float screenFadeDuration = 2f;
+        bool isSpriteLookingLeft = false;
+        IAnimate currentAnimation;
+        List<IAnimate> animations;
 
-        public void Initialize(GraphicsDevice graphics)
+        public Point IdleSize = new Point(idleFrameWidth, idleFrameHeight);
+        private static int idleFrameWidth = 86;
+        private static int idleFrameHeight = 86;
+        public Rectangle PlayerPosition
+        {
+            get { return playerPosition; }
+        }
+        private Rectangle playerPosition;
+        public float DeltaTime
+        {
+            get { return deltaTime; }
+        }
+        private float deltaTime;
+        public PlayerStatus PlayerStatus
+        {
+            get { return playerStatus; }
+        }
+        private PlayerStatus playerStatus;
+        public void Initialize(GraphicsDevice graphics, ContentManager contentManager)
         {
             fadeScreen = new Texture2D(graphics, 1, 1);
             fadeScreen.SetData(new Color[] { Color.Black });
+            
         }
-        public void DrawScreenFade()
+        public void CreateAnimation(ContentManager contentManager)
         {
+            animations = new List<IAnimate>();
+            animations.Add(new IdleAnimation(contentManager.Load<Texture2D>("Player/Idle"), 64, 86));
+            animations.Add(new RunAnimation(contentManager.Load<Texture2D>("Player/Run"), 72, 86));
+            animations.Add(new AttackAnimation(contentManager.Load<Texture2D>("Player/Run"), 125, 86));
+            animations.Add(new JumpAnimation(contentManager.Load<Texture2D>("Player/Jump-Only"), 80, 86));
+            animations.Add(new FallAnimation(contentManager.Load<Texture2D>("Player/Fall-Only"), 80, 86));
         }
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, Rectangle position, bool isSpriteLookingLeft, PlayerStatus playerState)
         {
-           screenFadeDuration -=  (float)gameTime.ElapsedGameTime.TotalSeconds;
+            deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            screenFadeDuration -= DeltaTime;
+            playerPosition = position;
+            this.isSpriteLookingLeft = isSpriteLookingLeft;
+            this.playerStatus = playerState;
+
+            currentAnimation = GetCurrentAnimation(playerState);
+
+            if (currentAnimation != null)
+            {
+                Animation animation = (Animation)currentAnimation;
+                animation.FlipH = isSpriteLookingLeft;
+                animation.Position = PlayerPosition;
+                currentAnimation.Update(gameTime);
+            }
         }
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            spriteBatch.Begin(SpriteSortMode.Texture);
-            spriteBatch.Draw(fadeScreen, new Rectangle(0,0,1280, 720), Color.Black * screenFadeDuration);
-            spriteBatch.End();
+            if (currentAnimation != null)
+                currentAnimation.Draw(spriteBatch, gameTime);
         }
 
+        public IAnimate GetCurrentAnimation(PlayerStatus playerState)
+        {
+            return playerState switch
+            {
+                PlayerStatus.Idle => animations[0],
+                PlayerStatus.Walk => animations[1],
+                PlayerStatus.Attack => animations[2],
+                PlayerStatus.Jump => animations[3],
+                PlayerStatus.Fall => animations[4],
+                _ => animations[0]
+            };
+        }
     }
 
     public interface IAnimate
     {
-        public void Initialize(GraphicsDevice graphics);
         public void Update(GameTime gameTime);
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime);
+    }
+
+    public class IdleAnimation : Animation, IAnimate
+    {
+        public IdleAnimation(Texture2D texture, int sizeX, int sizeY) : base(texture, sizeX, sizeY)
+        {
+        }
+
+        public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
+        {
+            base.Draw(spriteBatch);
+        }
+
+        public void Initialize(GraphicsDevice graphics)
+        {
+            
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            base.UpdateFrame(gameTime);
+        }
+    }
+    public class RunAnimation : Animation, IAnimate
+    {
+        public RunAnimation(Texture2D texture, int sizeX, int sizeY) : base(texture, sizeX, sizeY)
+        {
+        }
+
+        public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
+        {
+            base.Draw(spriteBatch);
+        }
+
+        public void Initialize(GraphicsDevice graphics)
+        {
+
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            base.UpdateFrame(gameTime);
+        }
+    }
+    public class AttackAnimation : Animation, IAnimate
+    {
+        public AttackAnimation(Texture2D texture, int sizeX, int sizeY) : base(texture, sizeX, sizeY)
+        {
+        }
+
+        public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
+        {
+            base.Draw(spriteBatch);
+        }
+
+        public void Initialize(GraphicsDevice graphics)
+        {
+
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            base.UpdateFrame(gameTime);
+        }
+    }
+    public class JumpAnimation : Animation, IAnimate
+    {
+        public JumpAnimation(Texture2D texture, int sizeX, int sizeY) : base(texture, sizeX, sizeY)
+        {
+        }
+
+        public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
+        {
+            base.Draw(spriteBatch);
+        }
+
+        public void Initialize(GraphicsDevice graphics)
+        {
+
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            base.UpdateFrame(gameTime);
+        }
+    }
+    public class FallAnimation : Animation, IAnimate
+    {
+        public FallAnimation(Texture2D texture, int sizeX, int sizeY) : base(texture, sizeX, sizeY)
+        {
+        }
+
+        public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
+        {
+            base.Draw(spriteBatch);
+        }
+
+        public void Initialize(GraphicsDevice graphics)
+        {
+
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            base.UpdateFrame(gameTime);
+        }
     }
 }

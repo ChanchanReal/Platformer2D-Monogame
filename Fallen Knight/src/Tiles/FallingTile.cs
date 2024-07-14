@@ -30,7 +30,7 @@ namespace Fallen_Knight.GameAssets.Tile.Tile
             this.Position = position;
             oldPos = position;
         }
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             spriteBatch.Draw(Texture, BoundingRec, Color.AliceBlue);
         }
