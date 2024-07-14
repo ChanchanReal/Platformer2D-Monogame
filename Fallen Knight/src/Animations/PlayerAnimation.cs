@@ -41,12 +41,15 @@ namespace Fallen_Knight.GameAssets.Animations
         }
         public void CreateAnimation(ContentManager contentManager)
         {
-            animations = new List<IAnimate>();
-            animations.Add(new IdleAnimation(contentManager.Load<Texture2D>("Player/Idle"), 64, 86));
-            animations.Add(new RunAnimation(contentManager.Load<Texture2D>("Player/Run"), 72, 86));
-            animations.Add(new AttackAnimation(contentManager.Load<Texture2D>("Player/Run"), 125, 86));
-            animations.Add(new JumpAnimation(contentManager.Load<Texture2D>("Player/Jump-Only"), 80, 86));
-            animations.Add(new FallAnimation(contentManager.Load<Texture2D>("Player/Fall-Only"), 80, 86));
+            animations = new List<IAnimate>
+            {
+                new IdleAnimation(contentManager.Load<Texture2D>("Player/Idle"), 64, 86),
+                new RunAnimation(contentManager.Load<Texture2D>("Player/Run"), 72, 86),
+                new AttackAnimation(contentManager.Load<Texture2D>("Player/Run"), 125, 86),
+                new JumpAnimation(contentManager.Load<Texture2D>("Player/Jump-Only"), 80, 86),
+                new FallAnimation(contentManager.Load<Texture2D>("Player/Fall-Only"), 80, 86),
+            };
+            
         }
         public void Update(GameTime gameTime, Rectangle position, bool isSpriteLookingLeft, PlayerStatus playerState)
         {
@@ -173,7 +176,8 @@ namespace Fallen_Knight.GameAssets.Animations
 
         public void Update(GameTime gameTime)
         {
-            base.UpdateFrame(gameTime);
+            //we only need one frame so im disabling this for now
+            //base.UpdateFrame(gameTime);
         }
     }
     public class FallAnimation : Animation, IAnimate
@@ -194,7 +198,8 @@ namespace Fallen_Knight.GameAssets.Animations
 
         public void Update(GameTime gameTime)
         {
-            base.UpdateFrame(gameTime);
+            //we only need one frame so im disabling this for now
+            //base.UpdateFrame(gameTime);
         }
     }
 }

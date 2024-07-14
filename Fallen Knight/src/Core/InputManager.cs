@@ -8,6 +8,7 @@ namespace Fallen_Knight.src.Core
         private static KeyboardState _currentKeyboardState;
         private static KeyboardState _previousKeyboardState;
         private static MouseState _mouseState;
+        private static MouseState _oldMouseState;
         private static Vector2 _mousePosition;
 
         public static bool Input(Keys key)
@@ -24,7 +25,13 @@ namespace Fallen_Knight.src.Core
         {
             _previousKeyboardState = _currentKeyboardState;
             _currentKeyboardState = Keyboard.GetState();
+            _oldMouseState = _mouseState;
             _mouseState = Mouse.GetState();
+        }
+
+        public static bool IsMouseLeftButtonDown()
+        {
+            return _mouseState.LeftButton == ButtonState.Pressed && _oldMouseState.LeftButton != ButtonState.Pressed;
         }
 
         public static void SetMousePosition(Vector2 newPosition)

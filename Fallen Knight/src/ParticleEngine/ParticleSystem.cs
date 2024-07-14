@@ -36,7 +36,7 @@ namespace Fallen_Knight.GameAssets
             Color color = Color.SaddleBrown;
             float angularVelocity = 0.1f * (float)(random.NextDouble() * 2 - 1);
             float size = 0.1f;
-            int ttl = 5 + random.Next(5);
+            int ttl = 5 + random.Next(10, 20);
 
             return new Particle(texture, position, velocity, color, angle, angularVelocity, size, ttl);
         }

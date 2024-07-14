@@ -242,11 +242,11 @@ namespace Fallen_Knight.GameAssets.Character
                 dashDuration -= DeltaTime;
                 if (spriteDirection == false)
                 {
-                    playerSpeed = new Vector2(dashSpeed, playerSpeed.Y);
+                    playerSpeed = new Vector2(dashSpeed, 0);
                 }
                 else
                 {
-                    playerSpeed = new Vector2(-dashSpeed, playerSpeed.Y);
+                    playerSpeed = new Vector2(-dashSpeed, 0);
                 }
             }
             else

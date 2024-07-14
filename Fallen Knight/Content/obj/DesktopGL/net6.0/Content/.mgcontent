@@ -10,6 +10,7 @@
     <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/hitbox_circle64.png</File>
     <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/hitbox_square64.png</File>
     <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Item/goldbag.png</File>
+    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Monster/robe_guy.png</File>
     <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Monster/slimemonster.png</File>
     <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Player/Attack 1.png</File>
     <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Player/Dead.png</File>
@@ -40,6 +41,7 @@
     <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Tiles/tile.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

@@ -18,7 +18,7 @@ namespace Fallen_Knight.GameAssets.Levels
     {
         public Tiles.Tile[,] tiles;
         public IGameEntity Player;
-        public IGameEntity Enemy;
+        public List<IGameEntity> enemies;
         public List<BonusItem> ItemBonus;
         public List<FallingTile> FallingTiles;
         public Dictionary<Rectangle, (TileType, char)> tileMap;
@@ -50,8 +50,14 @@ namespace Fallen_Knight.GameAssets.Levels
         public void Update(GameTime gameTime)
         {
             Player.Update(gameTime);
-            Enemy.Update(gameTime);
+
+            foreach (var enemy in enemies)
+            {
+                enemy.Update(gameTime);
+            }
+
             Player player = (Player)Player;
+
             foreach (var item in ItemBonus)
             {
                 item.Update(gameTime, player);
@@ -214,8 +220,11 @@ namespace Fallen_Knight.GameAssets.Levels
         public void LoadGameEntities()
         {
             Player = new Player(this, Content , graphicsDevice);
-            Enemy = new Enemy(Content.Load<Texture2D>("Monster/slimemonster"), new Vector2(100, 600), this);
             goldBag = Content.Load<Texture2D>("Item/goldbag");
+            enemies = new List<IGameEntity>
+            {
+                new RobeEnemy(Content.Load<Texture2D>("Monster/robe_guy"), this, new Vector2(322, 650))
+            };
         }
 
         public TileType GetCollision(int x, int y)
@@ -241,8 +250,10 @@ namespace Fallen_Knight.GameAssets.Levels
         {
             DrawTile(spriteBatch);
             Player.Draw(spriteBatch, gameTime);
-            Enemy.Draw(spriteBatch, gameTime);
-
+            foreach (var enemy in enemies)
+            {
+                enemy.Draw(spriteBatch, gameTime);
+            }
             foreach (var items in ItemBonus)
             {
                 items.Draw(spriteBatch);

@@ -60,3 +60,4 @@ C:\Users\cedie\source\repos\Fallen Knight\Fallen Knight\bin\Debug\net6.0\Content
 C:\Users\cedie\source\repos\Fallen Knight\Fallen Knight\bin\Debug\net6.0\Content\diamond.xnb
 C:\Users\cedie\source\repos\Fallen Knight\Fallen Knight\obj\Debug\net6.0\Fallen Knight.sourcelink.json
 C:\Users\cedie\source\repos\Fallen Knight\Fallen Knight\bin\Debug\net6.0\Content\Sounds\Background\bg.xnb
+C:\Users\cedie\source\repos\Fallen Knight\Fallen Knight\bin\Debug\net6.0\Content\Monster\robe_guy.xnb

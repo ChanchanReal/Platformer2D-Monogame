@@ -1,181 +1,157 @@
-﻿using Fallen_Knight.GameAssets.Bots;
-using Fallen_Knight.GameAssets.Character;
-using Fallen_Knight.GameAssets.Interface;
+﻿using Fallen_Knight.GameAssets.Interface;
 using Fallen_Knight.GameAssets.Levels;
+using Microsoft.Xna.Framework.Graphics;
 using Fallen_Knight.GameAssets.Tiles;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+using System;
+using Fallen_Knight.GameAssets.Collisions;
+using Fallen_Knight.src.Core;
+using Fallen_Knight.GameAssets.Character;
+
 
 namespace Fallen_Knight.GameAssets.Mobs
 {
-    public class Enemy : IGameEntity
+    public abstract class Enemy : IGameEntity
     {
-        Texture2D texture;
-        Bot enemyBot;
-        public Rectangle EnemyBound;
-        public float Hp = 100.0f;
-        private Vector2 position;
-        private bool goingLeft;
-        private const float PerMoveDelay = 1f;
-
-        private float gravity = 9.8f;
-
-        private bool isOnGround = false;
-
-        Vector2 velocity = Vector2.Zero;
-
-        public Level Level
-        {
-            get { return level; }
-        }
+        private Texture2D texture;
         private Level level;
+        private bool onGround;
+        private Vector2 velocity;
 
-
-        public bool IsAlive
+        private bool isPicking = false;
+        private const float gravity = 9.8f;
+        public Rectangle BoundingRectangle
         {
             get
             {
-                if (Hp > 0f)
-                {
-                    return true;
-                }
-
-                return false;
+                return new Rectangle((int)Position.X, (int)Position.Y, texture.Height, texture.Height);
             }
         }
-
-        public Vector2 Origin
+        public Vector2 Position
         {
-            get { return new Vector2(texture.Height / 2, texture.Height / 2); }
+            get { return position; }
         }
+        private Vector2 position;
 
-        public Enemy(Texture2D texture, Vector2 position, Level level)
+        public Enemy(Texture2D texture, Level level, Vector2 position)
         {
             this.texture = texture;
-            this.position = position;
             this.level = level;
-            EnemyBound = new Rectangle((int)position.X, (int)position.Y, 32, 32);
-            enemyBot = new Bot(PerMoveDelay);
+            velocity = Vector2.Zero;
+            this.position = position;   
         }
+        public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
+        {
+            spriteBatch.Draw(texture, BoundingRectangle, Color.White);
+        }
+
         public void Update(GameTime gameTime)
         {
-            isOnGround = false;
-
-            float delta = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            AutoMove(delta);
-            HandleGravity(delta);
-            GetCollision();
-
-            EnemyBound = new Rectangle(
-           (int)(position.X - Origin.X),
-           (int)(position.Y - Origin.Y),
-           texture.Height,
-           texture.Height);
-
+            onGround = false;
+            EnforceGravity(gameTime);
+            Collision();
+            PickUpEnemy();
+            Console.WriteLine("Enemy Pisition " + Position);
         }
 
-        public void AutoMove(float elapse)
+#if DEBUG
+        private void PickUpEnemy()
         {
-            enemyBot.Move(ref goingLeft, elapse);
-
-            if (goingLeft)
+            if (BoundingRectangle.Contains(InputManager.GetMousePosition()) && InputManager.IsMouseLeftButtonDown() && isPicking)
             {
-                velocity.X = -10f;
+                isPicking = false;
             }
-            else
+            else if (BoundingRectangle.Contains(InputManager.GetMousePosition()) && InputManager.IsMouseLeftButtonDown()) 
             {
-                velocity.X = 10f;
+                isPicking = true;
+            }
+
+            if (isPicking)
+            {
+                position = new Vector2(InputManager.GetMousePosition().X - (BoundingRectangle.Width / 2), InputManager.GetMousePosition().Y  - (BoundingRectangle.Height / 2));
             }
         }
+#endif
 
-        public void HandleGravity(float delta)
+        float previousBottom;
+        public void Collision()
         {
-            velocity.Y += gravity;
-            position = new Vector2(position.X + velocity.X * delta, position.Y + velocity.Y * delta);
-        }
+            Rectangle currentBound = BoundingRectangle;
 
-        public void GetCollision()
-        {
-            Rectangle boundingBox = EnemyBound;
-            isOnGround = false;
+            int leftTile = (int)Math.Floor((float)BoundingRectangle.Left / Tiles.Tile.Size.X);
+            int rightTile = (int)Math.Ceiling((float)BoundingRectangle.Right / Tiles.Tile.Size.X);
+            int topTile = (int)Math.Floor((float)BoundingRectangle.Top / Tiles.Tile.Size.Y);
+            int bottomTile = (int)Math.Ceiling((float)BoundingRectangle.Bottom / Tiles.Tile.Size.Y);
 
-            Player player = (Player)level.Player;
-
-            if (player.Hitbox[1].Intersects(boundingBox))
+            for (int y = topTile; y < bottomTile; y++)
             {
-                goingLeft = true;
-                position.X = player.Hitbox[1].X - (player.Hitbox[1].Width - 1);
-            }
-            else if (player.Hitbox[2].Intersects(boundingBox))
-            {
-                goingLeft = false;
-                position.X = player.Hitbox[2].X + (boundingBox.Width + 1);
-            }
-
-            foreach (var tile in Level.tileMap.Keys)
-            {
-                if (Level.tileMap[tile].Item1 == TileType.Platform)
+                for (int x = leftTile; x < rightTile; x++)
                 {
-                    if (boundingBox.Intersects(tile))
-                    {
-                        Rectangle intersection = Rectangle.Intersect(boundingBox, tile);
+                    TileType collision = level.GetCollision(x, y);
 
-                        if (intersection.Width < intersection.Height)
+                    if (collision == TileType.Platform)
+                    {
+                        Rectangle tileBound = level.GetBounds(x, y);
+                        Vector2 depth = RectangleExtensions.GetIntersectionDepth(currentBound, tileBound);
+                        float absDepthX = Math.Abs(depth.X);
+                        float absDepthY = Math.Abs(depth.Y);
+
+                        if (absDepthY < absDepthX)
                         {
-                            // Horizontal collision
-                            if (boundingBox.Right > tile.Left && boundingBox.Left < tile.Left)
+                            if (previousBottom <= tileBound.Top)
                             {
-                                position.X = tile.Left - (float)boundingBox.Width;
-                                goingLeft = true;
+                                onGround = true;
+                                position = new Vector2(Position.X, Position.Y + depth.Y);
+                                currentBound = BoundingRectangle;
+                                velocity.Y = 0;
                             }
-                            else if (boundingBox.Left < tile.Right && boundingBox.Right > tile.Right)
-                            {
-                                position.X = tile.Right + (float)(boundingBox.Width * 0.5);
-                                goingLeft = false;
-                            }
-                            velocity.X = 0;
                         }
                         else
                         {
-                            // Vertical collision
-                            if (boundingBox.Bottom > tile.Top && boundingBox.Top < tile.Top)
-                            {
-                                position.Y = tile.Y - boundingBox.Height + 12;
-                                velocity.Y = 0;
-                                isOnGround = true;
-                            }
-                            else if (boundingBox.Top < tile.Bottom && boundingBox.Bottom > tile.Bottom)
-                            {
-                                position.Y = tile.Bottom;
-                            }
+                            position = new Vector2(Position.X + depth.X, Position.Y);
+                            currentBound = BoundingRectangle;
                         }
-
-                        boundingBox.X = (int)position.X;
-                        boundingBox.Y = (int)position.Y;
                     }
                 }
             }
 
-            EnemyBound = new Rectangle((int)position.X, (int)position.Y, boundingBox.Width, boundingBox.Height);
+            PlayerCollision();
+
+            previousBottom = BoundingRectangle.Bottom;
         }
 
-        public bool CollideWithPlayer(Rectangle rectangle)
+        private void PlayerCollision()
         {
-            return EnemyBound.Intersects(rectangle);
+            Player player = (Player)level.Player;
+            Rectangle playerBound = player.BoundingRectangle;
+
+            if (BoundingRectangle.Intersects(playerBound))
+            {
+                Vector2 depth = RectangleExtensions.GetIntersectionDepth(BoundingRectangle, playerBound);
+                
+                if (Math.Abs(depth.X) < Math.Abs(depth.Y))
+                {
+                    position.X += depth.X;
+                }
+                else
+                {
+                    position.Y += depth.Y;
+                }
+            }
         }
 
-        public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
+        private void EnforceGravity(GameTime gameTime)
         {
-            spriteBatch.Draw(
-                texture,
-                position,
-                new Rectangle(0, 0, texture.Height, texture.Height),
-                Color.White,
-                0.0f,
-                Origin,
-                1.0f,
-                SpriteEffects.None,
-                0);
+            float delta = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            velocity.Y += gravity;
+            position = new Vector2(position.X + (velocity.X * delta), position.Y + (velocity.Y * delta));
+        }
+    }
+
+    public class RobeEnemy : Enemy
+    {
+        public RobeEnemy(Texture2D texture, Level level, Vector2 position) : base(texture, level, position)
+        {
         }
     }
 }

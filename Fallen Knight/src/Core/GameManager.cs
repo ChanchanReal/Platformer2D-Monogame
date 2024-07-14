@@ -12,6 +12,7 @@ using System;
 using System.IO;
 using Microsoft.Xna.Framework.Content;
 using Fallen_Knight.GameAssets.Animations;
+using System.Linq;
 
 namespace Fallen_Knight.src.Core
 {
@@ -87,7 +88,7 @@ namespace Fallen_Knight.src.Core
             if (InputManager.Input(Keys.F8)) SetResolution(1280, 720);
 
             Player player = (Player)level.Player;
-            Enemy enemy = (Enemy)level.Enemy;
+            Enemy enemy = (Enemy)level.enemies.First();
 #if DEBUG
 
             List<Rectangle> target = new List<Rectangle>
@@ -96,7 +97,7 @@ namespace Fallen_Knight.src.Core
                 player.Hitbox[1],
                 player.Hitbox[2],
                 player.Hitbox[3],
-                enemy.EnemyBound
+                enemy.BoundingRectangle
             };
 
             List<Circle> circles = new List<Circle>();
