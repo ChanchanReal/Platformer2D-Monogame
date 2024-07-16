@@ -5,6 +5,7 @@ using Fallen_Knight.GameAssets.Items;
 using Fallen_Knight.GameAssets.Mobs;
 using Fallen_Knight.GameAssets.Tile.Tile;
 using Fallen_Knight.GameAssets.Tiles;
+using Fallen_Knight.src.Core;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -28,6 +29,7 @@ namespace Fallen_Knight.GameAssets.Levels
         public Dictionary<Rectangle, (TileType, char)> tileMap;
         private Vector2 playerSpawn;
         private Texture2D goldBag;
+        private GameSoundManager gameSound;
 
         public ContentManager Content
         {
@@ -45,8 +47,10 @@ namespace Fallen_Knight.GameAssets.Levels
         }
 
         private GraphicsDevice graphicsDevice;
-        public void Load(IServiceProvider content, GraphicsDevice graphicsDevice, ParticleSystem particleSys)
+        public void Load(IServiceProvider content, GraphicsDevice graphicsDevice,
+            ParticleSystem particleSys , GameSoundManager gameSound)
         {
+            this.gameSound = gameSound;
             contentManager = new ContentManager(content, "Content");
             this.graphicsDevice = graphicsDevice;
             this.particleSys = particleSys;
@@ -194,7 +198,7 @@ namespace Fallen_Knight.GameAssets.Levels
                     if (FallingTiles == null)
                         FallingTiles = new List<FallingTile>();
                     Texture2D t = Content.Load<Texture2D>("Tiles/fallingTile");
-                    FallingTiles.Add(new FallingTile(t, new Vector2(x * Tiles.Tile.Size.Y, y * Tiles.Tile.Size.Y), this));
+                    FallingTiles.Add(new FallingTile(t, new Vector2(x * Tiles.Tile.Size.Y, y * Tiles.Tile.Size.Y), this, gameSound));
                     break;
 
                 case TileType.Enemy:

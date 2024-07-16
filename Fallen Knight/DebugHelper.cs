@@ -1,4 +1,5 @@
 ﻿using Fallen_Knight.GameAssets.Collisions;
+using Fallen_Knight.GameAssets.Tile.Tile;
 using Fallen_Knight.src.Core;
 using Fallen_Knight.src.Interface;
 using Microsoft.Xna.Framework;
@@ -18,6 +19,7 @@ namespace Fallen_Knight
         private static Texture2D circleTexture;
         private static SpriteFont spriteFont;
         private static List<Circle> itemBound;
+        private static List<FallingTile> fallingTileBound;
         private static Dictionary<int, Rectangle> _bounds;
         private static HashSet<int> _boundsID;
         private static float Time = 0f;
@@ -38,10 +40,11 @@ namespace Fallen_Knight
             _bounds = new Dictionary<int, Rectangle>();
         }
 
-        public static void Update(GameTime gameTime, List<Circle> circles)
+        public static void Update(GameTime gameTime, List<Circle> circles, List<FallingTile> fallingTile)
         {
             float delta = (float)gameTime.TotalGameTime.TotalSeconds;
             itemBound = circles;
+            fallingTileBound = fallingTile;
 
             if (InputManager.Input(Keys.F1))
             {
@@ -90,8 +93,17 @@ namespace Fallen_Knight
                     i++;
                 }
 
+                foreach (var rect in fallingTileBound)
+                {
+                    spriteBatch.Draw(squareTexture, rect.BoundingRec, Color.Red);
+                }
                 DrawItemBound(spriteBatch);
             }
+        }
+
+        public static void DrawFallingTile(SpriteBatch sb)
+        {
+
         }
 
         public static void DrawItemBound(SpriteBatch sb)

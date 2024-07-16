@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\Fallen Knight",
-    "\\Fallen Knight\\GameAssets"
+    "\\Fallen Knight\\src",
+    "\\Fallen Knight\\src\\Character"
   ],
-  "SelectedNode": "\\Fallen Knight.sln",
+  "SelectedNode": "\\Fallen Knight\\src\\Character\\Player.cs",
   "PreviewInSolutionExplorer": false
 }

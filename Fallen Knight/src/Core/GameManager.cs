@@ -61,7 +61,7 @@ namespace Fallen_Knight.src.Core
 
             level.Load(content.ServiceProvider,
                 _graphics.GraphicsDevice,
-                new ParticleSystem(Vector2.Zero, ParticleTexture));
+                new ParticleSystem(Vector2.Zero, ParticleTexture), gameSound);
 
             string filePath = "Content/Levels/fallen_map.csv";
             FileStream fs = File.OpenRead(filePath);
@@ -99,7 +99,7 @@ namespace Fallen_Knight.src.Core
             {
                 circles.Add(item.GetItemBound());
             }
-            DebugHelper.Update(gameTime, circles);
+            DebugHelper.Update(gameTime, circles, level.FallingTiles);
 
 #endif
             level.Update(gameTime);

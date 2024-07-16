@@ -1,17 +1,17 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\cedie\\source\\repos\\Fallen Knight\\",
+  "WorkspaceRootPath": "C:\\Users\\cedie\\Platformer2D-Monogame\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|c:\\users\\cedie\\source\\repos\\fallen knight\\fallen knight\\src\\character\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|c:\\users\\cedie\\platformer2d-monogame\\fallen knight\\src\\character\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|solutionrelative:fallen knight\\src\\character\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|c:\\users\\cedie\\source\\repos\\fallen knight\\fallen knight\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|c:\\users\\cedie\\platformer2d-monogame\\fallen knight\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|solutionrelative:fallen knight\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|c:\\users\\cedie\\source\\repos\\fallen knight\\fallen knight\\src\\mobs\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|c:\\users\\cedie\\platformer2d-monogame\\fallen knight\\src\\mobs\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|solutionrelative:fallen knight\\src\\mobs\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -40,37 +40,35 @@
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "Game1.cs",
-              "DocumentMoniker": "C:\\Users\\cedie\\source\\repos\\Fallen Knight\\Fallen Knight\\Game1.cs",
+              "DocumentMoniker": "C:\\Users\\cedie\\Platformer2D-Monogame\\Fallen Knight\\Game1.cs",
               "RelativeDocumentMoniker": "Fallen Knight\\Game1.cs",
-              "ToolTip": "C:\\Users\\cedie\\source\\repos\\Fallen Knight\\Fallen Knight\\Game1.cs",
+              "ToolTip": "C:\\Users\\cedie\\Platformer2D-Monogame\\Fallen Knight\\Game1.cs",
               "RelativeToolTip": "Fallen Knight\\Game1.cs",
               "ViewState": "AQIAACAAAAAAAAAAAAAIwDAAAAAsAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-16T05:08:50.739Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-16T05:08:50.739Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "Enemy.cs",
-              "DocumentMoniker": "C:\\Users\\cedie\\source\\repos\\Fallen Knight\\Fallen Knight\\src\\Mobs\\Enemy.cs",
+              "DocumentMoniker": "C:\\Users\\cedie\\Platformer2D-Monogame\\Fallen Knight\\src\\Mobs\\Enemy.cs",
               "RelativeDocumentMoniker": "Fallen Knight\\src\\Mobs\\Enemy.cs",
-              "ToolTip": "C:\\Users\\cedie\\source\\repos\\Fallen Knight\\Fallen Knight\\src\\Mobs\\Enemy.cs",
+              "ToolTip": "C:\\Users\\cedie\\Platformer2D-Monogame\\Fallen Knight\\src\\Mobs\\Enemy.cs",
               "RelativeToolTip": "Fallen Knight\\src\\Mobs\\Enemy.cs",
               "ViewState": "AQIAAKcAAAAAAAAAAAAwwLYAAAAoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-16T05:05:25.569Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-16T05:05:25.569Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Player.cs",
-              "DocumentMoniker": "C:\\Users\\cedie\\source\\repos\\Fallen Knight\\Fallen Knight\\src\\Character\\Player.cs",
+              "DocumentMoniker": "C:\\Users\\cedie\\Platformer2D-Monogame\\Fallen Knight\\src\\Character\\Player.cs",
               "RelativeDocumentMoniker": "Fallen Knight\\src\\Character\\Player.cs",
-              "ToolTip": "C:\\Users\\cedie\\source\\repos\\Fallen Knight\\Fallen Knight\\src\\Character\\Player.cs",
+              "ToolTip": "C:\\Users\\cedie\\Platformer2D-Monogame\\Fallen Knight\\src\\Character\\Player.cs",
               "RelativeToolTip": "Fallen Knight\\src\\Character\\Player.cs",
-              "ViewState": "AQIAANUBAAAAAAAAAAAqwEYCAAAhAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAJgBAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-14T09:48:45.367Z",
               "EditorCaption": ""

@@ -18,7 +18,7 @@ namespace Fallen_Knight.GameAssets.Camera
         float shakeIntensity;
         float shakeDuration;
 
-        float zoom = 1.3f;
+        float zoom = 1.5f;
 
         public Camera(Viewport newView, float smoothness = 0.04f)
         {
@@ -89,11 +89,8 @@ namespace Fallen_Knight.GameAssets.Camera
 
         public void Update()
         {
-            float shake = (float)(random.Next(1, 4) * (float)Math.Clamp(random.NextDouble(), 0.5f, 1.1f));
+            float shake = 2f;
             float delay = 1.2f;
-            Console.WriteLine("Camera Shake Enabled.");
-            Console.WriteLine($"Shake Intensity {shake}.");
-            Console.WriteLine($"Shake Duration {delay}.");
             CameraShake(shake, delay);
         }
     }

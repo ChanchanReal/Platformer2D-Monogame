@@ -64,3 +64,6 @@ C:\Users\cedie\source\repos\Fallen Knight\Fallen Knight\bin\Debug\net6.0\Content
 C:\Users\cedie\source\repos\Fallen Knight\Fallen Knight\bin\Debug\net6.0\Content\Levels\fallen_map.csv
 C:\Users\cedie\source\repos\Fallen Knight\Fallen Knight\bin\Debug\net6.0\Content\Levels\fallen_map2.csv
 C:\Users\cedie\source\repos\Fallen Knight\Fallen Knight\bin\Debug\net6.0\Content\Tiles\fallingTile.xnb
+C:\Users\cedie\source\repos\Fallen Knight\Fallen Knight\bin\Debug\net6.0\Content\Sounds\Background\FarBeyond Studio - Freebies Vol. 1 - 01 - Fight The Devil (CC-BY 4.0).xnb
+C:\Users\cedie\source\repos\Fallen Knight\Fallen Knight\bin\Debug\net6.0\Content\Sounds\Background\FarBeyond Studio - Freebies Vol. 1 - 04 - Tiefsee (CC-BY 4.0).xnb
+C:\Users\cedie\source\repos\Fallen Knight\Fallen Knight\bin\Debug\net6.0\Content\Sounds\Effect\earth rumble.xnb
