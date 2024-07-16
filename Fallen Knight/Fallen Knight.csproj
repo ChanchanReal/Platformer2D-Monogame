@@ -32,9 +32,14 @@
   <ItemGroup>
     <Folder Include="Content\Font\" />
     <Folder Include="Content\Scene\" />
-    <Folder Include="Content\Player\" />
   </ItemGroup>
   <ItemGroup>
+    <None Update="Content\Levels\fallen_map.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\Levels\fallen_map2.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Content\Levels\tile.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

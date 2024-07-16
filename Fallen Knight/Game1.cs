@@ -29,6 +29,7 @@ namespace Fallen_Knight
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             gameManager.LoadContent(Content);
+            DebugHelper.Load(Content);
             // TODO: use this.Content to load your game content here
         }
 
@@ -45,11 +46,12 @@ namespace Fallen_Knight
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
             // TODO: Add your drawing code here
 
             gameManager.Draw(_spriteBatch, gameTime);
+            DebugHelper.Draw(_spriteBatch);
 
             base.Draw(gameTime);
         }

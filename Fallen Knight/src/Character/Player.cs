@@ -4,6 +4,7 @@ using Fallen_Knight.GameAssets.Interface;
 using Fallen_Knight.GameAssets.Levels;
 using Fallen_Knight.GameAssets.Tiles;
 using Fallen_Knight.src.Core;
+using Fallen_Knight.src.Interface;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -108,17 +109,21 @@ namespace Fallen_Knight.GameAssets.Character
         }
         Vector2 position;
 
-        public Player(Level level, ContentManager contentManager, GraphicsDevice graphicsDevice)
+        public Player(Level level,
+            ContentManager contentManager, 
+            GraphicsDevice graphicsDevice,
+            ParticleSystem particleSystem)
         {
             this.level = level;
             this.contentManager = contentManager;
+            this.particleSystem = particleSystem;
             isAlive = true;
             LoadContent(graphicsDevice);
         }
 
         private const int PlayerDefaultWidth = 64;
-        private const int PlayerAttackingWidth = 125;
-        private const int SpriteHeight = 86;
+        private const int PlayerAttackingWidth = 64;
+        private const int SpriteHeight = 64;
 
         public void LoadContent(GraphicsDevice graphicsDevice)
         {
@@ -134,11 +139,9 @@ namespace Fallen_Knight.GameAssets.Character
 
             boundRectangle = new Rectangle((int)Position.X - PlayerAttackingWidth, (int)Position.Y, PlayerDefaultWidth, SpriteHeight);
             List<Texture2D> texture = new List<Texture2D>();
-            texture.Add(contentManager.Load<Texture2D>("diamond"));
             Texture2D text = new Texture2D(graphicsDevice, 1, 1);
             text.SetData(new Color[] { Color.White });
             texture.Add(text);
-            particleSystem = new ParticleSystem(Position, texture);
             LoadHitBox();
         }
         /// <summary>
@@ -155,9 +158,9 @@ namespace Fallen_Knight.GameAssets.Character
             int topHitboxWidth = (int)(BoundingRectangle.Width * 0.2f);
             int topHitboxHeight = (int)(BoundingRectangle.Height * 0.3f);
             int topHitboxX = BoundingRectangle.X + (BoundingRectangle.Width - topHitboxWidth) / 2;
-            int topHitboxY = BoundingRectangle.Y + (int)(BoundingRectangle.Height * 0.2f);
+            int topHitboxY = BoundingRectangle.Y + (int)(BoundingRectangle.Height * 0.1f);
 
-            Hitbox[Head] = new Rectangle(topHitboxX, topHitboxY, topHitboxWidth, topHitboxHeight);
+            Hitbox[Head] = new Rectangle(topHitboxX, topHitboxY - 5, topHitboxWidth, topHitboxHeight);
 
             int leftBodyX = BoundingRectangle.X + topHitboxWidth;
             int leftBodyY = topHitboxY + topHitboxHeight;
@@ -176,7 +179,7 @@ namespace Fallen_Knight.GameAssets.Character
             int feetWidth = (int)(BoundingRectangle.Width * 0.3f);
             int feetHeight = (int)(BoundingRectangle.Height * 0.3f);
             int feetX = BoundingRectangle.X + (BoundingRectangle.Width - feetWidth) / 2;
-            int feetY = rightBodyY + (rightBodyHeight + feetHeight) / 2;
+            int feetY = rightBodyY + ((rightBodyHeight + feetHeight) / 2) + 7;
 
             int updateFeetY = feetY - (int)(feetY * 0.01f);
 
@@ -187,6 +190,12 @@ namespace Fallen_Knight.GameAssets.Character
         {
             SetDeltaTime(gameTime);
             movement = 0;
+
+            DebugHelper.AddToDebugBound(BoundingRectangle, 0);
+            DebugHelper.AddToDebugBound(Hitbox[Feet], 1);
+            DebugHelper.AddToDebugBound(Hitbox[Head], 2);
+            DebugHelper.AddToDebugBound(Hitbox[LeftBody], 3);
+            DebugHelper.AddToDebugBound(Hitbox[RightBody], 4);
 
             if (CurrentAction == PlayerStatus.Attack)
             {
@@ -203,7 +212,7 @@ namespace Fallen_Knight.GameAssets.Character
             GetInput(gameTime);
             EnforceGravity(gameTime);
             SwitchCurrentActionJump();
-            CharacterDash();
+            CharacterDash(gameTime);
             IsCharacterDead();
             LoadHitBox();
             particleSystem.Update(this);
@@ -229,7 +238,7 @@ namespace Fallen_Knight.GameAssets.Character
                 CurrentAction = PlayerStatus.Fall;
             }
         }
-        private void CharacterDash()
+        private void CharacterDash(GameTime gameTime)
         {
 
             dashCoolDown -= DeltaTime;
@@ -248,6 +257,8 @@ namespace Fallen_Knight.GameAssets.Character
                 {
                     playerSpeed = new Vector2(-dashSpeed, 0);
                 }
+
+                GenerateDashParticle(gameTime);
             }
             else
             {
@@ -299,7 +310,6 @@ namespace Fallen_Knight.GameAssets.Character
             {
                 isDashing = true;
                 dashDuration = dashTime;
-                GenerateDashParticle(gameTime);
                 dashCoolDown = 2f;
             }
             if (InputManager.Input(Keys.K))
@@ -366,7 +376,7 @@ namespace Fallen_Knight.GameAssets.Character
         }
         private void GenerateDashParticle(GameTime gameTime)
         {
-            particleSystem.GenerateDashParticles();
+            particleSystem.GenerateDashParticles(playerSpeed);
         }
         public void GenerateParticles(GameTime gameTime)
         {
@@ -390,7 +400,11 @@ namespace Fallen_Knight.GameAssets.Character
         public void Draw(SpriteBatch sprite, GameTime gameTime)
         {
             playerAnimation.Draw(sprite, gameTime);
-            particleSystem.Draw(sprite);
+        }
+
+        public void DrawPlayerEffect(SpriteBatch sprite, GameTime gameTime , Matrix camera)
+        {
+            particleSystem.Draw(sprite, camera);
         }
         #region Collision Handling
         private float previousBottom;
@@ -434,14 +448,15 @@ namespace Fallen_Knight.GameAssets.Character
                             {
                                 isGround = true;
                                 playerSpeed.Y = 0;
-                                Position = new Vector2(Position.X, tileBound.Top - bounds.Height + 1);
+                                Position = new Vector2(Position.X, (Position.Y + depth.Y) + 3);
                             }
                             else if (playerSpeed.Y < 0 && Hitbox[Head].Intersects(tileBound)) // if we hit the top of the tile as well as our velocity is jumping
                             {
                                 // Hitting head on the ceiling
-                                Position = new Vector2(Position.X, tileBound.Y + tileBound.Height * 0.8f);
+                                Position = new Vector2(Position.X, Position.Y + depth.Y);
                                 playerSpeed.Y = 0; // Stop upward movement
                                 headIsColliding = true;
+                                Console.WriteLine("Head Hit Wall");
                             }
                             // update the bound of the player to re-check the neighboring tile
                             bounds = BoundingRectangle;
@@ -565,25 +580,21 @@ namespace Fallen_Knight.GameAssets.Character
                 isJumping = false;
             }
 
-            if (Position.Y > 800)
+            if (Position.Y > 1020)
             {
                 isAlive = false;
             }
         }
         #endregion
+
+        public void SetPlayerToDead()
+        {
+            isAlive = false;
+        }
         public void SetPlayerSpawn(Vector2 position)
         {
             spawnArea = position;
             Position = spawnArea;
-        }
-        public enum PlayerStatus
-        {
-            Idle = 0,
-            Walk = 1,
-            Jump = 2,
-            Fall = 3,
-            Attack = 4,
-            Dash = 5,
         }
     }
 }

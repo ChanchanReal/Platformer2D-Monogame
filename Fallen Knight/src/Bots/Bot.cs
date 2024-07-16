@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Fallen_Knight.src.Interface;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace Fallen_Knight.GameAssets.Bots
             ExecutionDelay = delay;
             Timer = 0;
         }
-        public void Move(ref bool movementDirection, float elapse)
+        public void Move(ref FaceDirection movementDirection, float elapse)
         {
             if (Timer > 0)
             {
@@ -32,12 +33,12 @@ namespace Fallen_Knight.GameAssets.Bots
 
                 if (i == 1)
                 {
-                    movementDirection = false;
+                    movementDirection = FaceDirection.Right;
                 }
 
                 if (i == 2)
                 {
-                    movementDirection = true;
+                    movementDirection = FaceDirection.Left;
                 }
 
                 Timer = ExecutionDelay;

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Fallen Knight")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c89d81aeccc8b59f6fb9df7e4576166b82dc1f49")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+424618ff12b844e803877d4b1aa25fd08e856272")]
 [assembly: System.Reflection.AssemblyProductAttribute("Fallen Knight")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Fallen Knight")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

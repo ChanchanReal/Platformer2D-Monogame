@@ -57,7 +57,7 @@ namespace Fallen_Knight.GameAssets.Animations
                 sprite.Draw(texture,
                     Position,
                     GetCurrentFrame(),
-                    Color.AliceBlue
+                    Color.White
                     );
             }
             else
@@ -66,7 +66,7 @@ namespace Fallen_Knight.GameAssets.Animations
                     texture,
                     Position,
                     GetCurrentFrame(),
-                    Color.AliceBlue,
+                    Color.White,
                     0f,
                     Vector2.Zero,
                     SpriteEffects.FlipHorizontally,

@@ -24,8 +24,8 @@ namespace Fallen_Knight.GameAssets
         }
         private Particle GenerateParticles()
         {
-            Texture2D texture = Textures[random.Next(Textures.Count)];
-            Vector2 position = EmitterPosition;
+            Texture2D texture = Textures[0];
+            Vector2 position = EmitterPosition + new Vector2(0, -10);
             float angle = (float)(random.NextDouble() * Math.PI) + 3;
             float speed = (float)random.NextDouble() * 2;
             // Convert polar coordinates to Cartesian coordinates
@@ -35,24 +35,36 @@ namespace Fallen_Knight.GameAssets
             );
             Color color = Color.SaddleBrown;
             float angularVelocity = 0.1f * (float)(random.NextDouble() * 2 - 1);
-            float size = 0.1f;
-            int ttl = 5 + random.Next(10, 20);
+            float size = 0.2f;
+            int ttl = 20 + random.Next(10, 20);
 
             return new Particle(texture, position, velocity, color, angle, angularVelocity, size, ttl);
         }
-        public void GenerateDashParticles()
+        public void GenerateDashParticles(Vector2 direction)
         {
-            Texture2D texture = Textures[1];
+            Texture2D texture = Textures[0];
             Vector2 position = EmitterPosition + new Vector2(0, -50);
-            Color color = Color.White;
             float angularVelocity = 0.1f * (float)(random.NextDouble() * 2 - 1);
-            float size = 10f;
-            int ttl = 5 + 60;
+            float size = (float)(random.NextDouble() * 2f);
+            int ttl = 90;
+
+            // General direction for dash (e.g., rightward)
+            Vector2 generalDirection = new Vector2(direction.X, 0);
+            generalDirection.Normalize();
 
             for (int i = 0; i < random.Next(5, 10); i++)
-                Particles.Add(new Particle(texture, position, 
-                    new Vector2((float)random.NextDouble() * 2, (float)random.NextDouble() * 2)
-                    , color, 0, angularVelocity, size, ttl));
+            {
+                // Generate a velocity that is aligned with the general direction
+                Vector2 velocity = generalDirection * (float)(random.NextDouble() * 2 + 1);
+                velocity += new Vector2((float)(random.NextDouble() * 0.5 - 0.25), (float)(random.NextDouble() * 0.5 - 0.25)); // Add slight randomness
+
+                Particles.Add(new Particle(texture, position, velocity, Color.WhiteSmoke, 0, angularVelocity, size, ttl));
+            }
+        }
+
+        private Color GenerateRandomColor()
+        {
+            return new Color((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());
         }
 
         public void Update(Player player)
@@ -100,14 +112,16 @@ namespace Fallen_Knight.GameAssets
             }
         }
 
-        public void Draw(SpriteBatch sb)
+        public void Draw(SpriteBatch sb, Matrix camera)
         {
-            //sb.Begin();
+            sb.Begin(SpriteSortMode.Deferred, BlendState.Additive, null, null, null, null, camera);
+
             for (int i = 0; i < Particles.Count; i++)
             {
                 Particles[i].Draw(sb);
             }
-            //sb.End();
+
+            sb.End();
         }
     }
 }

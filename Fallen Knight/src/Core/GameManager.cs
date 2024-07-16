@@ -13,6 +13,7 @@ using System.IO;
 using Microsoft.Xna.Framework.Content;
 using Fallen_Knight.GameAssets.Animations;
 using System.Linq;
+using Fallen_Knight.GameAssets;
 
 namespace Fallen_Knight.src.Core
 {
@@ -24,13 +25,9 @@ namespace Fallen_Knight.src.Core
         private readonly Game _game;
         private Canvas _canvas;
         private ContentManager content;
-        Point screenSize = new Point(1280, 720);
         private Texture2D background;
 
-#if DEBUG
-        private DebugHelper debugHelper;
-#endif
-
+        Point screenSize = new Point(1280, 720);
         float scrollSpeedMax = 300f;
         float scrollSpeed;
 
@@ -56,15 +53,17 @@ namespace Fallen_Knight.src.Core
         {
 
             camera = new Camera(_graphics.GraphicsDevice.Viewport);
-
-#if DEBUG
-            debugHelper = new DebugHelper();
-            debugHelper.Load(content);
-#endif
             background = content.Load<Texture2D>("Scene/back");
             _canvas = new(_graphics.GraphicsDevice, 1280, 720);
-            level.Load(content.ServiceProvider, _graphics.GraphicsDevice);
-            string filePath = "Content/Levels/tile.csv";
+
+            List<Texture2D>ParticleTexture = new List<Texture2D>();
+            ParticleTexture.Add(content.Load<Texture2D>("Particles/circle"));
+
+            level.Load(content.ServiceProvider,
+                _graphics.GraphicsDevice,
+                new ParticleSystem(Vector2.Zero, ParticleTexture));
+
+            string filePath = "Content/Levels/fallen_map.csv";
             FileStream fs = File.OpenRead(filePath);
             level.LoadTile(fs);
             layer.Load(content, new Vector2(screenSize.X, screenSize.Y), level);
@@ -88,27 +87,19 @@ namespace Fallen_Knight.src.Core
             if (InputManager.Input(Keys.F8)) SetResolution(1280, 720);
 
             Player player = (Player)level.Player;
-            Enemy enemy = (Enemy)level.enemies.First();
-#if DEBUG
 
-            List<Rectangle> target = new List<Rectangle>
+            if (level.enemies.Count > 0)
             {
-                player.Hitbox[0],
-                player.Hitbox[1],
-                player.Hitbox[2],
-                player.Hitbox[3],
-                enemy.BoundingRectangle
-            };
+                Enemy enemy = (Enemy)level.enemies.First();
+            }
+#if DEBUG
 
             List<Circle> circles = new List<Circle>();
             foreach (var item in level.ItemBonus)
             {
                 circles.Add(item.GetItemBound());
             }
-
-            debugHelper.GetPlayerPosition(player.Position);
-            debugHelper.Update(gameTime, target, circles);
-            debugHelper.GetCurrentAction(player.CurrentAction);
+            DebugHelper.Update(gameTime, circles);
 
 #endif
             level.Update(gameTime);
@@ -122,16 +113,15 @@ namespace Fallen_Knight.src.Core
             _canvas.Activate();
             _canvas.Draw(spriteBatch);
             layer.BackgroundDraw(gameTime, _graphics.GraphicsDevice, spriteBatch);
+            level.DrawPlayerEffect(spriteBatch, gameTime, camera.transform);
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, camera.transform);
             level.Draw(spriteBatch, gameTime);
-#if DEBUG
-            debugHelper.DrawDebugRectangle(spriteBatch);
-#endif
+
+            DebugHelper.DrawDebugRectangle(spriteBatch);
+            DebugHelper.DrawItemBound(spriteBatch);
+
             spriteBatch.End();
 
-#if DEBUG
-            debugHelper.Draw(spriteBatch);
-#endif
 
         }
     }

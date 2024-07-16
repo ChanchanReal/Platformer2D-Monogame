@@ -4,29 +4,30 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/../../../../../../../aseprite/build/bin/fallmain.png</File>
     <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/diamond.png</File>
     <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Font/File.spritefont</File>
     <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Font/text.spritefont</File>
     <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/hitbox_circle64.png</File>
     <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/hitbox_square64.png</File>
     <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Item/goldbag.png</File>
+    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Monster/executionair-Sheet.png</File>
     <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Monster/robe_guy.png</File>
     <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Monster/slimemonster.png</File>
-    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Player/Attack 1.png</File>
-    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Player/Dead.png</File>
-    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Player/fall-only.png</File>
-    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Player/Idle.png</File>
-    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Player/Jump-only.png</File>
-    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Player/Jump.png</File>
-    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Player/Run.png</File>
-    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Player/Walk.png</File>
+    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Particles/circle.png</File>
+    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Player/fallmain.png</File>
+    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Player/idlemain.png</File>
+    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Player/jumpmain.png</File>
+    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Player/runmain.png</File>
     <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Scene/back.png</File>
     <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Scene/parallax-demon-woods-bg.png</File>
     <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Scene/parallax-demon-woods-close-trees.png</File>
     <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Scene/parallax-demon-woods-far-trees.png</File>
     <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Scene/parallax-demon-woods-mid-trees.png</File>
     <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Sounds/Background/FarBeyond Studio - Freebies Vol. 1 - 04 - Tiefsee (CC-BY 4.0).wav</File>
+    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Tiles/fallingTile.png</File>
     <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Tiles/hitbox_square64.png</File>
+    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Tiles/spawn.png</File>
     <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Tiles/t.png</File>
     <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Tiles/t0.png</File>
     <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Tiles/t1.png</File>
@@ -41,8 +42,7 @@
     <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Tiles/tile.png</File>
   </SourceFiles>
   <DestFiles>
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
+    <File>fallmain.png</File>
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
@@ -63,6 +63,8 @@
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File>Sounds/Background/bg.wav</File>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

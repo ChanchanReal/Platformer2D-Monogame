@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Fallen_Knight.src.Interface;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -16,8 +17,8 @@ namespace Fallen_Knight.GameAssets.Animations
         List<IAnimate> animations;
 
         public Point IdleSize = new Point(idleFrameWidth, idleFrameHeight);
-        private static int idleFrameWidth = 86;
-        private static int idleFrameHeight = 86;
+        private static int idleFrameWidth = 64;
+        private static int idleFrameHeight = 64;
         public Rectangle PlayerPosition
         {
             get { return playerPosition; }
@@ -43,11 +44,11 @@ namespace Fallen_Knight.GameAssets.Animations
         {
             animations = new List<IAnimate>
             {
-                new IdleAnimation(contentManager.Load<Texture2D>("Player/Idle"), 64, 86),
-                new RunAnimation(contentManager.Load<Texture2D>("Player/Run"), 72, 86),
-                new AttackAnimation(contentManager.Load<Texture2D>("Player/Run"), 125, 86),
-                new JumpAnimation(contentManager.Load<Texture2D>("Player/Jump-Only"), 80, 86),
-                new FallAnimation(contentManager.Load<Texture2D>("Player/Fall-Only"), 80, 86),
+                new IdleAnimation(contentManager.Load<Texture2D>("Player/idlemain"), 64, 64),
+                new RunAnimation(contentManager.Load<Texture2D>("Player/runmain"), 63, 64),
+                new AttackAnimation(contentManager.Load<Texture2D>("Player/idlemain"), 64, 64),
+                new JumpAnimation(contentManager.Load<Texture2D>("Player/jumpmain"), 64, 64),
+                new FallAnimation(contentManager.Load<Texture2D>("Player/fallmain"), 64, 64),
             };
             
         }

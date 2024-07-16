@@ -19,7 +19,9 @@ namespace Fallen_Knight.GameAssets.Tiles
 
         Exit = 6,
 
-        Item = 9
+        Item = 9,
+
+        Enemy = 10,
     }
     public struct Tile
     {

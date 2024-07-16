@@ -1,9 +1,3 @@
-C:\Users\cedie\source\repos\Fallen Knight\Fallen Knight\bin\Debug\net6.0\Content\Player\Attack 1.xnb
-C:\Users\cedie\source\repos\Fallen Knight\Fallen Knight\bin\Debug\net6.0\Content\Player\Dead.xnb
-C:\Users\cedie\source\repos\Fallen Knight\Fallen Knight\bin\Debug\net6.0\Content\Player\Idle.xnb
-C:\Users\cedie\source\repos\Fallen Knight\Fallen Knight\bin\Debug\net6.0\Content\Player\Jump.xnb
-C:\Users\cedie\source\repos\Fallen Knight\Fallen Knight\bin\Debug\net6.0\Content\Player\Run.xnb
-C:\Users\cedie\source\repos\Fallen Knight\Fallen Knight\bin\Debug\net6.0\Content\Player\Walk.xnb
 C:\Users\cedie\source\repos\Fallen Knight\Fallen Knight\bin\Debug\net6.0\Content\Tiles\tile.xnb
 C:\Users\cedie\source\repos\Fallen Knight\Fallen Knight\bin\Debug\net6.0\Fallen Knight.exe
 C:\Users\cedie\source\repos\Fallen Knight\Fallen Knight\bin\Debug\net6.0\Fallen Knight.deps.json
@@ -52,8 +46,6 @@ C:\Users\cedie\source\repos\Fallen Knight\Fallen Knight\bin\Debug\net6.0\Content
 C:\Users\cedie\source\repos\Fallen Knight\Fallen Knight\bin\Debug\net6.0\Content\Tiles\t7.xnb
 C:\Users\cedie\source\repos\Fallen Knight\Fallen Knight\bin\Debug\net6.0\Content\Tiles\t8.xnb
 C:\Users\cedie\source\repos\Fallen Knight\Fallen Knight\bin\Debug\net6.0\Content\Tiles\t9.xnb
-C:\Users\cedie\source\repos\Fallen Knight\Fallen Knight\bin\Debug\net6.0\Content\Player\fall-only.xnb
-C:\Users\cedie\source\repos\Fallen Knight\Fallen Knight\bin\Debug\net6.0\Content\Player\Jump-only.xnb
 C:\Users\cedie\source\repos\Fallen Knight\Fallen Knight\bin\Debug\net6.0\Content\hitbox_square64.xnb
 C:\Users\cedie\source\repos\Fallen Knight\Fallen Knight\bin\Debug\net6.0\Content\hitbox_circle64.xnb
 C:\Users\cedie\source\repos\Fallen Knight\Fallen Knight\bin\Debug\net6.0\Content\Tiles\hitbox_square64.xnb
@@ -61,3 +53,14 @@ C:\Users\cedie\source\repos\Fallen Knight\Fallen Knight\bin\Debug\net6.0\Content
 C:\Users\cedie\source\repos\Fallen Knight\Fallen Knight\obj\Debug\net6.0\Fallen Knight.sourcelink.json
 C:\Users\cedie\source\repos\Fallen Knight\Fallen Knight\bin\Debug\net6.0\Content\Sounds\Background\bg.xnb
 C:\Users\cedie\source\repos\Fallen Knight\Fallen Knight\bin\Debug\net6.0\Content\Monster\robe_guy.xnb
+C:\Users\cedie\source\repos\Fallen Knight\Fallen Knight\bin\Debug\net6.0\Content\Monster\executionair-Sheet.xnb
+C:\Users\cedie\source\repos\Fallen Knight\Fallen Knight\bin\Debug\net6.0\Content\fallmain.xnb
+C:\Users\cedie\source\repos\Fallen Knight\Fallen Knight\bin\Debug\net6.0\Content\Player\fallmain.xnb
+C:\Users\cedie\source\repos\Fallen Knight\Fallen Knight\bin\Debug\net6.0\Content\Player\idlemain.xnb
+C:\Users\cedie\source\repos\Fallen Knight\Fallen Knight\bin\Debug\net6.0\Content\Player\jumpmain.xnb
+C:\Users\cedie\source\repos\Fallen Knight\Fallen Knight\bin\Debug\net6.0\Content\Player\runmain.xnb
+C:\Users\cedie\source\repos\Fallen Knight\Fallen Knight\bin\Debug\net6.0\Content\Particles\circle.xnb
+C:\Users\cedie\source\repos\Fallen Knight\Fallen Knight\bin\Debug\net6.0\Content\Tiles\spawn.xnb
+C:\Users\cedie\source\repos\Fallen Knight\Fallen Knight\bin\Debug\net6.0\Content\Levels\fallen_map.csv
+C:\Users\cedie\source\repos\Fallen Knight\Fallen Knight\bin\Debug\net6.0\Content\Levels\fallen_map2.csv
+C:\Users\cedie\source\repos\Fallen Knight\Fallen Knight\bin\Debug\net6.0\Content\Tiles\fallingTile.xnb

@@ -1,4 +1,5 @@
 ﻿using Fallen_Knight.GameAssets.Animations;
+using Fallen_Knight.src.Interface;
 using Microsoft.Xna.Framework;
 using System;
 using static Fallen_Knight.GameAssets.Character.Player;

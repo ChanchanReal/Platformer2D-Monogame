@@ -1,4 +1,5 @@
-﻿using Fallen_Knight.GameAssets.Character;
+﻿using Fallen_Knight.GameAssets.Animations;
+using Fallen_Knight.GameAssets.Character;
 using Fallen_Knight.GameAssets.Interface;
 using Fallen_Knight.GameAssets.Items;
 using Fallen_Knight.GameAssets.Mobs;
@@ -10,6 +11,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace Fallen_Knight.GameAssets.Levels
@@ -21,6 +23,8 @@ namespace Fallen_Knight.GameAssets.Levels
         public List<IGameEntity> enemies;
         public List<BonusItem> ItemBonus;
         public List<FallingTile> FallingTiles;
+        private ParticleSystem particleSys;
+        private Animation spawnAnimation;
         public Dictionary<Rectangle, (TileType, char)> tileMap;
         private Vector2 playerSpawn;
         private Texture2D goldBag;
@@ -41,20 +45,18 @@ namespace Fallen_Knight.GameAssets.Levels
         }
 
         private GraphicsDevice graphicsDevice;
-        public void Load(IServiceProvider content, GraphicsDevice graphicsDevice)
+        public void Load(IServiceProvider content, GraphicsDevice graphicsDevice, ParticleSystem particleSys)
         {
             contentManager = new ContentManager(content, "Content");
             this.graphicsDevice = graphicsDevice;
+            this.particleSys = particleSys;
         }
 
         public void Update(GameTime gameTime)
         {
+            spawnAnimation.UpdateFrame(gameTime);
             Player.Update(gameTime);
-
-            foreach (var enemy in enemies)
-            {
-                enemy.Update(gameTime);
-            }
+            UpdateEnemy(gameTime);
 
             Player player = (Player)Player;
 
@@ -64,6 +66,20 @@ namespace Fallen_Knight.GameAssets.Levels
             }
             UpateFallingTile(gameTime);
             CollectItem();
+        }
+
+        public void UpdateEnemy(GameTime gameTime)
+        {
+            foreach (var enemy in enemies)
+            {
+                enemy.Update(gameTime);
+            }
+
+            IEnumerable<Enemy> aliveEnemies = enemies
+                                  .OfType<Enemy>()
+                                  .Where(enemy => enemy.IsAlive);
+
+            enemies = aliveEnemies.ToList<IGameEntity>();
         }
 
         public void CollectItem()
@@ -103,16 +119,7 @@ namespace Fallen_Knight.GameAssets.Levels
 
                     foreach (var token in tokens)
                     {
-
-                        if (token == "-1")
-                        {
-                            sb.Append('!');
-                        }
-                        else
-                        {
-                            sb.Append(token);
-                        }
-
+                        sb.Append(TranslateChar(token));
                     }
 
                     lines.Add(sb.ToString());
@@ -154,6 +161,18 @@ namespace Fallen_Knight.GameAssets.Levels
             }
         }
 
+        private string TranslateChar(string num)
+        {
+            return num switch
+            {
+                "-1" => "!",
+                "10" => "f",
+                "11" => "@",
+                "12" => "%",
+                _    => num,
+            };
+        }
+
         public void LoadEntities(TileType tileType, int y, int x)
         {
             switch (tileType)
@@ -162,6 +181,9 @@ namespace Fallen_Knight.GameAssets.Levels
                     playerSpawn = new Vector2(x * Tiles.Tile.Size.Y, y * Tiles.Tile.Size.Y);
                     Player player = (Player)Player;
                     player.SetPlayerSpawn(playerSpawn);
+                    spawnAnimation = new Animation(Content.Load<Texture2D>("Tiles/spawn"), 64, 64);
+                    spawnAnimation.Position = new Rectangle((int)(x * Tiles.Tile.Size.Y),
+                        (int)(y * Tiles.Tile.Size.Y), 64, 65);
                     break;
                 case TileType.Item:
                     if (ItemBonus == null)
@@ -171,8 +193,16 @@ namespace Fallen_Knight.GameAssets.Levels
                 case TileType.FallingPlatform:
                     if (FallingTiles == null)
                         FallingTiles = new List<FallingTile>();
-                    Texture2D t = Content.Load<Texture2D>("Tiles/hitbox_square64");
+                    Texture2D t = Content.Load<Texture2D>("Tiles/fallingTile");
                     FallingTiles.Add(new FallingTile(t, new Vector2(x * Tiles.Tile.Size.Y, y * Tiles.Tile.Size.Y), this));
+                    break;
+
+                case TileType.Enemy:
+                    enemies.Add(
+                new RobeEnemy(Content.Load<Texture2D>("Monster/executionair-Sheet"),
+                this,
+                new Vector2(x * Tiles.Tile.Size.Y, y * Tiles.Tile.Size.Y))
+                );
                     break;
             }
         }
@@ -185,6 +215,8 @@ namespace Fallen_Knight.GameAssets.Levels
                     return TileType.Impassable;
                 case '%':
                     return TileType.Spawn;
+                case '@':
+                    return TileType.Enemy;
                 case '!':
                     return TileType.Passable;
                 case '9':
@@ -219,12 +251,9 @@ namespace Fallen_Knight.GameAssets.Levels
 
         public void LoadGameEntities()
         {
-            Player = new Player(this, Content , graphicsDevice);
+            Player = new Player(this, Content , graphicsDevice, particleSys);
             goldBag = Content.Load<Texture2D>("Item/goldbag");
-            enemies = new List<IGameEntity>
-            {
-                new RobeEnemy(Content.Load<Texture2D>("Monster/robe_guy"), this, new Vector2(322, 650))
-            };
+            enemies = new List<IGameEntity>();
         }
 
         public TileType GetCollision(int x, int y)
@@ -249,6 +278,7 @@ namespace Fallen_Knight.GameAssets.Levels
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             DrawTile(spriteBatch);
+            spawnAnimation.Draw(spriteBatch);
             Player.Draw(spriteBatch, gameTime);
             foreach (var enemy in enemies)
             {
@@ -258,9 +288,14 @@ namespace Fallen_Knight.GameAssets.Levels
             {
                 items.Draw(spriteBatch);
             }
-
             DrawFallingTile(spriteBatch, gameTime);
 
+        }
+
+        public void DrawPlayerEffect(SpriteBatch spriteBatch, GameTime gameTime, Matrix camera)
+        {
+            Player player = (Player)Player;
+            player.DrawPlayerEffect(spriteBatch, gameTime, camera);
         }
 
         private void DrawFallingTile(SpriteBatch sb, GameTime gameTime)
@@ -328,6 +363,7 @@ namespace Fallen_Knight.GameAssets.Levels
                 '-' => "Tiles/t9",
                 '9' => "Item/goldbag",
                 'f' => "Tiles/hitbox_square64",
+                '@' => "Monster/executionair-Sheet",
                 _ => throw new InvalidOperationException()
 
             };

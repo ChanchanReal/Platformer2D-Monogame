@@ -1,5 +1,6 @@
 ﻿using Fallen_Knight.GameAssets.Collisions;
 using Fallen_Knight.src.Core;
+using Fallen_Knight.src.Interface;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -11,33 +12,35 @@ using static Fallen_Knight.GameAssets.Character.Player;
 namespace Fallen_Knight
 {
 #if DEBUG
-    public class DebugHelper
+    public static class DebugHelper
     {
-        private Texture2D squareTexture;
-        private Texture2D circleTexture;
-        private SpriteFont spriteFont;
-        private List<Rectangle> debugRectangles;
-        private List<Circle> itemBound;
-        private float gameTime = 0f;
+        private static Texture2D squareTexture;
+        private static Texture2D circleTexture;
+        private static SpriteFont spriteFont;
+        private static List<Circle> itemBound;
+        private static Dictionary<int, Rectangle> _bounds;
+        private static HashSet<int> _boundsID;
+        private static float Time = 0f;
 
-        bool isDebug = false;
-        bool showHitbox = false;
-        bool showGameTime = false;
-        PlayerStatus status = PlayerStatus.Idle;
-        private Vector2 playerPosition;
+        static bool  isDebug = false;
+        static bool showHitbox = false;
+        static bool showGameTime = false;
+        static PlayerStatus status = PlayerStatus.Idle;
+       static private Vector2 pPosition;
 
-        int spacing = 0;
-        public void Load(ContentManager content)
+        static int spacing = 0;
+        public static void Load(ContentManager content)
         {
             spriteFont = content.Load<SpriteFont>("Font/text");
             squareTexture = content.Load<Texture2D>("hitbox_square64");
             circleTexture = content.Load<Texture2D>("hitbox_circle64");
+            _boundsID = new HashSet<int>();
+            _bounds = new Dictionary<int, Rectangle>();
         }
 
-        public void Update(GameTime gameTime, List<Rectangle> target, List<Circle> circles)
+        public static void Update(GameTime gameTime, List<Circle> circles)
         {
             float delta = (float)gameTime.TotalGameTime.TotalSeconds;
-            debugRectangles = target;
             itemBound = circles;
 
             if (InputManager.Input(Keys.F1))
@@ -56,19 +59,32 @@ namespace Fallen_Knight
                 showGameTime = !showGameTime;
             }
 
-            this.gameTime = delta;
+            Time = delta;
         }
 
-        public void GetPlayerPosition(Vector2 playerPosition)
+        public static void AddToDebugBound(Rectangle bound, int id)
         {
-            this.playerPosition = playerPosition;
+            if (_boundsID.Contains(id))
+            {
+                _boundsID.Add(id);
+                _bounds.Add(id, bound);
+                return;
+            }
+            else
+            {
+                _bounds[id] = bound;
+            }
         }
-        public void DrawDebugRectangle(SpriteBatch spriteBatch)
+        public static void GetPlayerPosition(Vector2 playerPosition)
+        {
+            pPosition = playerPosition;
+        }
+        public static void DrawDebugRectangle(SpriteBatch spriteBatch)
         {
             int i = 0;
-            if (showHitbox)
+            if (showHitbox && isDebug)
             {
-                foreach (var rect in debugRectangles)
+                foreach (var rect in _bounds.Values)
                 {
                     spriteBatch.Draw(squareTexture, rect, Color.LightGreen);
                     i++;
@@ -78,8 +94,9 @@ namespace Fallen_Knight
             }
         }
 
-        public void DrawItemBound(SpriteBatch sb)
+        public static void DrawItemBound(SpriteBatch sb)
         {
+            if (showHitbox && isDebug)
             foreach (var circle in itemBound)
             {
                 float scaleFactor = (circle.Radius * 2) / 64f;
@@ -89,29 +106,28 @@ namespace Fallen_Knight
             }
         }
 
-        public void GetCurrentAction(PlayerStatus playerStatus)
+        public static void GetCurrentAction(PlayerStatus playerStatus)
         {
-            this.status = playerStatus;
+            status = playerStatus;
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public static void Draw(SpriteBatch spriteBatch)
         {
             spacing = 0;
             spriteBatch.Begin();
             if (isDebug)
             {
-                DrawText(spriteBatch, $"Game Time {gameTime}", 0);
-                DrawText(spriteBatch, $"Debug is on {isDebug}", 1);
-                DrawText(spriteBatch, $"Show Hitbox F1 - {showHitbox}", 2);
-                DrawText(spriteBatch, $"Player action - {status}", 3);
-                DrawText(spriteBatch, $"Player position - {playerPosition}", 3);
+                DrawText(spriteBatch, $"Game Time {Time}", 0);
+                DrawText(spriteBatch, $"Show Hitbox F1 - {showHitbox}", 1);
+                DrawText(spriteBatch, $"Player action - {status}", 2);
+                DrawText(spriteBatch, $"Player position - {pPosition}", 3);
                 DrawText(spriteBatch, $"Mouse Position - {InputManager.GetMousePosition()}", 3);
             }
 
             spriteBatch.End();
         }
 
-        private void DrawText(SpriteBatch spriteBatch, string txt, int id)
+        private static void DrawText(SpriteBatch spriteBatch, string txt, int id)
         {
             spriteBatch.DrawString(spriteFont, txt, new Vector2(0, spacing), Color.White);
             spacing += 20;
