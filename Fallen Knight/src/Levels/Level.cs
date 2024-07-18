@@ -158,9 +158,7 @@ namespace Fallen_Knight.GameAssets.Levels
                         tileMap.Add(tileRect, (tileType, tiletypes));
                     }
 
-                    LoadEntities(tileType, i, j);
-
-                    SetTile(tileType, i, j, tiletypes);
+                    LoadEntities(tileType, i, j, tiletypes);
                 }
             }
         }
@@ -177,38 +175,63 @@ namespace Fallen_Knight.GameAssets.Levels
             };
         }
 
-        public void LoadEntities(TileType tileType, int y, int x)
+        public void LoadEntities(TileType tileType, int y, int x, char type)
         {
             switch (tileType)
             {
+                case TileType.Platform:
+                    SetTile(tileType, y, x, type);
+                    break;
                 case TileType.Spawn:
-                    playerSpawn = new Vector2(x * Tiles.Tile.Size.Y, y * Tiles.Tile.Size.Y);
-                    Player player = (Player)Player;
-                    player.SetPlayerSpawn(playerSpawn);
-                    spawnAnimation = new Animation(Content.Load<Texture2D>("Tiles/spawn"), 64, 64);
-                    spawnAnimation.Position = new Rectangle((int)(x * Tiles.Tile.Size.Y),
-                        (int)(y * Tiles.Tile.Size.Y), 64, 65);
+                    SetSpawn(x, y);
                     break;
                 case TileType.Item:
-                    if (ItemBonus == null)
-                        ItemBonus = new List<BonusItem>();
-                    ItemBonus.Add(new BonusItem(new Vector2(x * Tiles.Tile.Size.Y, y * Tiles.Tile.Size.Y + 32), goldBag, this));
+                    SetItem(x, y);
                     break;
                 case TileType.FallingPlatform:
-                    if (FallingTiles == null)
-                        FallingTiles = new List<FallingTile>();
-                    Texture2D t = Content.Load<Texture2D>("Tiles/fallingTile");
-                    FallingTiles.Add(new FallingTile(t, new Vector2(x * Tiles.Tile.Size.Y, y * Tiles.Tile.Size.Y), this, gameSound));
+                    SetFallingPlatForm(x, y);
                     break;
 
                 case TileType.Enemy:
-                    enemies.Add(
+                    SetEnemy(x, y);
+                    break;
+
+            }
+        }
+
+        public void SetEnemy(int x, int y)
+        {
+            enemies.Add(
                 new RobeEnemy(Content.Load<Texture2D>("Monster/executionair-Sheet"),
                 this,
                 new Vector2(x * Tiles.Tile.Size.Y, y * Tiles.Tile.Size.Y))
                 );
-                    break;
-            }
+        }
+
+        public void SetFallingPlatForm(int x, int y)
+        {
+            if (FallingTiles == null)
+                FallingTiles = new List<FallingTile>();
+
+            Texture2D t = Content.Load<Texture2D>("Tiles/fallingTile");
+            FallingTiles.Add(new FallingTile(t, new Vector2(x * Tiles.Tile.Size.Y, y * Tiles.Tile.Size.Y), this, gameSound));
+        }
+
+        public void SetItem(int x, int y)
+        {
+            if (ItemBonus == null)
+                ItemBonus = new List<BonusItem>();
+            ItemBonus.Add(new BonusItem(new Vector2(x * Tiles.Tile.Size.Y, y * Tiles.Tile.Size.Y + 32), goldBag, this));
+        }
+
+        public void SetSpawn(int x, int y)
+        {
+            playerSpawn = new Vector2(x * Tiles.Tile.Size.Y, y * Tiles.Tile.Size.Y);
+            Player player = (Player)Player;
+            player.SetPlayerSpawn(playerSpawn);
+            spawnAnimation = new Animation(Content.Load<Texture2D>("Tiles/spawn"), 64, 64);
+            spawnAnimation.Position = new Rectangle((int)(x * Tiles.Tile.Size.Y),
+                (int)(y * Tiles.Tile.Size.Y), 64, 65);
         }
 
         public TileType LoadVarietyObject(char token)

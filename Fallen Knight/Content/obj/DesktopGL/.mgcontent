@@ -4,47 +4,49 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/../../../../../../../aseprite/build/bin/fallmain.png</File>
-    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/diamond.png</File>
-    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Font/File.spritefont</File>
-    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Font/text.spritefont</File>
-    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/hitbox_circle64.png</File>
-    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/hitbox_square64.png</File>
-    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Item/goldbag.png</File>
-    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Monster/executionair-Sheet.png</File>
-    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Monster/robe_guy.png</File>
-    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Monster/slimemonster.png</File>
-    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Particles/circle.png</File>
-    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Player/fallmain.png</File>
-    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Player/idlemain.png</File>
-    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Player/jumpmain.png</File>
-    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Player/runmain.png</File>
-    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Scene/back.png</File>
-    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Scene/parallax-demon-woods-bg.png</File>
-    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Scene/parallax-demon-woods-close-trees.png</File>
-    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Scene/parallax-demon-woods-far-trees.png</File>
-    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Scene/parallax-demon-woods-mid-trees.png</File>
-    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Sounds/Background/FarBeyond Studio - Freebies Vol. 1 - 01 - Fight The Devil (CC-BY 4.0).wav</File>
-    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Sounds/Background/FarBeyond Studio - Freebies Vol. 1 - 04 - Tiefsee (CC-BY 4.0).wav</File>
-    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Sounds/Effect/earth rumble.wav</File>
-    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Tiles/fallingTile.png</File>
-    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Tiles/hitbox_square64.png</File>
-    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Tiles/spawn.png</File>
-    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Tiles/t.png</File>
-    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Tiles/t0.png</File>
-    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Tiles/t1.png</File>
-    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Tiles/t2.png</File>
-    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Tiles/t3.png</File>
-    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Tiles/t4.png</File>
-    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Tiles/t5.png</File>
-    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Tiles/t6.png</File>
-    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Tiles/t7.png</File>
-    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Tiles/t8.png</File>
-    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Tiles/t9.png</File>
-    <File>C:/Users/cedie/source/repos/Fallen Knight/Fallen Knight/Content/Tiles/tile.png</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/../../../../../../../aseprite/build/bin/fallmain.png</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/diamond.png</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Font/File.spritefont</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Font/text.spritefont</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/hitbox_circle64.png</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/hitbox_square64.png</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Item/goldbag.png</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Item/katana.png</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Monster/executionair-Sheet.png</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Monster/robe_guy.png</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Monster/slimemonster.png</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Particles/circle.png</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Player/fallmain.png</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Player/idlemain.png</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Player/jumpmain.png</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Player/runmain.png</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Scene/back.png</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Scene/parallax-demon-woods-bg.png</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Scene/parallax-demon-woods-close-trees.png</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Scene/parallax-demon-woods-far-trees.png</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Scene/parallax-demon-woods-mid-trees.png</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Sounds/Background/FarBeyond Studio - Freebies Vol. 1 - 01 - Fight The Devil (CC-BY 4.0).wav</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Sounds/Background/FarBeyond Studio - Freebies Vol. 1 - 04 - Tiefsee (CC-BY 4.0).wav</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Sounds/Effect/earth rumble.wav</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/fallingTile.png</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/hitbox_square64.png</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/spawn.png</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/t.png</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/t0.png</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/t1.png</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/t2.png</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/t3.png</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/t4.png</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/t5.png</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/t6.png</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/t7.png</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/t8.png</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/t9.png</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/tile.png</File>
   </SourceFiles>
   <DestFiles>
     <File>fallmain.png</File>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

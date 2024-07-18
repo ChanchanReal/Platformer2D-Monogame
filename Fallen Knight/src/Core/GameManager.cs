@@ -1,19 +1,17 @@
-﻿using Fallen_Knight.GameAssets.Camera;
+﻿using Fallen_Knight.GameAssets;
+using Fallen_Knight.GameAssets.Camera;
 using Fallen_Knight.GameAssets.Character;
 using Fallen_Knight.GameAssets.Collisions;
 using Fallen_Knight.GameAssets.Layers;
 using Fallen_Knight.GameAssets.Levels;
 using Fallen_Knight.GameAssets.Mobs;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
-using System;
 using System.IO;
-using Microsoft.Xna.Framework.Content;
-using Fallen_Knight.GameAssets.Animations;
 using System.Linq;
-using Fallen_Knight.GameAssets;
 
 namespace Fallen_Knight.src.Core
 {
@@ -103,6 +101,7 @@ namespace Fallen_Knight.src.Core
 
 #endif
             level.Update(gameTime);
+            layer.Update(gameTime);
             camera.Update(gameTime, player, new Rectangle(0, 0, GAME_WORLD_WIDTH, GAME_WORLD_HEIGHT));
 
             InputManager.SetMousePosition(camera.ScreenToWorld(InputManager.GetMousePositionFromCamera()));
@@ -112,7 +111,7 @@ namespace Fallen_Knight.src.Core
         {
             _canvas.Activate();
             _canvas.Draw(spriteBatch);
-            layer.BackgroundDraw(gameTime, _graphics.GraphicsDevice, spriteBatch);
+            layer.BackgroundDraw(gameTime, spriteBatch);
             level.DrawPlayerEffect(spriteBatch, gameTime, camera.transform);
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, camera.transform);
             level.Draw(spriteBatch, gameTime);

@@ -28,7 +28,8 @@ namespace Fallen_Knight
         static bool showHitbox = false;
         static bool showGameTime = false;
         static PlayerStatus status = PlayerStatus.Idle;
-       static private Vector2 pPosition;
+        static private Vector2 pPosition;
+        static Vector2 velocity;
 
         static int spacing = 0;
         public static void Load(ContentManager content)
@@ -134,11 +135,16 @@ namespace Fallen_Knight
                 DrawText(spriteBatch, $"Player action - {status}", 2);
                 DrawText(spriteBatch, $"Player position - {pPosition}", 3);
                 DrawText(spriteBatch, $"Mouse Position - {InputManager.GetMousePosition()}", 3);
+                DrawText(spriteBatch, $"Player Velocity - {velocity}", 4);
             }
 
             spriteBatch.End();
         }
 
+        public static void GetVelocity(Vector2 playerVelocity)
+        {
+            velocity = playerVelocity;
+        }
         private static void DrawText(SpriteBatch spriteBatch, string txt, int id)
         {
             spriteBatch.DrawString(spriteFont, txt, new Vector2(0, spacing), Color.White);

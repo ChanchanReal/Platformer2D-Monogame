@@ -1,9 +1,5 @@
-﻿using System;
+﻿using Fallen_Knight.GameAssets.Interface;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Fallen_Knight.GameAssets.Interface;
 
 namespace Fallen_Knight.GameAssets.Observer
 {

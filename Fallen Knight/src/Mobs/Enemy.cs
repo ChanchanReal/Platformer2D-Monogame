@@ -1,15 +1,15 @@
-﻿using Fallen_Knight.GameAssets.Interface;
-using Fallen_Knight.GameAssets.Levels;
-using Microsoft.Xna.Framework.Graphics;
-using Fallen_Knight.GameAssets.Tiles;
-using Microsoft.Xna.Framework;
-using System;
-using Fallen_Knight.GameAssets.Collisions;
-using Fallen_Knight.src.Core;
-using Fallen_Knight.GameAssets.Character;
+﻿using Fallen_Knight.GameAssets.Animations;
 using Fallen_Knight.GameAssets.Bots;
+using Fallen_Knight.GameAssets.Character;
+using Fallen_Knight.GameAssets.Collisions;
+using Fallen_Knight.GameAssets.Interface;
+using Fallen_Knight.GameAssets.Levels;
+using Fallen_Knight.GameAssets.Tiles;
+using Fallen_Knight.src.Core;
 using Fallen_Knight.src.Interface;
-using Fallen_Knight.GameAssets.Animations;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
 
 
 namespace Fallen_Knight.GameAssets.Mobs

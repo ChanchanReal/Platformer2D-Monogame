@@ -87,6 +87,30 @@
 /processorParam:TextureFormat=Color
 /build:Item/goldbag.png
 
+#begin Item/goldbag.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Item/goldbag.png
+
+#begin Item/katana.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Item/katana.png
+
 #begin Monster/executionair-Sheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -248,12 +272,6 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Sounds/Background/FarBeyond Studio - Freebies Vol. 1 - 01 - Fight The Devil (CC-BY 4.0).wav
-
-#begin Sounds/Background/FarBeyond Studio - Freebies Vol. 1 - 04 - Tiefsee (CC-BY 4.0).wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Sounds/Background/FarBeyond Studio - Freebies Vol. 1 - 04 - Tiefsee (CC-BY 4.0).wav;Sounds/Background/bg.wav
 
 #begin Sounds/Background/FarBeyond Studio - Freebies Vol. 1 - 04 - Tiefsee (CC-BY 4.0).wav
 /importer:WavImporter
