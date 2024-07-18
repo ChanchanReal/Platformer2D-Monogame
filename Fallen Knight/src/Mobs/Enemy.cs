@@ -165,7 +165,14 @@ namespace Fallen_Knight.GameAssets.Mobs
                 
                 if (Math.Abs(depth.X) < Math.Abs(depth.Y))
                 {
-                    position.X += depth.X;
+                    for (int pos = 0; pos < player.Hitbox.Length; pos++)
+                    {
+                        if (player.Hitbox[pos].Intersects(BoundingRectangle))
+                        {
+                            //position.X += depth.X;
+                        }
+                    }
+                    
                 }
                 else
                 {
@@ -193,6 +200,11 @@ namespace Fallen_Knight.GameAssets.Mobs
             float delta = (float)gameTime.ElapsedGameTime.TotalSeconds;
             velocity.Y += gravity;
             position = new Vector2(position.X + (velocity.X * delta), position.Y + (velocity.Y * delta));
+        }
+
+        public void KillEnemy()
+        {
+            isAlive = false;
         }
     }
 

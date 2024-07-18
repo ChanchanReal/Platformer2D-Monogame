@@ -137,3 +137,5 @@ C:\Users\cedie\Platformer2D-Monogame\Fallen Knight\obj\Debug\net6.0\Fallen Knigh
 C:\Users\cedie\Platformer2D-Monogame\Fallen Knight\obj\Debug\net6.0\Fallen Knight.genruntimeconfig.cache
 C:\Users\cedie\Platformer2D-Monogame\Fallen Knight\obj\Debug\net6.0\ref\Fallen Knight.dll
 C:\Users\cedie\Platformer2D-Monogame\Fallen Knight\bin\Debug\net6.0\Content\Item\katana.xnb
+C:\Users\cedie\Platformer2D-Monogame\Fallen Knight\bin\Debug\net6.0\Content\WeaponEffect\katana attack.xnb
+C:\Users\cedie\Platformer2D-Monogame\Fallen Knight\bin\Debug\net6.0\Content\WeaponEffect\attack particle.xnb

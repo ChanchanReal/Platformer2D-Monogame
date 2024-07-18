@@ -64,7 +64,7 @@ namespace Fallen_Knight.src.Core
             string filePath = "Content/Levels/fallen_map.csv";
             FileStream fs = File.OpenRead(filePath);
             level.LoadTile(fs);
-            layer.Load(content, new Vector2(screenSize.X, screenSize.Y), level);
+            layer.Load(content, _graphics.GraphicsDevice, new Vector2(screenSize.X, screenSize.Y), level);
             gameSound.LoadSounds(content);
             gameSound.PlayBackgroundMusic();
         }

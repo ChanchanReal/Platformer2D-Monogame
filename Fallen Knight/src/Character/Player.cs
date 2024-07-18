@@ -22,6 +22,7 @@ namespace Fallen_Knight.GameAssets.Character
         private ParticleSystem particleSystem;
         private ContentManager contentManager;
         public PlayerAnimation PlayerAnimation;
+        public Animation BladeParticle;
         public Weapon playerWeapon;
 
         // Game physics
@@ -30,7 +31,6 @@ namespace Fallen_Knight.GameAssets.Character
         private static float friction = accel * 3f;
         private static float tolerance = friction * 0.9f;
         private const float RunSpeed = 300f;
-        private const float AttackDelay = 0.4f;
         private const float dashSpeed = 15;
         // Hit box for side i don't know
         private const int LeftBody = 1;
@@ -47,7 +47,6 @@ namespace Fallen_Knight.GameAssets.Character
         public bool IsGround = false;
         public PlayerStatus CurrentAction;
         public const float MaxWalkingSpeed = 5f;
-        public float AttackTimer = 0f;
         public float WantsToJumpDuration = 0f;
         public float CayoteTime = 0f;
         public float Movement = 0;
@@ -119,13 +118,13 @@ namespace Fallen_Knight.GameAssets.Character
         }
 
         private const int PlayerDefaultWidth = 64;
-        private const int PlayerAttackingWidth = 64;
         private const int SpriteHeight = 64;
 
         public void LoadContent(GraphicsDevice graphicsDevice)
         {
             PlayerAnimation = new PlayerAnimation();
             PlayerAnimation.CreateAnimation(contentManager);
+            BladeParticle = new Animation(Level.Content.Load<Texture2D>("WeaponEffect/katana attack"), 64, 32);
             PlayerState = new Idle(this);
             Position = SpawnPoint;
             isAlive = true;
@@ -135,7 +134,7 @@ namespace Fallen_Knight.GameAssets.Character
             int height = (int)(PlayerAnimation.IdleSize.Y * 0.8);
             int top = PlayerAnimation.IdleSize.Y- height;
 
-            boundRectangle = new Rectangle((int)Position.X - PlayerAttackingWidth, (int)Position.Y, PlayerDefaultWidth, SpriteHeight);
+            boundRectangle = new Rectangle((int)Position.X - PlayerDefaultWidth, (int)Position.Y, PlayerDefaultWidth, SpriteHeight);
             playerWeapon = new Katana(contentManager.Load<Texture2D>("Item/katana"),
                 contentManager.Load<Texture2D>("Item/katana"),
                 new Rectangle(400, 660, 60, 30));
@@ -196,16 +195,6 @@ namespace Fallen_Knight.GameAssets.Character
             DebugHelper.GetCurrentAction(CurrentAction);
             DebugHelper.GetVelocity(PlayerSpeed);
 
-            if (CurrentAction == PlayerStatus.Attack)
-            {
-                AttackTimer -= DeltaTime;
-                if (AttackTimer <= 0)
-                {
-                    SwitchState(new Idle(this));
-                    AttackTimer = 0;
-                }
-            }
-
             PlayerAnimation.Update(gameTime, BoundingRectangle, SpriteDirection, CurrentAction);
             PlayerState.HandleInput(gameTime);
             PlayerState.UpdateState();
@@ -220,6 +209,13 @@ namespace Fallen_Knight.GameAssets.Character
             ResetWantsToJump();
 
             playerWeapon.flipH = SpriteDirection;
+            if (CurrentAction == PlayerStatus.Attack && PlayerState is Attack)
+            {
+                BladeParticle.UpdateFrame(gameTime);
+                BladeParticle.Position = playerWeapon.AttackHitBox;
+                BladeParticle.FlipH = SpriteDirection;
+            }
+                
 
             // Decrement wantsToJumpDuration regardless of whether a jump occurred
             WantsToJumpDuration -= DeltaTime;
@@ -258,8 +254,8 @@ namespace Fallen_Knight.GameAssets.Character
 
             if (InputManager.Input(Keys.F))
             {
-                CurrentAction = PlayerStatus.Attack;
-                AttackTimer = AttackDelay;
+                SwitchState(new Attack(this));
+                
             }
 
         }
@@ -310,6 +306,9 @@ namespace Fallen_Knight.GameAssets.Character
         {
             PlayerAnimation.Draw(sprite, gameTime);
             playerWeapon.Draw(gameTime, sprite);
+            
+            if (CurrentAction == PlayerStatus.Attack && PlayerState is Attack)
+            BladeParticle.Draw(sprite);
         }
 
         public void DrawPlayerEffect(SpriteBatch sprite, GameTime gameTime , Matrix camera)

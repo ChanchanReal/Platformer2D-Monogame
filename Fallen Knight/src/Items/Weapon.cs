@@ -12,6 +12,7 @@ namespace Fallen_Knight.src.Items
     {
         protected Texture2D texture;
         public Rectangle weaponRectangle;
+        public Rectangle AttackHitBox;
         public Rectangle Hitbox;
         public float Damage = 10;
         public bool flipH = false;
@@ -47,18 +48,32 @@ namespace Fallen_Knight.src.Items
 
         public override void Update(GameTime gameTime, Rectangle boundingRec)
         {
+            PositionAndBounceWeapon(gameTime, boundingRec);
+            AttackHitboxUpdate(boundingRec);
+            DebugHelper.AddToDebugBound(AttackHitBox, 98);
+        }
+
+        public void PositionAndBounceWeapon(GameTime gameTime, Rectangle boundingRec)
+        {
             bounceTime += (float)gameTime.ElapsedGameTime.TotalSeconds * bounceSpeed;
             float bounceOffset = (float)Math.Sin(bounceTime) * bounceHeight;
 
             float yUpdate = (weaponRectangle.Height / 2) + 5;
             float newBounce = yUpdate + bounceOffset;
-
-            DebugHelper.AddToDebugBound(weaponRectangle, 99);
             weaponRectangle = new Rectangle(
             boundingRec.X,
             boundingRec.Y + (int)newBounce,
             weaponRectangle.Width,
             weaponRectangle.Height);
+        }
+
+        private void AttackHitboxUpdate(Rectangle boundingRec)
+        {
+            float scale = 1.5f;
+            if (flipH)
+                AttackHitBox = new Rectangle(boundingRec.X - boundingRec.Width - 25, boundingRec.Y , (int)(64 * scale), (int)(34 * scale));
+            else
+                AttackHitBox = new Rectangle(boundingRec.X + boundingRec.Width, boundingRec.Y  , (int)(64 * scale), (int)(34 * scale));
         }
     }
 }

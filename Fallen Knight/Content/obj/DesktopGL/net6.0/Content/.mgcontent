@@ -43,9 +43,13 @@
     <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/t8.png</File>
     <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/t9.png</File>
     <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/tile.png</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/WeaponEffect/attack particle.png</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/WeaponEffect/katana attack.png</File>
   </SourceFiles>
   <DestFiles>
     <File>fallmain.png</File>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

@@ -1,4 +1,5 @@
-﻿using Fallen_Knight.GameAssets.Levels;
+﻿using Fallen_Knight.GameAssets.Character;
+using Fallen_Knight.GameAssets.Levels;
 using Fallen_Knight.src.Core;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -10,126 +11,204 @@ namespace Fallen_Knight.GameAssets.Layers
 {
     public class Layer
     {
-        Texture2D bg0Tx, bg1Tx, bg2Tx, bg3Tx;
-        Rectangle bg0, bg1, bg2, bg3;
-        Vector2 Bg0Pos, Bg1Pos, Bg2Pos, Bg3Pos;
-        Vector2 mirrorBg0Pos, mirrorBg1Pos, mirrorBg2Pos, mirrorBg3Pos, mirrorBg4Pos;
-        Vector2 screenSize;
-        float scrollSpeedBg0, scrollSpeedBg1, scrollSpeedBg2, scrollSpeedBg3;
-        Level level;
+        private Texture2D _staticBackground;
+        // close layer
+        private Texture2D _closeLayer;
+        private Rectangle _closeLayerRect;
+        private Vector2 _originalPositionMirrorCloseLayer;
+        // mid layer
+        private Texture2D _midLayer;
+        private Rectangle _midLayerRect;
+        private Vector2 _midLayerPos;
+        // far layer
+        private Texture2D _farLayer;
+        private Rectangle _farLayerRect;
+        private Vector2 _farLayerPos;
 
-        public void Load(ContentManager contentManager, Vector2 screenSize, Level level)
+        // mirrors
+        // close layer
+        private Rectangle _closeLayerMirrorRect;
+        private Vector2 _originalPositionCloseLayer;
+        // mid layer
+        private Rectangle _midMirrorLayerRect;
+        private Vector2 _midMirrorLayerPos;
+        // far layer
+        private Rectangle _farMirrorLayerRect;
+        private Vector2 _farMirrorLayerPos;
+
+
+        private Vector2 _screenSize;
+        private Level _level;
+
+        float scrollSpeedMax_Close = 10.5f; 
+        float scrollSpeedMax_Mid = 7.75f; 
+        float scrollSpeedMax_Far = 4.4f; 
+
+        public void Load(ContentManager contentManager, GraphicsDevice graphicsDevice,
+            Vector2 screenSize, Level level)
         {
-            this.screenSize = screenSize;
-            this.level = level;
+            this._screenSize = screenSize;
+            this._level = level;
+            // that doesnt change
+            _staticBackground = ReScaleImage(graphicsDevice, 
+                contentManager.Load<Texture2D>("Scene/parallax-demon-woods-bg"),
+                1280, 720);
+            // the one that is closest to player
+            _closeLayer = ReScaleImage( graphicsDevice,
+                contentManager.Load<Texture2D>("Scene/parallax-demon-woods-close-trees"),
+                1280, 720);
 
-            scrollSpeedBg0 = 50f;
-            scrollSpeedBg1 = 200f;
-            scrollSpeedBg2 = 150f;
-            scrollSpeedBg3 = 100;
+            // little slower than the close layer
+            _midLayer = ReScaleImage(graphicsDevice,
+                contentManager.Load<Texture2D>("Scene/parallax-demon-woods-mid-trees"),
+                1280, 720);
 
-            bg0Tx = contentManager.Load<Texture2D>("Scene/parallax-demon-woods-bg");
-            bg1Tx = contentManager.Load<Texture2D>("Scene/parallax-demon-woods-close-trees");
-            bg2Tx = contentManager.Load<Texture2D>("Scene/parallax-demon-woods-far-trees");
-            bg3Tx = contentManager.Load<Texture2D>("Scene/parallax-demon-woods-mid-trees");
+            // slower than mid
+            _farLayer = ReScaleImage(graphicsDevice,
+    contentManager.Load<Texture2D>("Scene/parallax-demon-woods-far-trees"),
+    1280, 720);
 
-            Bg0Pos = new Vector2(0, 0);
-            Bg1Pos = new Vector2(0, 0);
-            Bg2Pos = new Vector2(0, 0);
-            Bg3Pos = new Vector2(0, 0);
+            _closeLayerRect = new Rectangle(0, 0, 1280, 720);
+            _closeLayerMirrorRect = new Rectangle((int)_screenSize.X, 0, 1280, 720);
+            _originalPositionCloseLayer = new Vector2(_closeLayerRect.X, _closeLayerRect.Y);
+            _originalPositionMirrorCloseLayer = new Vector2(_closeLayerMirrorRect.X, _closeLayerMirrorRect.Y);
 
-            mirrorBg0Pos = new Vector2(screenSize.X, 0);
-            mirrorBg1Pos = new Vector2(screenSize.X, 0);
-            mirrorBg2Pos = new Vector2(screenSize.X, 0);
-            mirrorBg3Pos = new Vector2(screenSize.X, 0);
-            mirrorBg4Pos = new Vector2(screenSize.X, 0);
+            // mid
+            _midLayerRect = new Rectangle(0, 0, 1280, 720);
+            _midMirrorLayerRect = new Rectangle((int)_screenSize.X, 0, 1280, 720);
+            _midLayerPos = new Vector2(_midLayerRect.X, _midLayerRect.Y);
+            _midMirrorLayerPos = new Vector2(_midMirrorLayerRect.X, _midMirrorLayerRect.Y);
 
-            bg0 = new Rectangle((int)Bg0Pos.X, (int)Bg0Pos.Y, bg0Tx.Width, bg0Tx.Height);
-            bg1 = new Rectangle((int)Bg1Pos.X, (int)Bg1Pos.Y, bg1Tx.Width, bg1Tx.Height);
-            bg2 = new Rectangle((int)Bg2Pos.X, (int)Bg2Pos.Y, bg2Tx.Width, bg2Tx.Height);
-            bg3 = new Rectangle((int)Bg3Pos.X, (int)Bg3Pos.Y, bg3Tx.Width, bg3Tx.Height);
+            // far
+            _farLayerRect = new Rectangle(0, 0, 1280, 720);
+            _farMirrorLayerRect = new Rectangle((int)_screenSize.X, 0, 1280, 720);
+            _farLayerPos = new Vector2(_farLayerRect.X, _farLayerRect.Y);
+            _farMirrorLayerPos = new Vector2(_farMirrorLayerRect.X, _farMirrorLayerRect.Y);
+
+
+        }
+
+        private Texture2D ReScaleImage(GraphicsDevice graphicsDevice, Texture2D originalTexture, int newWidth, int newHeight)
+        {
+            RenderTarget2D renderTarget = new RenderTarget2D(graphicsDevice, newWidth, newHeight);
+
+            graphicsDevice.SetRenderTarget(renderTarget);
+            graphicsDevice.Clear(Color.Transparent);
+
+            SpriteBatch spriteBatch = new SpriteBatch(graphicsDevice);
+            spriteBatch.Begin();
+
+            spriteBatch.Draw(originalTexture, new Rectangle(0, 0, newWidth, newHeight), Color.White);
+            spriteBatch.End();
+            graphicsDevice.SetRenderTarget(null);
+
+            return renderTarget;
         }
 
         public void Update(GameTime gameTime)
         {
-            float delta = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            Vector2 direction = Vector2.Zero;
-
-            if (InputManager.HoldableInput(Keys.Left))
-            {
-                direction = new Vector2(1, 0);
-            }
-            else if (InputManager.HoldableInput(Keys.Right))
-            {
-                direction = new Vector2(-1, 0);
-            }
-
-            Bg0Pos += direction * scrollSpeedBg0 * delta;
-            Bg1Pos += direction * scrollSpeedBg1 * delta;
-            Bg2Pos += direction * scrollSpeedBg2 * delta;
-            Bg3Pos += direction * scrollSpeedBg3 * delta;
-
-            mirrorBg0Pos = new Vector2(Bg0Pos.X + bg0Tx.Width, Bg0Pos.Y);
-            mirrorBg1Pos = new Vector2(Bg1Pos.X + bg1Tx.Width, Bg1Pos.Y);
-            mirrorBg2Pos = new Vector2(Bg2Pos.X + bg2Tx.Width, Bg2Pos.Y);
-            mirrorBg3Pos = new Vector2(Bg3Pos.X + bg3Tx.Width, Bg3Pos.Y);
-            mirrorBg4Pos = new Vector2(Bg1Pos.X - bg1Tx.Width, Bg1Pos.Y);
-
-            ResetPosition();
+           float delta = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            UpdatePosition(delta);
         }
 
-        private void ResetPosition()
+        private void UpdatePosition(float delta)
         {
-            if (Bg0Pos.X <= -bg0Tx.Width)
+            Player player = (Player)_level.Player;
+            float playerSpeedX = player.PlayerSpeed.X;
+
+            float scrollSpeedClose = playerSpeedX * scrollSpeedMax_Close * delta;
+            float scrollSpeedMid = playerSpeedX * scrollSpeedMax_Mid * delta;
+            float scrollSpeedFar = playerSpeedX * scrollSpeedMax_Far * delta;
+
+            // Move the layers in the opposite direction of the player
+            _originalPositionCloseLayer.X -= scrollSpeedClose;
+            _originalPositionMirrorCloseLayer.X -= scrollSpeedClose;
+
+            _midLayerPos.X -= scrollSpeedMid;
+            _midMirrorLayerPos.X -= scrollSpeedMid;
+
+            _farLayerPos.X -= scrollSpeedFar;
+            _farMirrorLayerPos.X -= scrollSpeedFar;
+
+            // Handle layer wrapping for close layer
+            if (_originalPositionCloseLayer.X <= -_screenSize.X)
             {
-                Bg0Pos = new Vector2(bg0Tx.Width, 0);
+                _originalPositionCloseLayer.X += 2 * _screenSize.X;
             }
-            if (Bg1Pos.X <= -bg1Tx.Width)
+            else if (_originalPositionCloseLayer.X > _screenSize.X)
             {
-                Bg1Pos = new Vector2(bg1Tx.Width, 0);
-            }
-            if (Bg2Pos.X <= -bg2Tx.Width)
-            {
-                Bg2Pos = new Vector2(bg2Tx.Width, 0);
-            }
-            if (Bg3Pos.X <= -bg3Tx.Width)
-            {
-                Bg3Pos = new Vector2(bg3Tx.Width, 0);
+                _originalPositionCloseLayer.X -= 2 * _screenSize.X;
             }
 
-            if (mirrorBg0Pos.X <= 0)
+            if (_originalPositionMirrorCloseLayer.X <= -_screenSize.X)
             {
-                mirrorBg0Pos = new Vector2(Bg0Pos.X + bg0Tx.Width, 0);
+                _originalPositionMirrorCloseLayer.X += 2 * _screenSize.X;
             }
-            if (mirrorBg1Pos.X <= 0)
+            else if (_originalPositionMirrorCloseLayer.X > _screenSize.X)
             {
-                mirrorBg1Pos = new Vector2(Bg1Pos.X + bg1Tx.Width, 0);
-            }
-            if (mirrorBg2Pos.X <= 0)
-            {
-                mirrorBg2Pos = new Vector2(Bg2Pos.X + bg2Tx.Width, 0);
-            }
-            if (mirrorBg3Pos.X <= 0)
-            {
-                mirrorBg3Pos = new Vector2(Bg3Pos.X + bg3Tx.Width, 0);
+                _originalPositionMirrorCloseLayer.X -= 2 * _screenSize.X;
             }
 
+            // Handle layer wrapping for mid layer
+            if (_midLayerPos.X <= -_screenSize.X)
+            {
+                _midLayerPos.X += 2 * _screenSize.X;
+            }
+            else if (_midLayerPos.X > _screenSize.X)
+            {
+                _midLayerPos.X -= 2 * _screenSize.X;
+            }
+
+            if (_midMirrorLayerPos.X <= -_screenSize.X)
+            {
+                _midMirrorLayerPos.X += 2 * _screenSize.X;
+            }
+            else if (_midMirrorLayerPos.X > _screenSize.X)
+            {
+                _midMirrorLayerPos.X -= 2 * _screenSize.X;
+            }
+
+            // Handle layer wrapping for far layer
+            if (_farLayerPos.X <= -_screenSize.X)
+            {
+                _farLayerPos.X += 2 * _screenSize.X;
+            }
+            else if (_farLayerPos.X > _screenSize.X)
+            {
+                _farLayerPos.X -= 2 * _screenSize.X;
+            }
+
+            if (_farMirrorLayerPos.X <= -_screenSize.X)
+            {
+                _farMirrorLayerPos.X += 2 * _screenSize.X;
+            }
+            else if (_farMirrorLayerPos.X > _screenSize.X)
+            {
+                _farMirrorLayerPos.X -= 2 * _screenSize.X;
+            }
+
+            // Update rectangle positions
+            _closeLayerRect.X = (int)_originalPositionCloseLayer.X;
+            _closeLayerMirrorRect.X = (int)_originalPositionMirrorCloseLayer.X;
+
+            _midLayerRect.X = (int)_midLayerPos.X;
+            _midMirrorLayerRect.X = (int)_midMirrorLayerPos.X;
+
+            _farLayerRect.X = (int)_farLayerPos.X;
+            _farMirrorLayerRect.X = (int)_farMirrorLayerPos.X;
         }
-
         public void BackgroundDraw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            float scale = 3f;
             spriteBatch.Begin();
-            spriteBatch.Draw(bg0Tx, Bg0Pos,null ,Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
-            spriteBatch.Draw(bg0Tx, mirrorBg0Pos, null, Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
-            spriteBatch.Draw(bg3Tx, Bg3Pos, null, Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
-            spriteBatch.Draw(bg3Tx, mirrorBg3Pos, null, Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
-            spriteBatch.Draw(bg2Tx, Bg2Pos, null, Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
-            spriteBatch.Draw(bg2Tx, mirrorBg2Pos, null, Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
-            spriteBatch.Draw(bg1Tx, mirrorBg1Pos, null, Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
-            spriteBatch.Draw(bg1Tx, Bg1Pos, null, Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
-            spriteBatch.Draw(bg1Tx, mirrorBg4Pos, null, Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(_staticBackground, new Vector2(0, 0), Color.White);
+            spriteBatch.Draw(_farLayer, _farLayerRect, Color.White);
+            spriteBatch.Draw(_farLayer, _farMirrorLayerRect, Color.White);
+            spriteBatch.Draw(_midLayer, _midLayerRect, Color.White);
+            spriteBatch.Draw(_midLayer, _midMirrorLayerRect, Color.White);
+            spriteBatch.Draw(_closeLayer, _closeLayerRect, Color.White);
+            spriteBatch.Draw(_closeLayer, _closeLayerMirrorRect, Color.White);
             spriteBatch.End();
         }
+
     }
 }
