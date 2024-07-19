@@ -351,8 +351,8 @@ namespace Fallen_Knight.GameAssets.Character
             // gets the player bounds in game world
             int leftTile = (int)Math.Floor((float)Hitbox[LeftBody].Left / 64);
             int rightTile = (int)Math.Ceiling(((float)Hitbox[RightBody].Right / 64)) - 1;
-            int topTile = (int)Math.Floor((float)Hitbox[Head].Top / 65);
-            int bottomTile = (int)Math.Ceiling(((float)Hitbox[Feet].Bottom / 65)) - 1;
+            int topTile = (int)Math.Floor((float)Hitbox[Head].Top / 64); // Correct tile size to 64
+            int bottomTile = (int)Math.Ceiling(((float)Hitbox[Feet].Bottom / 64)) - 1; // Correct tile size to 64
 
             // checks for the closest tile between the player
             for (int y = topTile; y <= bottomTile; ++y)
@@ -365,20 +365,21 @@ namespace Fallen_Knight.GameAssets.Character
                         // gets the tile bound and depth of how player and tile intersects
                         Rectangle tileBound = Level.GetBounds(x, y);
                         Vector2 depth = RectangleExtensions.GetIntersectionDepth(bounds, tileBound);
-
+                        DebugHelper.AddToDebugBound(tileBound, 66);
+                        
                         if (depth == Vector2.Zero)
                             return;
 
                         // check Height is less than width depth
                         if (Math.Abs(depth.Y) < Math.Abs(depth.X))
                         {
-                            // if we our on top of tile.
-                            if (previousBottom <= tileBound.Top && PlayerSpeed.Y >= 0 && Hitbox[Feet].Intersects(tileBound))
+                            // if we are on top of tile.
+                            if (previousBottom <= tileBound.Top &&  PlayerSpeed.Y > 0)
                             {
                                 CayoteTime = 0.1f;
                                 IsGround = true;
                                 PlayerSpeed.Y = 0;
-                                Position = new Vector2(Position.X, (Position.Y + depth.Y) + 3);
+                                Position = new Vector2(Position.X, (Position.Y + depth.Y) + 3); // Add slight offset to ensure on top
                             }
                             else if (PlayerSpeed.Y < 0 && Hitbox[Head].Intersects(tileBound)) // if we hit the top of the tile as well as our velocity is jumping
                             {
@@ -394,10 +395,10 @@ namespace Fallen_Knight.GameAssets.Character
                         // Resolve horizontal collision
                         else
                         {
-                            // making sure we collided a wall collision tile.
+                            // making sure we collided with a wall collision tile.
                             if (depth.X != 0)
                             {
-                                // if left wall as well as double checking to makesure we did intersect with our custom hitbox
+                                // if left wall as well as double checking to make sure we did intersect with our custom hitbox
                                 if (depth.X > 0 || collision == TileType.Impassable)
                                 {
                                     if (Hitbox[LeftBody].Intersects(tileBound))
@@ -433,10 +434,10 @@ namespace Fallen_Knight.GameAssets.Character
                     }
                 }
             }
-            
+
             if (PlayerState is not Jump)
-            CollisionForFallingTile(bounds);
-            
+                CollisionForFallingTile(bounds);
+
             CayoteTime -= DeltaTime;
             previousPos = Position.Y;
             previousLeft = leftTile;

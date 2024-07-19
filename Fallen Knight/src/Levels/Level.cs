@@ -60,8 +60,8 @@ namespace Fallen_Knight.GameAssets.Levels
 
         public void Update(GameTime gameTime)
         {
-            spawnAnimation.UpdateFrame(gameTime);
             Player.Update(gameTime);
+            spawnAnimation.UpdateFrame(gameTime);
             UpdateEnemy(gameTime);
 
             Player player = (Player)Player;
@@ -154,7 +154,7 @@ namespace Fallen_Knight.GameAssets.Levels
 
                     TileType tileType = LoadVarietyObject(tiletypes);
 
-                    Rectangle tileRect = new Rectangle(j * (int)Tiles.Tile.Size.X, i * (int)Tiles.Tile.Size.Y, 64, 65);
+                    Rectangle tileRect = new Rectangle(j * (int)Tiles.Tile.Size.X, i * (int)Tiles.Tile.Size.Y, 64, 64);
 
                     if (!tileMap.ContainsKey(tileRect))
                     {
@@ -220,7 +220,7 @@ namespace Fallen_Knight.GameAssets.Levels
             ExitTile = new ExitTile(this,
                 Content.Load<Texture2D>("Tiles/teleporter"),
                 new Rectangle((int)(x * Tiles.Tile.Size.Y),
-                (int)(y * Tiles.Tile.Size.Y), 64, 65)
+                (int)(y * Tiles.Tile.Size.Y), 64, 64)
                 );
         }
 
@@ -247,7 +247,7 @@ namespace Fallen_Knight.GameAssets.Levels
             player.SetPlayerSpawn(playerSpawn);
             spawnAnimation = new Animation(Content.Load<Texture2D>("Tiles/spawn"), 64, 64);
             spawnAnimation.Position = new Rectangle((int)(x * Tiles.Tile.Size.Y),
-                (int)(y * Tiles.Tile.Size.Y), 64, 65);
+                (int)(y * Tiles.Tile.Size.Y), 64, 64);
         }
 
         public TileType LoadVarietyObject(char token)
@@ -377,7 +377,7 @@ namespace Fallen_Knight.GameAssets.Levels
                 {
                     if (tiles[x, y].Tile_Type == TileType.Platform)
                     {
-                        spriteBatch.Draw(tiles[x, y].Texture, new Rectangle(x * 64, y * 65, 64, 65),
+                        spriteBatch.Draw(tiles[x, y].Texture, new Rectangle(x * 64, y * 64, 64, 64),
                             new Rectangle(0, 0, 64, 64), Color.White);
                     }
                 }

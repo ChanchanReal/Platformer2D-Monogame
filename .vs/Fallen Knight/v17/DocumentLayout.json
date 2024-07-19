@@ -3,48 +3,48 @@
   "WorkspaceRootPath": "C:\\Users\\cedie\\Platformer2D-Monogame\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|c:\\users\\cedie\\platformer2d-monogame\\fallen knight\\src\\levels\\level.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|solutionrelative:fallen knight\\src\\levels\\level.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|c:\\users\\cedie\\platformer2d-monogame\\fallen knight\\src\\particleengine\\particlesystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|solutionrelative:fallen knight\\src\\particleengine\\particlesystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|c:\\users\\cedie\\platformer2d-monogame\\fallen knight\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|solutionrelative:fallen knight\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|c:\\users\\cedie\\platformer2d-monogame\\fallen knight\\src\\character\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|solutionrelative:fallen knight\\src\\character\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|c:\\users\\cedie\\platformer2d-monogame\\fallen knight\\src\\core\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|solutionrelative:fallen knight\\src\\core\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|c:\\users\\cedie\\platformer2d-monogame\\fallen knight\\src\\mobs\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|solutionrelative:fallen knight\\src\\mobs\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|c:\\users\\cedie\\platformer2d-monogame\\fallen knight\\src\\items\\weapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|solutionrelative:fallen knight\\src\\items\\weapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|c:\\users\\cedie\\platformer2d-monogame\\fallen knight\\src\\tiles\\fallingtile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|solutionrelative:fallen knight\\src\\tiles\\fallingtile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|c:\\users\\cedie\\platformer2d-monogame\\fallen knight\\src\\tiles\\tile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|solutionrelative:fallen knight\\src\\tiles\\tile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|c:\\users\\cedie\\platformer2d-monogame\\fallen knight\\src\\levels\\level.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACBA4F7D-F337-40F8-8CFF-5E4B56C5C68F}|Fallen Knight\\Fallen Knight.csproj|solutionrelative:fallen knight\\src\\levels\\level.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
     {
-      "Orientation": 1,
+      "Orientation": 0,
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedHeight": 247,
-          "SelectedChildIndex": 5,
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 3,
               "Title": "FallingTile.cs",
               "DocumentMoniker": "C:\\Users\\cedie\\Platformer2D-Monogame\\Fallen Knight\\src\\Tiles\\FallingTile.cs",
               "RelativeDocumentMoniker": "Fallen Knight\\src\\Tiles\\FallingTile.cs",
               "ToolTip": "C:\\Users\\cedie\\Platformer2D-Monogame\\Fallen Knight\\src\\Tiles\\FallingTile.cs",
               "RelativeToolTip": "Fallen Knight\\src\\Tiles\\FallingTile.cs",
-              "ViewState": "AQIAAC0AAAAAAAAAAAAiwDwAAAAuAAAA",
+              "ViewState": "AQIAAEQAAAAAAAAAAAAowDQAAAA3AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-18T09:31:49.134Z",
               "IsPinned": true,
@@ -52,13 +52,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "Player.cs",
               "DocumentMoniker": "C:\\Users\\cedie\\Platformer2D-Monogame\\Fallen Knight\\src\\Character\\Player.cs",
               "RelativeDocumentMoniker": "Fallen Knight\\src\\Character\\Player.cs",
               "ToolTip": "C:\\Users\\cedie\\Platformer2D-Monogame\\Fallen Knight\\src\\Character\\Player.cs",
               "RelativeToolTip": "Fallen Knight\\src\\Character\\Player.cs",
-              "ViewState": "AQIAADEBAAAAAAAAAAAzwEkBAAAqAAAA",
+              "ViewState": "AQIAAFUBAAAAAAAAAAAqwH0BAABdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-18T22:59:02.63Z",
               "IsPinned": true,
@@ -78,54 +78,54 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Level.cs",
-              "DocumentMoniker": "C:\\Users\\cedie\\Platformer2D-Monogame\\Fallen Knight\\src\\Levels\\Level.cs",
-              "RelativeDocumentMoniker": "Fallen Knight\\src\\Levels\\Level.cs",
-              "ToolTip": "C:\\Users\\cedie\\Platformer2D-Monogame\\Fallen Knight\\src\\Levels\\Level.cs",
-              "RelativeToolTip": "Fallen Knight\\src\\Levels\\Level.cs",
-              "ViewState": "AQIAADwAAAAAAAAAAAAQwEoAAAAVAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-19T06:28:38.469Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ParticleSystem.cs",
-              "DocumentMoniker": "C:\\Users\\cedie\\Platformer2D-Monogame\\Fallen Knight\\src\\ParticleEngine\\ParticleSystem.cs",
-              "RelativeDocumentMoniker": "Fallen Knight\\src\\ParticleEngine\\ParticleSystem.cs",
-              "ToolTip": "C:\\Users\\cedie\\Platformer2D-Monogame\\Fallen Knight\\src\\ParticleEngine\\ParticleSystem.cs",
-              "RelativeToolTip": "Fallen Knight\\src\\ParticleEngine\\ParticleSystem.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACUAAAAdAAAA",
+              "Title": "Enemy.cs",
+              "DocumentMoniker": "C:\\Users\\cedie\\Platformer2D-Monogame\\Fallen Knight\\src\\Mobs\\Enemy.cs",
+              "RelativeDocumentMoniker": "Fallen Knight\\src\\Mobs\\Enemy.cs",
+              "ToolTip": "C:\\Users\\cedie\\Platformer2D-Monogame\\Fallen Knight\\src\\Mobs\\Enemy.cs",
+              "RelativeToolTip": "Fallen Knight\\src\\Mobs\\Enemy.cs",
+              "ViewState": "AQIAAHUAAAAAAAAAAAAqwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-19T06:19:37.232Z",
+              "WhenOpened": "2024-07-19T08:37:50.865Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Game1.cs",
-              "DocumentMoniker": "C:\\Users\\cedie\\Platformer2D-Monogame\\Fallen Knight\\Game1.cs",
-              "RelativeDocumentMoniker": "Fallen Knight\\Game1.cs",
-              "ToolTip": "C:\\Users\\cedie\\Platformer2D-Monogame\\Fallen Knight\\Game1.cs",
-              "RelativeToolTip": "Fallen Knight\\Game1.cs",
-              "ViewState": "AQIAABMAAAAAAAAAAAAYwB4AAAAmAAAA",
+              "Title": "Weapon.cs",
+              "DocumentMoniker": "C:\\Users\\cedie\\Platformer2D-Monogame\\Fallen Knight\\src\\Items\\Weapon.cs",
+              "RelativeDocumentMoniker": "Fallen Knight\\src\\Items\\Weapon.cs",
+              "ToolTip": "C:\\Users\\cedie\\Platformer2D-Monogame\\Fallen Knight\\src\\Items\\Weapon.cs",
+              "RelativeToolTip": "Fallen Knight\\src\\Items\\Weapon.cs",
+              "ViewState": "AQIAACIAAAAAAAAAAAAuwDMAAAAsAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-19T06:16:59.827Z",
+              "WhenOpened": "2024-07-19T08:19:36.262Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Level.cs",
+              "DocumentMoniker": "C:\\Users\\cedie\\Platformer2D-Monogame\\Fallen Knight\\src\\Levels\\Level.cs",
+              "RelativeDocumentMoniker": "Fallen Knight\\src\\Levels\\Level.cs",
+              "ToolTip": "C:\\Users\\cedie\\Platformer2D-Monogame\\Fallen Knight\\src\\Levels\\Level.cs",
+              "RelativeToolTip": "Fallen Knight\\src\\Levels\\Level.cs",
+              "ViewState": "AQIAADoAAAAAAAAAAAAqwD4AAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-19T08:12:43.929Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "GameManager.cs",
-              "DocumentMoniker": "C:\\Users\\cedie\\Platformer2D-Monogame\\Fallen Knight\\src\\Core\\GameManager.cs",
-              "RelativeDocumentMoniker": "Fallen Knight\\src\\Core\\GameManager.cs",
-              "ToolTip": "C:\\Users\\cedie\\Platformer2D-Monogame\\Fallen Knight\\src\\Core\\GameManager.cs",
-              "RelativeToolTip": "Fallen Knight\\src\\Core\\GameManager.cs",
-              "ViewState": "AQIAADEAAAAAAAAAAAAcwD4AAABLAAAA",
+              "Title": "Tile.cs",
+              "DocumentMoniker": "C:\\Users\\cedie\\Platformer2D-Monogame\\Fallen Knight\\src\\Tiles\\Tile.cs",
+              "RelativeDocumentMoniker": "Fallen Knight\\src\\Tiles\\Tile.cs",
+              "ToolTip": "C:\\Users\\cedie\\Platformer2D-Monogame\\Fallen Knight\\src\\Tiles\\Tile.cs",
+              "RelativeToolTip": "Fallen Knight\\src\\Tiles\\Tile.cs",
+              "ViewState": "AQIAABEAAAAAAAAAAAAIwB8AAAAkAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-19T01:39:12.242Z",
+              "WhenOpened": "2024-07-19T08:11:01.685Z",
               "EditorCaption": ""
             }
           ]

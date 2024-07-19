@@ -29,7 +29,7 @@ namespace Fallen_Knight.GameAssets.Tiles
         public TileType Tile_Type;
 
         public const int width = 64;
-        public const int height = 65;
+        public const int height = 64;
 
         public static Vector2 Size => new Vector2(width, height);
         public Tile(Texture2D texture, TileType tileType)

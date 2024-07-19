@@ -40,7 +40,7 @@ namespace Fallen_Knight.GameAssets.Tiles
         {
             Vector2 origin = new Vector2(Texture.Width / 2, Texture.Height / 2);
             spriteBatch.Draw(Texture,
-                new Rectangle((int)((Position.X + origin.X) - 10),
+                new Rectangle((int)((Position.X + origin.X)),
                 (int)(Position.Y + origin.Y),
                 BoundingRec.Width, BoundingRec.Height), null, Color.White, 
                 angle, origin, SpriteEffects.None, 0f);
@@ -50,7 +50,7 @@ namespace Fallen_Knight.GameAssets.Tiles
         public void Update(GameTime gameTime)
         {
             float delta = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            BoundingRec = new Rectangle((int)Position.X - 11, (int)Position.Y, 64, 20);
+            BoundingRec = new Rectangle((int)Position.X, (int)Position.Y, 64, 20);
 
             Player player = level.Player as Player;
 

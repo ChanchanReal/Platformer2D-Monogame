@@ -50,7 +50,6 @@ namespace Fallen_Knight.src.Items
         {
             PositionAndBounceWeapon(gameTime, boundingRec);
             AttackHitboxUpdate(boundingRec);
-            DebugHelper.AddToDebugBound(AttackHitBox, 98);
         }
 
         public void PositionAndBounceWeapon(GameTime gameTime, Rectangle boundingRec)
