@@ -16,7 +16,7 @@ namespace Fallen_Knight
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
-            gameManager = new GameManager(this, _graphics);
+            gameManager = new GameManager(this, _graphics, Content);
         }
 
         protected override void Initialize()
@@ -28,7 +28,7 @@ namespace Fallen_Knight
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            gameManager.LoadContent(Content);
+            gameManager.LoadContent();
             DebugHelper.Load(Content);
             // TODO: use this.Content to load your game content here
         }

@@ -1,5 +1,5 @@
 ﻿using Fallen_Knight.GameAssets.Character;
-using Fallen_Knight.GameAssets.Interface;
+using Fallen_Knight.GameAssets.Collisions;
 using Fallen_Knight.GameAssets.Levels;
 using Fallen_Knight.GameAssets.Observer;
 using Fallen_Knight.src.Core;
@@ -7,9 +7,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
-namespace Fallen_Knight.GameAssets.Tile.Tile
+namespace Fallen_Knight.GameAssets.Tiles
 {
-    public class FallingTile : IGameEntity
+    public class FallingTile
     {
         Random random;
         Level level;
@@ -32,6 +32,7 @@ namespace Fallen_Knight.GameAssets.Tile.Tile
             this.level = level;
             this.Position = position;
             this.gameSound = gameSound;
+            this.BoundingRec = new Rectangle(0, 0, 64, 20);
             oldPos = position;
             random = new Random();
         }
@@ -41,7 +42,7 @@ namespace Fallen_Knight.GameAssets.Tile.Tile
             spriteBatch.Draw(Texture,
                 new Rectangle((int)((Position.X + origin.X) - 10),
                 (int)(Position.Y + origin.Y),
-                BoundingRec.Width, BoundingRec.Height ), null, Color.White, 
+                BoundingRec.Width, BoundingRec.Height), null, Color.White, 
                 angle, origin, SpriteEffects.None, 0f);
         }
 
@@ -49,21 +50,22 @@ namespace Fallen_Knight.GameAssets.Tile.Tile
         public void Update(GameTime gameTime)
         {
             float delta = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            BoundingRec = new Rectangle((int)Position.X - 11, (int)Position.Y, 64, 64);
+            BoundingRec = new Rectangle((int)Position.X - 11, (int)Position.Y, 64, 20);
 
             Player player = level.Player as Player;
 
             if (!fall)
             {
-                if (player.Hitbox[1].Intersects(BoundingRec) 
-                    || player.Hitbox[2].Intersects(BoundingRec) 
-                    || player.Hitbox[3].Intersects(BoundingRec))
+                if (BoundingRec.Intersects(player.BoundingRectangle))
                 {
-                    fall = true;
-                    delayDuration = touchDelay;
-                    ObserverManager.NotifyCamera();
-                    angularVelocity = 0.1f * (float)(random.NextDouble() * 2 - 1);
-                    gameSound.PlayFallingTileSound(delta);
+                    if (BoundingRec.Intersects(player.Hitbox[3]))
+                    {
+                        fall = true;
+                        delayDuration = touchDelay;
+                        ObserverManager.NotifyCamera();
+                        angularVelocity = 0.1f * (float)(random.NextDouble() * 2 - 1);
+                        gameSound.PlayFallingTileSound(delta);
+                    }
                 }
             }
 

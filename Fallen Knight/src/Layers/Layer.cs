@@ -41,7 +41,7 @@ namespace Fallen_Knight.GameAssets.Layers
         private Level _level;
 
         float scrollSpeedMax_Close = 10.5f; 
-        float scrollSpeedMax_Mid = 7.75f; 
+        float scrollSpeedMax_Mid = 6.55f; 
         float scrollSpeedMax_Far = 4.4f; 
 
         public void Load(ContentManager contentManager, GraphicsDevice graphicsDevice,

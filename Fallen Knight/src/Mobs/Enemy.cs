@@ -7,6 +7,7 @@ using Fallen_Knight.GameAssets.Levels;
 using Fallen_Knight.GameAssets.Tiles;
 using Fallen_Knight.src.Core;
 using Fallen_Knight.src.Interface;
+using Fallen_Knight.src.Score;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -205,6 +206,7 @@ namespace Fallen_Knight.GameAssets.Mobs
         public void KillEnemy()
         {
             isAlive = false;
+            Score.AddScore(5);
         }
     }
 

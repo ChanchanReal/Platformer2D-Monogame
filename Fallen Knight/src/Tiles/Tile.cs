@@ -37,5 +37,10 @@ namespace Fallen_Knight.GameAssets.Tiles
             Texture = texture;
             Tile_Type = tileType;
         }
+
+        public void Update()
+        {
+
+        }
     }
 }

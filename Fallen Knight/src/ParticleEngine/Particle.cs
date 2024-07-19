@@ -14,11 +14,10 @@ namespace Fallen_Knight.GameAssets
         public float AngularVelocity;
         public float Size;
         public int TTL;
-        private int HalfEndLife;
-        private int CloseEndLife;
+        private int InitialTTL;
         private float opacity = 1;
 
-        public Particle(Texture2D texture, Vector2 position, Vector2 velocity, 
+        public Particle(Texture2D texture, Vector2 position, Vector2 velocity,
             Color color, float angle, float angularVelocity, float size, int tTL)
         {
             Texture = texture;
@@ -29,37 +28,25 @@ namespace Fallen_Knight.GameAssets
             AngularVelocity = angularVelocity;
             Size = size;
             TTL = tTL;
-            CloseEndLife = (int)(TTL * 0.8f);
-            HalfEndLife = (int)(TTL * 0.5f);
+            InitialTTL = TTL;
         }
 
-        public void Update()
+        public void Update()            
         {
-            Position = Position + Velocity;
+            Position += Velocity;   
             Angle += AngularVelocity;
-            TTL--;
+            TTL--;      
 
-            if (TTL == CloseEndLife)
-            {
-                Velocity += new Vector2(0, 0.5f);
-            }
-
-            if (HalfEndLife == TTL)
-            {
-                opacity = 0.4f;
-            }
-
-            if (CloseEndLife == TTL)
-            {
-                opacity = 0.7f;
-            }
+            // Smooth opacity transition
+            opacity = MathHelper.Clamp((float)TTL / InitialTTL, 0, 1);
         }
+
         public void Draw(SpriteBatch spriteBatch)
         {
-            Rectangle sourceRectangle = new Rectangle(0,0, Texture.Width, Texture.Height);
-            Vector2 origin = new Vector2((Texture.Width / 2), (Texture.Height / 2));
-            spriteBatch.Draw(Texture, Position, sourceRectangle, Color * opacity, 
+            Rectangle sourceRectangle = new Rectangle(0, 0, Texture.Width, Texture.Height);
+            Vector2 origin = new Vector2(Texture.Width / 2, Texture.Height / 2);
+            spriteBatch.Draw(Texture, Position, sourceRectangle, Color * opacity,
                 Angle, origin, Size, SpriteEffects.None, 0f);
         }
-    }
+    }   
 }

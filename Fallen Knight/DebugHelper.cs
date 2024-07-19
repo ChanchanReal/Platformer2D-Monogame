@@ -1,5 +1,5 @@
 ﻿using Fallen_Knight.GameAssets.Collisions;
-using Fallen_Knight.GameAssets.Tile.Tile;
+using Fallen_Knight.GameAssets.Tiles;
 using Fallen_Knight.src.Core;
 using Fallen_Knight.src.Interface;
 using Microsoft.Xna.Framework;

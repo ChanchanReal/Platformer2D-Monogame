@@ -1,6 +1,7 @@
 ﻿using Fallen_Knight.GameAssets.Character;
 using Fallen_Knight.GameAssets.Collisions;
 using Fallen_Knight.GameAssets.Levels;
+using Fallen_Knight.src.Score;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -43,6 +44,7 @@ namespace Fallen_Knight.GameAssets.Items
                 if (itemBound.Intersecting(hitbox))
                 {
                     IsCollected = true;
+                    Score.AddScore((int)gameTime.ElapsedGameTime.TotalMilliseconds);
                 }
             }
             itemBound.Center = Position;

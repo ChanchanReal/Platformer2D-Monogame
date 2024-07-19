@@ -35,7 +35,7 @@ namespace Fallen_Knight.GameAssets
             );
             Color color = Color.SaddleBrown;
             float angularVelocity = 0.1f * (float)(random.NextDouble() * 2 - 1);
-            float size = 0.2f;
+            float size = 0.02f;
             int ttl = 20 + random.Next(10, 20);
 
             return new Particle(texture, position, velocity, color, angle, angularVelocity, size, ttl);
@@ -45,7 +45,7 @@ namespace Fallen_Knight.GameAssets
             Texture2D texture = Textures[0];
             Vector2 position = EmitterPosition + new Vector2(0, -50);
             float angularVelocity = 0.1f * (float)(random.NextDouble() * 2 - 1);
-            float size = (float)(random.NextDouble() * 2f);
+            float size = 0.1f;
             int ttl = 90;
 
             // General direction for dash (e.g., rightward)

@@ -3,9 +3,9 @@ using Fallen_Knight.GameAssets.Character;
 using Fallen_Knight.GameAssets.Interface;
 using Fallen_Knight.GameAssets.Items;
 using Fallen_Knight.GameAssets.Mobs;
-using Fallen_Knight.GameAssets.Tile.Tile;
 using Fallen_Knight.GameAssets.Tiles;
 using Fallen_Knight.src.Core;
+using Fallen_Knight.src.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -17,19 +17,21 @@ using System.Text;
 
 namespace Fallen_Knight.GameAssets.Levels
 {
-    public class Level
+    public class Level : IDisposable
     {
         public Tiles.Tile[,] tiles;
         public IGameEntity Player;
         public List<IGameEntity> enemies;
         public List<BonusItem> ItemBonus;
         public List<FallingTile> FallingTiles;
+        public ExitTile ExitTile;
         private ParticleSystem particleSys;
         private Animation spawnAnimation;
         public Dictionary<Rectangle, (TileType, char)> tileMap;
         private Vector2 playerSpawn;
         private Texture2D goldBag;
         private GameSoundManager gameSound;
+        public bool ExitReached { get; set; } = false;
 
         public ContentManager Content
         {
@@ -70,6 +72,7 @@ namespace Fallen_Knight.GameAssets.Levels
             }
             UpateFallingTile(gameTime);
             CollectItem();
+            ExitTile?.Update(gameTime);
         }
 
         public void UpdateEnemy(GameTime gameTime)
@@ -171,6 +174,7 @@ namespace Fallen_Knight.GameAssets.Levels
                 "10" => "f",
                 "11" => "@",
                 "12" => "%",
+                "13" => "e",
                 _    => num,
             };
         }
@@ -179,6 +183,9 @@ namespace Fallen_Knight.GameAssets.Levels
         {
             switch (tileType)
             {
+                case TileType.Exit:
+                    SetExitTile(x, y);
+                    break;
                 case TileType.Platform:
                     SetTile(tileType, y, x, type);
                     break;
@@ -205,6 +212,15 @@ namespace Fallen_Knight.GameAssets.Levels
                 new RobeEnemy(Content.Load<Texture2D>("Monster/executionair-Sheet"),
                 this,
                 new Vector2(x * Tiles.Tile.Size.Y, y * Tiles.Tile.Size.Y))
+                );
+        }
+
+        public void SetExitTile(int x, int y)
+        {
+            ExitTile = new ExitTile(this,
+                Content.Load<Texture2D>("Tiles/teleporter"),
+                new Rectangle((int)(x * Tiles.Tile.Size.Y),
+                (int)(y * Tiles.Tile.Size.Y), 64, 65)
                 );
         }
 
@@ -238,6 +254,8 @@ namespace Fallen_Knight.GameAssets.Levels
         {
             switch (token)
             {
+                case 'e':
+                    return TileType.Exit;
                 case '?':
                     return TileType.Impassable;
                 case '%':
@@ -316,7 +334,7 @@ namespace Fallen_Knight.GameAssets.Levels
                 items.Draw(spriteBatch);
             }
             DrawFallingTile(spriteBatch, gameTime);
-
+            ExitTile?.Draw(spriteBatch);
         }
 
         public void DrawPlayerEffect(SpriteBatch spriteBatch, GameTime gameTime, Matrix camera)
@@ -398,5 +416,9 @@ namespace Fallen_Knight.GameAssets.Levels
             return Content.Load<Texture2D>(texture);
         }
 
+        public void Dispose()
+        {
+            Content.Dispose();
+        }
     }
 }
