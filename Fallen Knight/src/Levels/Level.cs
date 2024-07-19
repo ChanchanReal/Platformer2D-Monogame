@@ -171,10 +171,11 @@ namespace Fallen_Knight.GameAssets.Levels
             return num switch
             {
                 "-1" => "!",
-                "10" => "f",
-                "11" => "@",
-                "12" => "%",
-                "13" => "e",
+                "10" => "%",
+                "11" => "e",
+                "12" => "$",
+                "13" => "f",
+                "14" => "~",
                 _    => num,
             };
         }
@@ -237,7 +238,7 @@ namespace Fallen_Knight.GameAssets.Levels
         {
             if (ItemBonus == null)
                 ItemBonus = new List<BonusItem>();
-            ItemBonus.Add(new BonusItem(new Vector2(x * Tiles.Tile.Size.Y, y * Tiles.Tile.Size.Y + 32), goldBag, this));
+            ItemBonus.Add(new BonusItem(new Vector2(x * Tiles.Tile.Size.Y + 32, y * Tiles.Tile.Size.Y + 32), goldBag, this));
         }
 
         public void SetSpawn(int x, int y)
@@ -260,14 +261,16 @@ namespace Fallen_Knight.GameAssets.Levels
                     return TileType.Impassable;
                 case '%':
                     return TileType.Spawn;
-                case '@':
+                case '~':
                     return TileType.Enemy;
                 case '!':
                     return TileType.Passable;
-                case '9':
+                case '$':
                     return TileType.Item;
                 case 'f':
                     return TileType.FallingPlatform;
+                case '0':
+                    return TileType.Platform;
                 case '1':
                     return TileType.Platform;
                 case '2':
@@ -284,9 +287,7 @@ namespace Fallen_Knight.GameAssets.Levels
                     return TileType.Platform;
                 case '8':
                     return TileType.Platform;
-                case '=':
-                    return TileType.Platform;
-                case '-':
+                case '9':
                     return TileType.Platform;
 
                 default:
@@ -345,6 +346,7 @@ namespace Fallen_Knight.GameAssets.Levels
 
         private void DrawFallingTile(SpriteBatch sb, GameTime gameTime)
         {
+            if (FallingTiles != null)
             foreach (var item in FallingTiles)
             {
                 item.Draw(sb, gameTime);
@@ -353,6 +355,7 @@ namespace Fallen_Knight.GameAssets.Levels
 
         private void UpateFallingTile(GameTime gameTime)
         {
+            if (FallingTiles != null)
             foreach (var item in FallingTiles)
             {
                 item.Update(gameTime);
@@ -395,20 +398,19 @@ namespace Fallen_Knight.GameAssets.Levels
         {
             string texture = token switch
             {
-                '0' => "Tiles/t0",
-                '1' => "Tiles/t",
-                '2' => "Tiles/t1",
-                '3' => "Tiles/t2",
-                '4' => "Tiles/t3",
-                '5' => "Tiles/t4",
-                '6' => "Tiles/t5",
-                '7' => "Tiles/t6",
-                '8' => "Tiles/t7",
-                '=' => "Tiles/t8",
-                '-' => "Tiles/t9",
-                '9' => "Item/goldbag",
+                '0' => "Tiles/darktile/base",
+                '1' => "Tiles/darktile/black",
+                '2' => "Tiles/darktile/t1",
+                '3' => "Tiles/darktile/t2",
+                '4' => "Tiles/darktile/t3",
+                '5' => "Tiles/darktile/t4",
+                '6' => "Tiles/darktile/t5",
+                '7' => "Tiles/darktile/t6",
+                '8' => "Tiles/darktile/t7",
+                '9' => "Tiles/darktile/t8",
+                '$' => "Item/goldbag",
                 'f' => "Tiles/hitbox_square64",
-                '@' => "Monster/executionair-Sheet",
+                '~' => "Monster/executionair-Sheet",
                 _ => throw new InvalidOperationException()
 
             };

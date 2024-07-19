@@ -374,7 +374,7 @@ namespace Fallen_Knight.GameAssets.Character
                         if (Math.Abs(depth.Y) < Math.Abs(depth.X))
                         {
                             // if we are on top of tile.
-                            if (previousBottom <= tileBound.Top &&  PlayerSpeed.Y > 0)
+                            if (previousBottom <= tileBound.Top &&  PlayerSpeed.Y > 0 && tileBound.Intersects(Hitbox[Feet]))
                             {
                                 CayoteTime = 0.1f;
                                 IsGround = true;
@@ -446,6 +446,7 @@ namespace Fallen_Knight.GameAssets.Character
 
         private void CollisionForFallingTile(Rectangle bounds)
         {
+            if (level.FallingTiles != null)
             foreach (var tile in level.FallingTiles)
             {
                 HandleCollision(bounds, tile.BoundingRec);

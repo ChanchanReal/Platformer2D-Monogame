@@ -34,10 +34,10 @@
     <Folder Include="Content\Scene\" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="Content\Levels\fallen_map.csv">
+    <None Update="Content\Levels\falling_map.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Content\Levels\fallen_map2.csv">
+    <None Update="Content\Levels\falling_map2.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Content\Levels\tile.csv">

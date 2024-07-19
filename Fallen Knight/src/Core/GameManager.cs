@@ -66,7 +66,7 @@ namespace Fallen_Knight.src.Core
                 _graphics.GraphicsDevice,
                 new ParticleSystem(Vector2.Zero, ParticleTexture), gameSound);
 
-            string filePath = "Content/Levels/fallen_map.csv";
+            string filePath = "Content/Levels/falling_map.csv";
             FileStream fs = File.OpenRead(filePath);
             level.LoadTile(fs);
             layer.Load(content, _graphics.GraphicsDevice, new Vector2(screenSize.X, screenSize.Y), level);
@@ -124,7 +124,7 @@ namespace Fallen_Knight.src.Core
         {
             level = new Level(screenSize);
 
-            string filePath = "Content/Levels/fallen_map2.csv";
+            string filePath = "Content/Levels/falling_map2.csv";
             FileStream fs = File.OpenRead(filePath);
             level.Load(content.ServiceProvider,
                _graphics.GraphicsDevice,

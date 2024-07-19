@@ -27,27 +27,25 @@
     <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Sounds/Background/FarBeyond Studio - Freebies Vol. 1 - 01 - Fight The Devil (CC-BY 4.0).wav</File>
     <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Sounds/Background/FarBeyond Studio - Freebies Vol. 1 - 04 - Tiefsee (CC-BY 4.0).wav</File>
     <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Sounds/Effect/earth rumble.wav</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/darktile/base.png</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/darktile/black.png</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/darktile/deep.png</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/darktile/t1.png</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/darktile/t2.png</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/darktile/t3.png</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/darktile/t4.png</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/darktile/t5.png</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/darktile/t6.png</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/darktile/t7.png</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/darktile/t8.png</File>
     <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/fallingTile.png</File>
     <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/hitbox_square64.png</File>
     <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/spawn.png</File>
-    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/t.png</File>
-    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/t0.png</File>
-    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/t1.png</File>
-    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/t2.png</File>
-    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/t3.png</File>
-    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/t4.png</File>
-    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/t5.png</File>
-    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/t6.png</File>
-    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/t7.png</File>
-    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/t8.png</File>
-    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/t9.png</File>
     <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/teleporter.png</File>
-    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/tile.png</File>
     <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/WeaponEffect/attack particle.png</File>
     <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/WeaponEffect/katana attack.png</File>
   </SourceFiles>
   <DestFiles>
-    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

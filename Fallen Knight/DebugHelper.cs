@@ -94,6 +94,7 @@ namespace Fallen_Knight
                     i++;
                 }
 
+                if (fallingTileBound != null)
                 foreach (var rect in fallingTileBound)
                 {
                     spriteBatch.Draw(squareTexture, rect.BoundingRec, Color.Red);
