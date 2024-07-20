@@ -33,7 +33,7 @@ namespace Fallen_Knight.GameAssets
                 (float)(speed * Math.Cos(angle)),
                 (float)(speed * Math.Sin(angle))
             );
-            Color color = Color.SaddleBrown;
+            Color color = Color.Brown;
             float angularVelocity = 0.1f * (float)(random.NextDouble() * 2 - 1);
             float size = 0.02f;
             int ttl = 20 + random.Next(10, 20);

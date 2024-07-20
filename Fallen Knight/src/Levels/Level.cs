@@ -23,7 +23,7 @@ namespace Fallen_Knight.GameAssets.Levels
         public IGameEntity Player;
         public List<IGameEntity> enemies;
         public List<BonusItem> ItemBonus;
-        public List<FallingTile> FallingTiles;
+        public List<ICustomTiles> FallingTiles;
         public ExitTile ExitTile;
         private ParticleSystem particleSys;
         private Animation spawnAnimation;
@@ -176,6 +176,7 @@ namespace Fallen_Knight.GameAssets.Levels
                 "12" => "$",
                 "13" => "f",
                 "14" => "~",
+                "15" => "^",
                 _    => num,
             };
         }
@@ -200,6 +201,10 @@ namespace Fallen_Knight.GameAssets.Levels
                     SetFallingPlatForm(x, y);
                     break;
 
+                case TileType.Spike:
+                    SetSpikeTile(x, y);
+                    break;
+
                 case TileType.Enemy:
                     SetEnemy(x, y);
                     break;
@@ -210,7 +215,9 @@ namespace Fallen_Knight.GameAssets.Levels
         public void SetEnemy(int x, int y)
         {
             enemies.Add(
-                new RobeEnemy(Content.Load<Texture2D>("Monster/executionair-Sheet"),
+                new Executionair(
+                Content.Load<Texture2D>("Monster/executionair-Sheet"),
+                Content.Load<Texture2D>("Monster/explode"),
                 this,
                 new Vector2(x * Tiles.Tile.Size.Y, y * Tiles.Tile.Size.Y))
                 );
@@ -228,10 +235,33 @@ namespace Fallen_Knight.GameAssets.Levels
         public void SetFallingPlatForm(int x, int y)
         {
             if (FallingTiles == null)
-                FallingTiles = new List<FallingTile>();
+                FallingTiles = new List<ICustomTiles>();
 
-            Texture2D t = Content.Load<Texture2D>("Tiles/fallingTile");
-            FallingTiles.Add(new FallingTile(t, new Vector2(x * Tiles.Tile.Size.Y, y * Tiles.Tile.Size.Y), this, gameSound));
+            FallingTiles.Add(
+                new FallingTile(
+                Content.Load<Texture2D>("Tiles/fallingTile"),
+                null, 
+                null, 
+                new Vector2(x * Tiles.Tile.Size.Y, y * Tiles.Tile.Size.Y),
+                gameSound.GetFallingTileSound(),
+                this)
+                );
+        }
+
+        public void SetSpikeTile(int x, int y)
+        {
+            if (FallingTiles == null)
+                FallingTiles = new List<ICustomTiles>();
+
+            FallingTiles.Add(
+                new SpikeTile(
+                Content.Load<Texture2D>("Tiles/obstacle/spike"),
+                null,
+                null,
+                new Vector2(x * Tiles.Tile.Size.Y, y * Tiles.Tile.Size.Y),
+                gameSound.GetFallingTileSound(),
+                this
+                ));
         }
 
         public void SetItem(int x, int y)
@@ -269,6 +299,8 @@ namespace Fallen_Knight.GameAssets.Levels
                     return TileType.Item;
                 case 'f':
                     return TileType.FallingPlatform;
+                case '^':
+                    return TileType.Spike;
                 case '0':
                     return TileType.Platform;
                 case '1':
@@ -344,12 +376,12 @@ namespace Fallen_Knight.GameAssets.Levels
             player.DrawPlayerEffect(spriteBatch, gameTime, camera);
         }
 
-        private void DrawFallingTile(SpriteBatch sb, GameTime gameTime)
+        private void DrawFallingTile(SpriteBatch spriteBatch, GameTime gameTime)
         {
             if (FallingTiles != null)
             foreach (var item in FallingTiles)
             {
-                item.Draw(sb, gameTime);
+                item.Draw(gameTime, spriteBatch);
             }
         }
 

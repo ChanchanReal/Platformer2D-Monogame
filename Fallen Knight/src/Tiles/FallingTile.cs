@@ -1,70 +1,78 @@
-﻿using Fallen_Knight.GameAssets.Character;
-using Fallen_Knight.GameAssets.Collisions;
+﻿using Fallen_Knight.GameAssets.Animations;
+using Fallen_Knight.GameAssets.Character;
 using Fallen_Knight.GameAssets.Levels;
 using Fallen_Knight.GameAssets.Observer;
-using Fallen_Knight.src.Core;
+using Fallen_Knight.src.Tiles;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
 namespace Fallen_Knight.GameAssets.Tiles
 {
-    public class FallingTile
+    public class FallingTile : CustomTiles
     {
-        Random random;
-        Level level;
-        Vector2 oldPos;
-        public Vector2 Position;
-        public Rectangle BoundingRec;
-        public Texture2D Texture;
-        private readonly GameSoundManager gameSound;
+        private readonly Random random;
+        private readonly SoundEffect gameSound;
+        private Vector2 oldPos;
 
-        float touchDelay = 0.5f;
-        float delayDuration = 0f;
-        float fallSpeed = 250f;
-        bool fall = false;
-        float angle = 0f;
-        float angularVelocity = 0f;
+        private float touchDelay = 0.5f;
+        private float delayDuration = 0f;
+        private float fallSpeed = 250f;
+        private bool fall = false;
+        private float angle = 0f;
+        private float angularVelocity = 0f;
 
-        public FallingTile(Texture2D texture, Vector2 position, Level level , GameSoundManager gameSound)
+        private int textureWidth = 64;
+        private int textureHeight = 20;
+
+        public FallingTile(
+            Texture2D texture,
+            Animation idleAnimation,
+            Animation moveAnimation,
+            Vector2 position,
+            SoundEffect soundEffect,
+            Level level
+            ) : base (texture, 
+                idleAnimation, 
+                moveAnimation, 
+                position, 
+                soundEffect, 
+                level)
         {
-            this.Texture = texture;
-            this.level = level;
-            this.Position = position;
-            this.gameSound = gameSound;
-            this.BoundingRec = new Rectangle(0, 0, 64, 20);
+            BoundingRectangle = new Rectangle(0, 0, textureWidth, textureHeight);
             oldPos = position;
             random = new Random();
         }
-        public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             Vector2 origin = new Vector2(Texture.Width / 2, Texture.Height / 2);
             spriteBatch.Draw(Texture,
-                new Rectangle((int)((Position.X + origin.X)),
-                (int)(Position.Y + origin.Y),
-                BoundingRec.Width, BoundingRec.Height), null, Color.White, 
+                new Rectangle((int)((OriginalPosition.X + origin.X)),
+                (int)(OriginalPosition.Y + origin.Y),
+                BoundingRectangle.Width, BoundingRectangle.Height), null, Color.White, 
                 angle, origin, SpriteEffects.None, 0f);
         }
 
 
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             float delta = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            BoundingRec = new Rectangle((int)Position.X, (int)Position.Y, 64, 20);
+            BoundingRectangle = new Rectangle((int)OriginalPosition.X, (int)OriginalPosition.Y, 64, 20);
 
-            Player player = level.Player as Player;
+            Player player = Level.Player as Player;
 
             if (!fall)
             {
-                if (BoundingRec.Intersects(player.BoundingRectangle))
+                if (BoundingRectangle.Intersects(player.BoundingRectangle))
                 {
-                    if (BoundingRec.Intersects(player.Hitbox[3]))
+                    if (BoundingRectangle.Intersects(player.Hitbox[3]))
                     {
                         fall = true;
                         delayDuration = touchDelay;
                         ObserverManager.NotifyCamera();
                         angularVelocity = 0.1f * (float)(random.NextDouble() * 2 - 1);
-                        gameSound.PlayFallingTileSound(delta);
+                        SoundEffects.Play();
                     }
                 }
             }
@@ -77,14 +85,14 @@ namespace Fallen_Knight.GameAssets.Tiles
                 }
                 else
                 {
-                    Position = new Vector2(Position.X, Position.Y + fallSpeed * delta);
+                    OriginalPosition = new Vector2(OriginalPosition.X, OriginalPosition.Y + fallSpeed * delta);
                     angle += angularVelocity;
                 }
             }
 
-            if (Position.Y >= 2000)
+            if (OriginalPosition.Y >= 2000)
             {
-                Position = oldPos;
+                OriginalPosition = oldPos;
                 angle = 0;
                 fall = false;
             }

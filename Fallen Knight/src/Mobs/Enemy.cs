@@ -4,6 +4,7 @@ using Fallen_Knight.GameAssets.Character;
 using Fallen_Knight.GameAssets.Collisions;
 using Fallen_Knight.GameAssets.Interface;
 using Fallen_Knight.GameAssets.Levels;
+using Fallen_Knight.GameAssets.Observer;
 using Fallen_Knight.GameAssets.Tiles;
 using Fallen_Knight.src.Core;
 using Fallen_Knight.src.Interface;
@@ -28,7 +29,15 @@ namespace Fallen_Knight.GameAssets.Mobs
         private const float gravity = 9.8f;
         private float movementSpeed = 30f;
 
+        private float dieDelay = 0.7f;
+
         Animation idleAnimation;
+        Animation dieAnimation;
+
+        private Vector2 position;
+        private bool shouldDie = false;
+        private bool isAlive;
+
         public Rectangle BoundingRectangle
         {
             get
@@ -40,39 +49,80 @@ namespace Fallen_Knight.GameAssets.Mobs
         {
             get { return position; }
         }
-        private Vector2 position;
-
         public bool IsAlive
         {
             get => isAlive;
         }
-        private bool isAlive;
 
-        public Enemy(Texture2D texture, Level level, Vector2 position)
+        public Enemy(Texture2D idleTexture, Texture2D dieTexture, Level level, Vector2 position)
         {
             _ai = new Bot(4f);
-            this.texture = texture;
+            this.texture = idleTexture;
             this.level = level;
-            this.position = position;   
+            this.position = position;
             velocity = Vector2.Zero;
-            idleAnimation = new Animation(texture, 32, 64);
+            idleAnimation = new Animation(idleTexture, 32, 64);
+            dieAnimation = new Animation(dieTexture, 64, 64);
             isAlive = true;
         }
+
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            idleAnimation.Draw(spriteBatch);
+            if (!shouldDie)
+            {
+                idleAnimation.Draw(spriteBatch);
+            }
+            else
+            {
+                dieAnimation.Draw(spriteBatch);
+            }
         }
 
         public void Update(GameTime gameTime)
         {
+            float delta = (float)gameTime.ElapsedGameTime.TotalSeconds;
             onGround = false;
             EnforceGravity(gameTime);
             Collision();
             PickUpEnemy();
             SimpleMovement();
-            _ai.Move(ref faceDirection, (float)gameTime.ElapsedGameTime.TotalSeconds);
-            idleAnimation.Position = BoundingRectangle;
-            idleAnimation.UpdateFrame(gameTime);
+            UpdateAI(gameTime);
+            UpdateAnimations(gameTime);
+            HandleDeath(delta);
+        }
+
+        private void UpdateAI(GameTime gameTime)
+        {
+            if (!shouldDie)
+            {
+                _ai.Move(ref faceDirection, (float)gameTime.ElapsedGameTime.TotalSeconds);
+            }
+        }
+
+        private void UpdateAnimations(GameTime gameTime)
+        {
+            if (!shouldDie)
+            {
+                idleAnimation.Position = BoundingRectangle;
+                dieAnimation.Position = new Rectangle(BoundingRectangle.X, BoundingRectangle.Y, 64, 64);
+                idleAnimation.UpdateFrame(gameTime);
+            }
+            else
+            {
+                dieAnimation.UpdateFrame(gameTime);
+            }
+        }
+
+        private void HandleDeath(float delta)
+        {
+            if (shouldDie)
+            {
+                dieDelay -= delta;
+                if (dieDelay < 0)
+                {
+                    isAlive = false;
+                }
+            }
         }
 
         public void SimpleMovement()
@@ -96,14 +146,14 @@ namespace Fallen_Knight.GameAssets.Mobs
             {
                 isPicking = false;
             }
-            else if (BoundingRectangle.Contains(InputManager.GetMousePosition()) && InputManager.IsMouseLeftButtonDown()) 
+            else if (BoundingRectangle.Contains(InputManager.GetMousePosition()) && InputManager.IsMouseLeftButtonDown())
             {
                 isPicking = true;
             }
 
             if (isPicking)
             {
-                position = new Vector2(InputManager.GetMousePosition().X - (BoundingRectangle.Width / 2), InputManager.GetMousePosition().Y  - (BoundingRectangle.Height / 2));
+                position = new Vector2(InputManager.GetMousePosition().X - (BoundingRectangle.Width / 2), InputManager.GetMousePosition().Y - (BoundingRectangle.Height / 2));
             }
         }
 #endif
@@ -151,7 +201,6 @@ namespace Fallen_Knight.GameAssets.Mobs
             }
 
             PlayerCollision();
-
             previousBottom = BoundingRectangle.Bottom;
         }
 
@@ -163,7 +212,7 @@ namespace Fallen_Knight.GameAssets.Mobs
             if (BoundingRectangle.Intersects(playerBound))
             {
                 Vector2 depth = RectangleExtensions.GetIntersectionDepth(BoundingRectangle, playerBound);
-                
+
                 if (Math.Abs(depth.X) < Math.Abs(depth.Y))
                 {
                     for (int pos = 0; pos < player.Hitbox.Length; pos++)
@@ -173,7 +222,7 @@ namespace Fallen_Knight.GameAssets.Mobs
                             //position.X += depth.X;
                         }
                     }
-                    
+
                 }
                 else
                 {
@@ -182,18 +231,19 @@ namespace Fallen_Knight.GameAssets.Mobs
                         position.Y += depth.Y;
                     }
                 }
-                
+
                 for (int pos = 0; pos < player.Hitbox.Length; pos++)
                 {
                     if (player.Hitbox[pos].Intersects(BoundingRectangle))
                     {
-                        player.SetPlayerToDead();
-                        isAlive = false;
+                        if (!shouldDie)
+                        {
+                            player.SetPlayerToDead();
+                            isAlive = false;
+                        }
                     }
                 }
-                
             }
-
         }
 
         private void EnforceGravity(GameTime gameTime)
@@ -205,14 +255,16 @@ namespace Fallen_Knight.GameAssets.Mobs
 
         public void KillEnemy()
         {
-            isAlive = false;
+            shouldDie = true;
             Score.AddScore(5);
+            ObserverManager.NotifyCamera();
         }
     }
 
-    public class RobeEnemy : Enemy
+    public class Executionair : Enemy
     {
-        public RobeEnemy(Texture2D texture, Level level, Vector2 position) : base(texture, level, position)
+        public Executionair(Texture2D texture, Texture2D dieTexture, Level level, Vector2 position)
+            : base(texture, dieTexture, level, position)
         {
         }
     }

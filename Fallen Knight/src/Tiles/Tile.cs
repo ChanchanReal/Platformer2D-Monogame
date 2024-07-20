@@ -17,7 +17,9 @@ namespace Fallen_Knight.GameAssets.Tiles
 
         FallingPlatform = 5,
 
-        Exit = 6,
+        Spike = 6,
+
+        Exit = 7,
 
         Item = 9,
 

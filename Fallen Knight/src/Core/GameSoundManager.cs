@@ -20,29 +20,17 @@ namespace Fallen_Knight.src.Core
         public void PlayWalkingSound()
         {
         }
-        public void PlayFallingTileSound(float delta)
+        public SoundEffect GetFallingTileSound()
         {
-            float volume = 1f;
-            float pitch = 0.5f;
-            float pan = 0;
-            SoundEffectInstance effect = fallingTileSound.CreateInstance();
-            effect.IsLooped = false;
-            effect.Volume = volume;
-            effect.Pitch = pitch;
-            effect.Pan = pan;
-            effect.Play();
+            return fallingTileSound;
 
         }
         public void PlayBackgroundMusic()
         {
-            float volume = 0.5f;
-            float pitch = 0.5f;
-            float pan = 0;
+            float volume = 0.1f;
             SoundEffectInstance bg = backgroundSound.CreateInstance();
             bg.IsLooped = true;
             bg.Volume = volume;
-            bg.Pitch = pitch;
-            bg.Pan = pan;
             bg.Play();
         }
     }

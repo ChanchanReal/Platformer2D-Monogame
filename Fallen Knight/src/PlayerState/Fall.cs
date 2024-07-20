@@ -16,6 +16,7 @@ namespace Fallen_Knight.src.PlayerState
 
         public override void HandleInput(GameTime gameTime)
         {
+            TryEarlyJump();
             SwitchToIdle();
             HandleHorizontalInput(gameTime);
         }
@@ -43,6 +44,15 @@ namespace Fallen_Knight.src.PlayerState
                 Player.PlayerSpeed = new Vector2(clampX, Player.PlayerSpeed.Y);
                 Player.GenerateParticles(gameTime);
                 Player.SpriteDirection = false;
+            }
+        }
+
+        private void TryEarlyJump()
+        {
+            if (!Player.IsGround && InputManager.Input(Keys.Space))
+            {
+                Player.WantsToJumpDuration = 0.2f;
+                Player.WantsToJump = true;
             }
         }
 

@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -29,6 +30,8 @@ namespace Fallen_Knight.src.Core
         Point screenSize = new Point(1280, 720);
         float scrollSpeedMax = 300f;
         float scrollSpeed;
+        int levelIndex = 0;
+        int maxLevel = 3;
 
         List<Texture2D> ParticleTexture;
 
@@ -66,7 +69,8 @@ namespace Fallen_Knight.src.Core
                 _graphics.GraphicsDevice,
                 new ParticleSystem(Vector2.Zero, ParticleTexture), gameSound);
 
-            string filePath = "Content/Levels/falling_map.csv";
+            string filePath = $"Content/Levels/falling_map{levelIndex}.csv";
+            levelIndex++;
             FileStream fs = File.OpenRead(filePath);
             level.LoadTile(fs);
             layer.Load(content, _graphics.GraphicsDevice, new Vector2(screenSize.X, screenSize.Y), level);
@@ -109,13 +113,12 @@ namespace Fallen_Knight.src.Core
             {
                 circles.Add(item.GetItemBound());
             }
-            DebugHelper.Update(gameTime, circles, level.FallingTiles);
 
+            DebugHelper.Update(gameTime, circles);
 #endif
             level.Update(gameTime);
             layer.Update(gameTime);
             camera.Update(gameTime, player, new Rectangle(0, 0, GAME_WORLD_WIDTH, GAME_WORLD_HEIGHT));
-
 
             InputManager.SetMousePosition(camera.ScreenToWorld(InputManager.GetMousePositionFromCamera()));
         }
@@ -124,13 +127,16 @@ namespace Fallen_Knight.src.Core
         {
             level = new Level(screenSize);
 
-            string filePath = "Content/Levels/falling_map2.csv";
+            string filePath = $"Content/Levels/falling_map{levelIndex}.csv";
             FileStream fs = File.OpenRead(filePath);
             level.Load(content.ServiceProvider,
                _graphics.GraphicsDevice,
                new ParticleSystem(Vector2.Zero, ParticleTexture), gameSound);
             level.LoadTile(fs);
             layer.Load(content, _graphics.GraphicsDevice, new Vector2(screenSize.X, screenSize.Y), level);
+            levelIndex = (levelIndex + 1) % maxLevel;
+
+            Console.WriteLine("SwitchingLevel " + levelIndex);
         }
 
         public void Draw(SpriteBatch spriteBatch , GameTime gameTime)

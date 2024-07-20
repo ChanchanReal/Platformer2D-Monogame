@@ -39,6 +39,7 @@ namespace Fallen_Knight.GameAssets.Character
         private const int RightBody = 2;
         private const int Feet = 3;
         private const int Head = 0;
+        public const float MaxWalkingSpeed  = 6f;       
         // gravity
         private static float gravity = 9.8f / 40;
         private Vector2 forces = new Vector2(friction, gravity);
@@ -49,7 +50,6 @@ namespace Fallen_Knight.GameAssets.Character
         public Attack AttackStatus = Attack.Off;
         public int CollisionDirection { get; set; } = 0;
         public PlayerStatus CurrentAction;
-        public const float MaxWalkingSpeed  = 5f;
         public float WantsToJumpDuration { get; set; } = 0f;
         public float CayoteTime { get; set; } = 0f;
         public float Movement { get; set; } = 0;
@@ -449,7 +449,13 @@ namespace Fallen_Knight.GameAssets.Character
             if (level.FallingTiles != null)
             foreach (var tile in level.FallingTiles)
             {
-                HandleCollision(bounds, tile.BoundingRec);
+                if (tile is FallingTile)
+                {
+                    FallingTile fallingTile = (FallingTile)tile;
+
+                    HandleCollision(bounds, fallingTile.BoundingRectangle);
+                }
+                
             }
         }
         
@@ -481,7 +487,7 @@ namespace Fallen_Knight.GameAssets.Character
                 CayoteTime = 0.1f;
                 IsGround = true;
                 IsJumping = false;
-                Position = new Vector2(Position.X, tileBounds.Y - bounds.Height + 4);
+                Position = new Vector2(Position.X, tileBounds.Y - bounds.Height + 3);
                 PlayerSpeed.Y = 0f;
             }
 

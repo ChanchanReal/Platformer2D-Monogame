@@ -4,6 +4,7 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/explode.png</File>
     <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Font/File.spritefont</File>
     <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Font/text.spritefont</File>
     <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/hitbox_circle64.png</File>
@@ -11,8 +12,7 @@
     <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Item/goldbag.png</File>
     <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Item/katana.png</File>
     <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Monster/executionair-Sheet.png</File>
-    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Monster/robe_guy.png</File>
-    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Monster/slimemonster.png</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Monster/explode.png</File>
     <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Particles/circle.png</File>
     <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Particles/particle.png</File>
     <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Player/fallmain.png</File>
@@ -40,12 +40,14 @@
     <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/darktile/t8.png</File>
     <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/fallingTile.png</File>
     <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/hitbox_square64.png</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/obstacle/spike.png</File>
     <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/spawn.png</File>
     <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/teleporter.png</File>
     <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/WeaponEffect/attack particle.png</File>
     <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/WeaponEffect/katana attack.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

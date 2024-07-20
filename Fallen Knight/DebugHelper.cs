@@ -41,11 +41,10 @@ namespace Fallen_Knight
             _bounds = new Dictionary<int, Rectangle>();
         }
 
-        public static void Update(GameTime gameTime, List<Circle> circles, List<FallingTile> fallingTile)
+        public static void Update(GameTime gameTime, List<Circle> circles)
         {
             float delta = (float)gameTime.TotalGameTime.TotalSeconds;
             itemBound = circles;
-            fallingTileBound = fallingTile;
 
             if (InputManager.Input(Keys.F1))
             {
@@ -97,7 +96,7 @@ namespace Fallen_Knight
                 if (fallingTileBound != null)
                 foreach (var rect in fallingTileBound)
                 {
-                    spriteBatch.Draw(squareTexture, rect.BoundingRec, Color.Red);
+                    spriteBatch.Draw(squareTexture, rect.BoundingRectangle, Color.Red);
                 }
                 DrawItemBound(spriteBatch);
             }
