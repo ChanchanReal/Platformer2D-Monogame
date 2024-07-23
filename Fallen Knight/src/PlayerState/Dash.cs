@@ -29,7 +29,7 @@ public class Dash : PlayerState
         if (Player.DashDuration > 0)
         {
             Player.DashDuration -= Player.DeltaTime;
-            if (Player.SpriteDirection == false)
+            if (Player.SpriteDirection == FaceDirection.Right)
             {
                 Player.PlayerSpeed = new Vector2(dashSpeed, 0);
             }
@@ -45,7 +45,7 @@ public class Dash : PlayerState
             Player.DashDuration = 0;
             Player.IsDashing = false;
 
-            if (Player.SpriteDirection)
+            if (Player.SpriteDirection == FaceDirection.Left)
             {
                 Player.PlayerSpeed = new Vector2(-Player.MaxWalkingSpeed, Player.PlayerSpeed.Y);
                 Player.SwitchState(new MoveLeft(Player));

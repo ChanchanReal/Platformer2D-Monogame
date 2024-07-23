@@ -49,6 +49,9 @@
     <None Update="Content\Levels\falling_map3.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Content\Levels\falling_map3.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Content\Levels\tile.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

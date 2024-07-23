@@ -1,4 +1,5 @@
 ﻿using Fallen_Knight.GameAssets.Animations;
+using Fallen_Knight.GameAssets.Character;
 using Fallen_Knight.GameAssets.Levels;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
@@ -39,8 +40,27 @@ namespace Fallen_Knight.src.Tiles
 
         public override void Update(GameTime gameTime)
         {
-            BoundingRectangle = new Rectangle((int)OriginalPosition.X, (int)OriginalPosition.Y + (Texture.Height / 2), 64, Texture.Height / 2);
-            DebugHelper.AddToDebugBound(BoundingRectangle, 33);
+            BoundingRectangle = new Rectangle((int)OriginalPosition.X, 
+                (int)OriginalPosition.Y + (Texture.Height * 2) + 4,
+                64, Texture.Height);
+
+            Player player = (Player)Level.Player;
+
+            if (BoundingRectangle.Intersects(player.BoundingRectangle))
+            {
+                for (int i = 0; i < player.Hitbox.Length; i++)
+                {
+                    if (player.Hitbox[i].Intersects(BoundingRectangle))
+                    {
+                        KillPlayer(player);
+                    }
+                }
+            }
+        }
+
+        private void KillPlayer(Player player)
+        {
+            player.SetPlayerToDead();
         }
     }
 }

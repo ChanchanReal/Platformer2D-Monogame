@@ -11,7 +11,7 @@ namespace Fallen_Knight.GameAssets.Animations
         GraphicsDevice graphics;
         Texture2D fadeScreen;
         float screenFadeDuration = 2f;
-        bool isSpriteLookingLeft = false;
+        FaceDirection spriteDirection = FaceDirection.Right;
         IAnimate currentAnimation;
         List<IAnimate> animations;
 
@@ -51,12 +51,12 @@ namespace Fallen_Knight.GameAssets.Animations
             };
             
         }
-        public void Update(GameTime gameTime, Rectangle position, bool isSpriteLookingLeft, PlayerStatus playerState)
+        public void Update(GameTime gameTime, Rectangle position, FaceDirection faceDirection, PlayerStatus playerState)
         {
             deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             screenFadeDuration -= DeltaTime;
             playerPosition = position;
-            this.isSpriteLookingLeft = isSpriteLookingLeft;
+            this.spriteDirection = faceDirection;
             this.playerStatus = playerState;
 
             currentAnimation = GetCurrentAnimation(playerState);
@@ -64,7 +64,7 @@ namespace Fallen_Knight.GameAssets.Animations
             if (currentAnimation != null)
             {
                 Animation animation = (Animation)currentAnimation;
-                animation.FlipH = isSpriteLookingLeft;
+                animation.FlipH = FaceDirectionToBool(faceDirection);
                 animation.Position = PlayerPosition;
                 currentAnimation.Update(gameTime);
             }
@@ -73,6 +73,11 @@ namespace Fallen_Knight.GameAssets.Animations
         {
             if (currentAnimation != null)
                 currentAnimation.Draw(spriteBatch, gameTime);
+        }
+
+        private bool FaceDirectionToBool(FaceDirection faceDirection)
+        {
+            return faceDirection == FaceDirection.Left? true : false;
         }
 
         public IAnimate GetCurrentAnimation(PlayerStatus playerState)

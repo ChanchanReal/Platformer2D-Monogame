@@ -31,7 +31,7 @@ namespace Fallen_Knight.src.Core
         float scrollSpeedMax = 300f;
         float scrollSpeed;
         int levelIndex = 0;
-        int maxLevel = 3;
+        int maxLevel = 4;
 
         List<Texture2D> ParticleTexture;
 
@@ -101,20 +101,25 @@ namespace Fallen_Knight.src.Core
             if (InputManager.Input(Keys.F8)) SetResolution(1280, 720);
 
             Player player = (Player)level.Player;
+            List<Circle> enemyCircle = new List<Circle>();
 
             if (level.enemies.Count > 0)
             {
-                Enemy enemy = (Enemy)level.enemies.First();
+                foreach (var enemy in level.enemies)
+                {
+                    Enemy enemy1 = (Enemy)enemy;
+                    enemyCircle.Add(enemy1.AreaCircle);
+                }
             }
 #if DEBUG
 
-            List<Circle> circles = new List<Circle>();
+            List<Circle> itemCircles = new List<Circle>();
             foreach (var item in level.ItemBonus)
             {
-                circles.Add(item.GetItemBound());
+                itemCircles.Add(item.GetItemBound());
             }
 
-            DebugHelper.Update(gameTime, circles);
+            DebugHelper.Update(gameTime, itemCircles, enemyCircle);
 #endif
             level.Update(gameTime);
             layer.Update(gameTime);

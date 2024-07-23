@@ -4,6 +4,7 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/../../../../../aseprite/build/bin/spike.png</File>
     <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/explode.png</File>
     <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Font/File.spritefont</File>
     <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Font/text.spritefont</File>
@@ -40,13 +41,14 @@
     <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/darktile/t8.png</File>
     <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/fallingTile.png</File>
     <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/hitbox_square64.png</File>
-    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/obstacle/spike.png</File>
+    <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/movingplatform.png</File>
     <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/spawn.png</File>
     <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/Tiles/teleporter.png</File>
     <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/WeaponEffect/attack particle.png</File>
     <File>C:/Users/cedie/Platformer2D-Monogame/Fallen Knight/Content/WeaponEffect/katana attack.png</File>
   </SourceFiles>
   <DestFiles>
+    <File>Tiles/obstacle/spike.png</File>
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

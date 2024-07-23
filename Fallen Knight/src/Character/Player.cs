@@ -9,6 +9,7 @@ using Fallen_Knight.src.Interface;
 using Fallen_Knight.src.Items;
 using Fallen_Knight.src.PlayerState;
 using Fallen_Knight.src.Score;
+using Fallen_Knight.src.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -57,7 +58,7 @@ namespace Fallen_Knight.GameAssets.Character
         public float DashTime { get; set; } = 0.2f;
         public float DashDuration { get; set; } = 0f;
         public bool IsDashing { get; set; } = false;
-        public bool SpriteDirection { get; set; } = false;
+        public FaceDirection SpriteDirection { get; set; } = FaceDirection.Right;
         public bool IsJumping { get; set; } = false;
         public bool WantsToJump { get; set; } = false;
         public bool HeadIsColliding { get; set; } = false;
@@ -212,18 +213,23 @@ namespace Fallen_Knight.GameAssets.Character
             ResetWantsToJump();
             AttackEnabled(gameTime);
 
-            playerWeapon.flipH = SpriteDirection;
+            playerWeapon.FlipH = SpriteDirectionToBool(SpriteDirection);
             
             if (AttackStatus == Attack.On)
             {
                 BladeParticle.UpdateFrame(gameTime);
                 BladeParticle.Position = playerWeapon.AttackHitBox;
-                BladeParticle.FlipH = SpriteDirection;
+                BladeParticle.FlipH = SpriteDirectionToBool(SpriteDirection);
             }
 
             // Decrement wantsToJumpDuration regardless of whether a jump occurred
             WantsToJumpDuration -= DeltaTime;
             dashCoolDown -= DeltaTime;
+        }
+
+        private bool SpriteDirectionToBool(FaceDirection faceDirection)
+        {
+            return faceDirection == FaceDirection.Left? true : false;
         }
         private void ResetWantsToJump()
         {
@@ -270,6 +276,8 @@ namespace Fallen_Knight.GameAssets.Character
 
         private void HitEnemyCheck()
         {
+            if (Level.enemies == null) return;
+
             foreach (var enemy in Level.enemies)
             {
                 Enemy mob = enemy as Enemy;
@@ -307,8 +315,7 @@ namespace Fallen_Knight.GameAssets.Character
         {
             float elapse = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            if (!IsGround)
-                return;
+            if (!IsGround) return;
 
             if (particleSystem.DelayTime >= 0)
             {
@@ -328,7 +335,9 @@ namespace Fallen_Knight.GameAssets.Character
             playerWeapon.Draw(gameTime, sprite);
             
             if (AttackStatus == Attack.On)
-            BladeParticle.Draw(sprite);
+            {
+                BladeParticle.Draw(sprite);
+            }
         }
 
         public void DrawPlayerEffect(SpriteBatch sprite, GameTime gameTime , Matrix camera)
@@ -376,7 +385,7 @@ namespace Fallen_Knight.GameAssets.Character
                             // if we are on top of tile.
                             if (previousBottom <= tileBound.Top &&  PlayerSpeed.Y > 0 && tileBound.Intersects(Hitbox[Feet]))
                             {
-                                CayoteTime = 0.1f;
+                                CayoteTime = 0.2f;
                                 IsGround = true;
                                 PlayerSpeed.Y = 0;
                                 Position = new Vector2(Position.X, (Position.Y + depth.Y) + 3); // Add slight offset to ensure on top
@@ -435,8 +444,7 @@ namespace Fallen_Knight.GameAssets.Character
                 }
             }
 
-            if (PlayerState is not Jump)
-                CollisionForFallingTile(bounds);
+            CollisionForFallingTile(bounds);
 
             CayoteTime -= DeltaTime;
             previousPos = Position.Y;
@@ -446,19 +454,25 @@ namespace Fallen_Knight.GameAssets.Character
 
         private void CollisionForFallingTile(Rectangle bounds)
         {
-            if (level.FallingTiles != null)
-            foreach (var tile in level.FallingTiles)
-            {
-                if (tile is FallingTile)
-                {
-                    FallingTile fallingTile = (FallingTile)tile;
+            if (CurrentAction == PlayerStatus.Jump && PlayerSpeed.Y < 0)
+                return;
 
-                    HandleCollision(bounds, fallingTile.BoundingRectangle);
+            if (level?.FallingTiles != null)
+            {
+                foreach (var tile in level.FallingTiles)
+                {
+                    switch (tile)
+                    {
+                        case FallingTile fallingTile:
+                            HandleCollision(bounds, fallingTile.BoundingRectangle);
+                            break;
+                        case RightMovingTile movingTile:
+                            HandleCollision(bounds, movingTile.BoundingRectangle);
+                            break;
+                    }
                 }
-                
             }
         }
-        
         private void HandleCollision(Rectangle bounds, Rectangle tileBounds)
         {
             if (Hitbox[LeftBody].Intersects(tileBounds))
@@ -477,17 +491,19 @@ namespace Fallen_Knight.GameAssets.Character
 
             if (Hitbox[Head].Intersects(tileBounds))
             {
+                Vector2 dep = RectangleExtensions.GetIntersectionDepth(Hitbox[Head], tileBounds);
                 HeadIsColliding = true;
                 PlayerSpeed.Y = 0f;
-                Position = new Vector2(Position.X, tileBounds.Y + tileBounds.Height * 2);
+                Position = new Vector2(Position.X, bounds.Y + dep.Y);
             }
 
-            if (Hitbox[Feet].Intersects(tileBounds))
+            if (Hitbox[Feet].Intersects(tileBounds) && BoundingRectangle.Intersects(tileBounds))
             {
-                CayoteTime = 0.1f;
+                Vector2 dep = RectangleExtensions.GetIntersectionDepth(Hitbox[Feet], tileBounds);
+                CayoteTime = 0.2f;
                 IsGround = true;
                 IsJumping = false;
-                Position = new Vector2(Position.X, tileBounds.Y - bounds.Height + 3);
+                Position = new Vector2(bounds.X, tileBounds.Y - bounds.Height + 3);
                 PlayerSpeed.Y = 0f;
             }
 
@@ -547,8 +563,7 @@ namespace Fallen_Knight.GameAssets.Character
             spawnArea = position;
             Position = spawnArea;
         }
-
-        public enum Attack { On, Off}
+        public enum Attack { On, Off }
     }
 }
 

@@ -37,7 +37,13 @@ namespace Fallen_Knight.GameAssets.Mobs
         private Vector2 position;
         private bool shouldDie = false;
         private bool isAlive;
+        private bool chase = false;
 
+        public Circle AreaCircle
+        {
+            get => areaCircle;
+        }
+        private Circle areaCircle;
         public Rectangle BoundingRectangle
         {
             get
@@ -82,6 +88,7 @@ namespace Fallen_Knight.GameAssets.Mobs
         {
             float delta = (float)gameTime.ElapsedGameTime.TotalSeconds;
             onGround = false;
+            SetAreaCircle();
             EnforceGravity(gameTime);
             Collision();
             PickUpEnemy();
@@ -97,6 +104,11 @@ namespace Fallen_Knight.GameAssets.Mobs
             {
                 _ai.Move(ref faceDirection, (float)gameTime.ElapsedGameTime.TotalSeconds);
             }
+        }
+
+        private void SetAreaCircle()
+        {
+            areaCircle = new Circle(Position, 300);
         }
 
         private void UpdateAnimations(GameTime gameTime)
@@ -243,6 +255,26 @@ namespace Fallen_Knight.GameAssets.Mobs
                         }
                     }
                 }
+            }
+
+            if (chase)
+            {
+                float playerDirection = player.BoundingRectangle.X;
+
+                if (playerDirection > BoundingRectangle.X)
+                    faceDirection = FaceDirection.Right;
+
+                if (playerDirection < BoundingRectangle.X)
+                    faceDirection = FaceDirection.Left;
+            }
+
+            if (AreaCircle.Intersecting(playerBound))
+            {
+                chase = true;
+            }
+            else
+            {
+                chase = false;
             }
         }
 

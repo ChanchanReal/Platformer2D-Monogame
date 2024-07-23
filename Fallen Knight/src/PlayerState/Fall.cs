@@ -34,7 +34,7 @@ namespace Fallen_Knight.src.PlayerState
                 float clampX = Math.Clamp(newPlayerSpeed, -Player.MaxWalkingSpeed, Player.MaxWalkingSpeed);
                 Player.PlayerSpeed = new Vector2(clampX, Player.PlayerSpeed.Y);
                 Player.GenerateParticles(gameTime);
-                Player.SpriteDirection = true;
+                Player.SpriteDirection = FaceDirection.Left;
             }
             else if (InputManager.HoldableInput(Keys.Right))
             {
@@ -43,7 +43,7 @@ namespace Fallen_Knight.src.PlayerState
                 float clampX = Math.Clamp(newPlayerSpeed, -Player.MaxWalkingSpeed, Player.MaxWalkingSpeed);
                 Player.PlayerSpeed = new Vector2(clampX, Player.PlayerSpeed.Y);
                 Player.GenerateParticles(gameTime);
-                Player.SpriteDirection = false;
+                Player.SpriteDirection = FaceDirection.Right;
             }
         }
 

@@ -177,7 +177,8 @@ namespace Fallen_Knight.GameAssets.Levels
                 "13" => "f",
                 "14" => "~",
                 "15" => "^",
-                _    => num,
+                "16" => ">",
+                _ => num,
             };
         }
 
@@ -205,6 +206,10 @@ namespace Fallen_Knight.GameAssets.Levels
                     SetSpikeTile(x, y);
                     break;
 
+                case TileType.MovingTile:
+                    SetMovingPlatform(x, y);
+                    break;
+
                 case TileType.Enemy:
                     SetEnemy(x, y);
                     break;
@@ -212,6 +217,21 @@ namespace Fallen_Knight.GameAssets.Levels
             }
         }
 
+        public void SetMovingPlatform(int x, int y)
+        {
+            if (FallingTiles == null)
+                FallingTiles = new List<ICustomTiles>();
+
+            FallingTiles.Add(
+                new RightMovingTile(
+                Content.Load<Texture2D>("Tiles/movingplatform"),
+                null,
+                null,
+                new Vector2(x * Tiles.Tile.Size.Y, y * Tiles.Tile.Size.Y),
+                gameSound.GetFallingTileSound(),
+                this
+                ));
+        }
         public void SetEnemy(int x, int y)
         {
             enemies.Add(
@@ -299,6 +319,8 @@ namespace Fallen_Knight.GameAssets.Levels
                     return TileType.Item;
                 case 'f':
                     return TileType.FallingPlatform;
+                case '>':
+                    return TileType.MovingTile;
                 case '^':
                     return TileType.Spike;
                 case '0':

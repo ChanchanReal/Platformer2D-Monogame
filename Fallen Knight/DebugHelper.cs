@@ -19,6 +19,7 @@ namespace Fallen_Knight
         private static Texture2D circleTexture;
         private static SpriteFont spriteFont;
         private static List<Circle> itemBound;
+        private static List<Circle> enemyArea;
         private static List<FallingTile> fallingTileBound;
         private static Dictionary<int, Rectangle> _bounds;
         private static HashSet<int> _boundsID;
@@ -41,10 +42,11 @@ namespace Fallen_Knight
             _bounds = new Dictionary<int, Rectangle>();
         }
 
-        public static void Update(GameTime gameTime, List<Circle> circles)
+        public static void Update(GameTime gameTime, List<Circle> circles, List<Circle> enemyAreaBound)
         {
             float delta = (float)gameTime.TotalGameTime.TotalSeconds;
             itemBound = circles;
+            enemyArea = enemyAreaBound;
 
             if (InputManager.Input(Keys.F1))
             {
@@ -99,6 +101,7 @@ namespace Fallen_Knight
                     spriteBatch.Draw(squareTexture, rect.BoundingRectangle, Color.Red);
                 }
                 DrawItemBound(spriteBatch);
+                DrawEnemyCircle(spriteBatch);
             }
         }
 
@@ -117,6 +120,19 @@ namespace Fallen_Knight
                 sb.Draw(circleTexture, new Vector2(circle.Center.X, circle.Center.Y),
                     new Rectangle(0,0, 64, 64), Color.DarkRed, 0f, origin, scaleFactor, SpriteEffects.None, 0f);
             }
+        }
+
+        private static void DrawEnemyCircle(SpriteBatch sb)
+        {
+            if (showHitbox && isDebug)
+                foreach (var circle in enemyArea)
+                {
+                    if (circle == null) return;
+                    float scaleFactor = (circle.Radius * 2) / 64f;
+                    Vector2 origin = new Vector2(64 / 2, 64 / 2);
+                    sb.Draw(circleTexture, new Vector2(circle.Center.X, circle.Center.Y),
+                        new Rectangle(0, 0, 64, 64), Color.DarkRed, 0f, origin, scaleFactor, SpriteEffects.None, 0f);
+                }
         }
 
         public static void GetCurrentAction(PlayerStatus playerStatus)

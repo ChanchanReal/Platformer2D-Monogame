@@ -64,16 +64,13 @@ namespace Fallen_Knight.GameAssets.Tiles
 
             if (!fall)
             {
-                if (BoundingRectangle.Intersects(player.BoundingRectangle))
+                if (BoundingRectangle.Intersects(player.Hitbox[3]))
                 {
-                    if (BoundingRectangle.Intersects(player.Hitbox[3]))
-                    {
-                        fall = true;
-                        delayDuration = touchDelay;
-                        ObserverManager.NotifyCamera();
-                        angularVelocity = 0.1f * (float)(random.NextDouble() * 2 - 1);
-                        SoundEffects.Play();
-                    }
+                    fall = true;
+                    delayDuration = touchDelay;
+                    ObserverManager.NotifyCamera();
+                    angularVelocity = 0.1f * (float)(random.NextDouble() * 2 - 1);
+                    SoundEffects.Play();
                 }
             }
 

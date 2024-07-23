@@ -13,6 +13,18 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin ../../../../../aseprite/build/bin/spike.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../../../../../aseprite/build/bin/spike.png;Tiles/obstacle/spike.png
+
 #begin explode.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -417,7 +429,7 @@
 /processorParam:TextureFormat=Color
 /build:Tiles/hitbox_square64.png
 
-#begin Tiles/obstacle/spike.png
+#begin Tiles/movingplatform.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -427,7 +439,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Tiles/obstacle/spike.png
+/build:Tiles/movingplatform.png
 
 #begin Tiles/spawn.png
 /importer:TextureImporter

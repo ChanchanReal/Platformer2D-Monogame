@@ -15,7 +15,7 @@ namespace Fallen_Knight.src.Items
         public Rectangle AttackHitBox;
         public Rectangle Hitbox;
         public float Damage = 10;
-        public bool flipH = false;
+        public bool FlipH = false;
 
         public Weapon(Texture2D texture, Texture2D lighting, Rectangle rect)
         {
@@ -40,7 +40,7 @@ namespace Fallen_Knight.src.Items
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            if (flipH)
+            if (FlipH)
             spriteBatch.Draw(texture, weaponRectangle,null ,Color.White, 0f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0f );
             else
             spriteBatch.Draw(texture, weaponRectangle,null ,Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0f );
@@ -69,7 +69,7 @@ namespace Fallen_Knight.src.Items
         private void AttackHitboxUpdate(Rectangle boundingRec)
         {
             float scale = 1.5f;
-            if (flipH)
+            if (FlipH)
                 AttackHitBox = new Rectangle(boundingRec.X - boundingRec.Width - 25, boundingRec.Y , (int)(64 * scale), (int)(34 * scale));
             else
                 AttackHitBox = new Rectangle(boundingRec.X + boundingRec.Width, boundingRec.Y  , (int)(64 * scale), (int)(34 * scale));

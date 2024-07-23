@@ -56,6 +56,6 @@ public class MoveRight : PlayerState
     public override void UpdateState()
     {
         Player.CurrentAction = PlayerStatus.Walk;
-        Player.SpriteDirection = false;
+        Player.SpriteDirection = FaceDirection.Right;
     }
 }
